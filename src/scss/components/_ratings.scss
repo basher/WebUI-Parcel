@@ -1,4 +1,4 @@
-.kb-ratings {
+.ui-ratings {
     @if $allow-dark-mode {
         @media (prefers-color-scheme: dark) {
             background-color: $color-grey-3;
@@ -57,7 +57,7 @@
             margin-block-end: 0;
         }
 
-        .kb-ratings {
+        .ui-ratings {
             align-items: center;
             background: none;
             display: flex;
@@ -90,7 +90,7 @@
                 text-decoration: underline;
             }
 
-            .kb-icon {
+            .ui-icon {
                 fill: $color-neutral;
                 height: $icon-size-s;
                 margin-inline-start: $gutter-xs / 2;
@@ -120,6 +120,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-ratings) {
-    @include kb-ratings;
+@if mixin-exists(ui-ratings) {
+    @include ui-ratings;
 }

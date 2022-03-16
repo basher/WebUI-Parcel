@@ -1,12 +1,12 @@
-.kb-gallery-slider {
+.ui-gallery-slider {
     overflow-y: hidden;
 
-    .kb-button-group:not([role='tablist']) {
+    .ui-button-group:not([role='tablist']) {
         display: none;
     }
 
-    &.kb-slider {
-        .kb-slider__slide {
+    &.ui-slider {
+        .ui-slider__slide {
             display: flex;
             justify-content: center;
         }
@@ -37,6 +37,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-gallery-slider) {
-    @include kb-gallery-slider;
+@if mixin-exists(ui-gallery-slider) {
+    @include ui-gallery-slider;
 }

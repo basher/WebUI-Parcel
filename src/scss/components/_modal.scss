@@ -1,10 +1,10 @@
-.kb-modal {
+.ui-modal {
     @at-root {
         // Modal content (in-page) is hidden until Ajax-fetched by opening the modal.
         [data-modal-ajax-content] {
             display: none;
 
-            .kb-modal__ajax & {
+            .ui-modal__ajax & {
                 display: block;
             }
         }
@@ -48,6 +48,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-modal) {
-    @include kb-modal;
+@if mixin-exists(ui-modal) {
+    @include ui-modal;
 }

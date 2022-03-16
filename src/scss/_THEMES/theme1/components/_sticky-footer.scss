@@ -1,5 +1,5 @@
-@mixin kb-sticky-footer {
-    .kb-sticky-footer {
+@mixin ui-sticky-footer {
+    .ui-sticky-footer {
         background-color: $color-brand;
 
         &__button {
@@ -18,7 +18,7 @@
                 padding-inline-start: 0;
             }
 
-            .kb-button__inner {
+            .ui-button__inner {
                 justify-content: center;
             }
 
@@ -35,7 +35,7 @@
                 opacity: 1;
             }
 
-            .kb-icon {
+            .ui-icon {
                 @include bp-medium {
                     height: $icon-size-l;
                     width: $icon-size-l;
@@ -44,7 +44,7 @@
         }
 
         &__item:last-child {
-            .kb-sticky-footer__button {
+            .ui-sticky-footer__button {
                 border-inline-end: 0;
             }
         }

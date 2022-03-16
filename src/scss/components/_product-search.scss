@@ -1,20 +1,20 @@
-.kb-product-search {
-    .kb-form__legend {
+.ui-product-search {
+    .ui-form__legend {
         text-align: center;
         width: 100%;
     }
 
-    .kb-form__label {
+    .ui-form__label {
         > span:not([class]):first-child {
             @include visually-hide;
         }
     }
 
-    .kb-button {
+    .ui-button {
         margin: 0;
     }
 
-    .kb-grid {
+    .ui-grid {
         @include responsive-grid($centered: true);
 
         > * {
@@ -28,6 +28,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-product-search) {
-    @include kb-product-search;
+@if mixin-exists(ui-product-search) {
+    @include ui-product-search;
 }

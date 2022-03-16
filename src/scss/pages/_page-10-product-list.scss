@@ -1,20 +1,20 @@
 // Product list.
 .page-10 {
-    .kb-cms {
+    .ui-cms {
         @include layout-centered-content;
     }
 
-    .kb-layout__inner {
-        > .kb-cms:first-of-type {
+    .ui-layout__inner {
+        > .ui-cms:first-of-type {
             margin-block-start: $gutter-xl;
         }
     }
 
-    .kb-product-card-grid {
+    .ui-product-card-grid {
         margin-block-end: $gutter-xl;
     }
 
-    .kb-product-card__block-link {
+    .ui-product-card__block-link {
         p:first-of-type {
             color: $color-text;
         }

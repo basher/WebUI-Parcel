@@ -22,7 +22,7 @@ export class Tabs {
     }
 
     public static start(): void {
-        const tabsContainers = document.querySelectorAll('.kb-tabs');
+        const tabsContainers = document.querySelectorAll('.ui-tabs');
 
         if (tabsContainers) {
             [...(tabsContainers as any)].map((tabs, index) => {
@@ -101,13 +101,13 @@ export class Tabs {
 
     private createTabs(): void {
         const titles: NodeListOf<HTMLElement> =
-            this.tabs.querySelectorAll('.kb-tabs__title') ||
-            this.tabs.querySelectorAll('.kb-accordion__title');
+            this.tabs.querySelectorAll('.ui-tabs__title') ||
+            this.tabs.querySelectorAll('.ui-accordion__title');
 
         // Create 'tablist' container.
         const tablist = this.createTabList();
 
-        // For every '.kb-tabs' instance, loop through the titles.
+        // For every '.ui-tabs' instance, loop through the titles.
         [...(titles as any)].map((title, index) => {
             const titleText = title.childNodes[0];
             const content = title.nextElementSibling;
@@ -142,7 +142,7 @@ export class Tabs {
                     e,
                     index,
                     tablist,
-                    '.kb-tabs__button'
+                    '.ui-tabs__button'
                 );
             });
 
@@ -152,16 +152,16 @@ export class Tabs {
 
     private convertToAccordion(tabsContainer: any): void {
         const titles: NodeListOf<HTMLElement> =
-            tabsContainer.querySelectorAll('.kb-tabs__title');
-        tabsContainer.classList.remove('kb-tabs');
-        tabsContainer.classList.add('kb-accordion');
+            tabsContainer.querySelectorAll('.ui-tabs__title');
+        tabsContainer.classList.remove('ui-tabs');
+        tabsContainer.classList.add('ui-accordion');
 
         [...(titles as any)].map((title) => {
             const content = title.nextElementSibling;
-            title.classList.remove('kb-tabs__title');
-            title.classList.add('kb-accordion__title');
-            content.classList.remove('kb-tabs__content');
-            content.classList.add('kb-accordion__content');
+            title.classList.remove('ui-tabs__title');
+            title.classList.add('ui-accordion__title');
+            content.classList.remove('ui-tabs__content');
+            content.classList.add('ui-accordion__content');
 
             return true;
         });
@@ -172,7 +172,7 @@ export class Tabs {
     private createTabList(): HTMLElement {
         const tablist: HTMLElement = document.createElement('div');
         tablist.setAttribute('role', 'tablist');
-        tablist.classList.add('kb-tabs__tablist');
+        tablist.classList.add('ui-tabs__tablist');
         this.tabs.prepend(tablist);
 
         return tablist;
@@ -185,7 +185,7 @@ export class Tabs {
         button.setAttribute('aria-selected', 'false');
         button.setAttribute('tabIndex', '-1');
         button.setAttribute('role', 'tab');
-        button.classList.add('kb-tabs__button');
+        button.classList.add('ui-tabs__button');
         button.innerHTML = buttonContent;
 
         // Auto-generate unique ID.

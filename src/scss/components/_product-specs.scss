@@ -1,4 +1,4 @@
-.kb-product-specs {
+.ui-product-specs {
     margin-block-end: $gutter-xl;
 
     &__list {
@@ -15,7 +15,7 @@
         flex-direction: column;
         padding: $gutter-s;
 
-        .kb-icon {
+        .ui-icon {
             height: 1.5em;
             margin-block-end: $gutter-xs;
             width: 1.5em;
@@ -52,7 +52,7 @@
         background-color: transparent;
         padding: 0;
 
-        .kb-button {
+        .ui-button {
             height: 100%;
             padding: $gutter-s;
             width: 100%;
@@ -61,6 +61,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-product-specs) {
-    @include kb-product-specs;
+@if mixin-exists(ui-product-specs) {
+    @include ui-product-specs;
 }

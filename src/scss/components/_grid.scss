@@ -4,12 +4,12 @@ Grid - for internal gallery or grid layouts.
 ----------------------------------------------------------------------------
 */
 
-.kb-grid {
+.ui-grid {
     @include responsive-grid-columns;
     @include responsive-grid;
     // Hmmm. Need to be specific for UL to override 'reset.scss'.
     @at-root {
-        ul.kb-grid {
+        ul.ui-grid {
             margin-block-end: $gutter-xl;
         }
     }
@@ -40,6 +40,6 @@ Grid - for internal gallery or grid layouts.
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-grid) {
-    @include kb-grid;
+@if mixin-exists(ui-grid) {
+    @include ui-grid;
 }

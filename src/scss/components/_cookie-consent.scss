@@ -1,4 +1,4 @@
-.kb-cookie-consent {
+.ui-cookie-consent {
     background-color: $color-background;
     border: $border-width $border-style $color-grey-2;
     color: $color-text;
@@ -18,7 +18,7 @@
         text-align: center;
     }
 
-    .kb-button-group {
+    .ui-button-group {
         align-items: center;
         justify-content: center;
         margin-block-end: $gutter-xs;
@@ -26,6 +26,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-cookie-consent) {
-    @include kb-cookie-consent;
+@if mixin-exists(ui-cookie-consent) {
+    @include ui-cookie-consent;
 }

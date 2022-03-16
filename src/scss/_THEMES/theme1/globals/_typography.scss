@@ -1,4 +1,4 @@
-@mixin kb-typography {
+@mixin ui-typography {
     body {
         @include fluid-type-default(
             $min: $font-size-s,

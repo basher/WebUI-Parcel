@@ -55,7 +55,7 @@ export class FormAjaxSubmit {
         const ajaxContainer = ajaxForm.parentElement;
         const showAjaxLoader = true;
         const ajaxLoaderContainer =
-            ajaxDropdown.closest('.kb-form__field') || ajaxContainer;
+            ajaxDropdown.closest('.ui-form__field') || ajaxContainer;
 
         const ajaxDropdownId = ajaxDropdown.id;
 
@@ -99,7 +99,7 @@ export class FormAjaxSubmit {
                         if (
                             node &&
                             node.classList &&
-                            node.classList.contains('kb-form')
+                            node.classList.contains('ui-form')
                         ) {
                             addJSClass(node);
 

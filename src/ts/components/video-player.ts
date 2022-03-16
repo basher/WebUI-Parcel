@@ -15,7 +15,7 @@ export class VideoPlayer {
     }
 
     public static start(): void {
-        const videoDivs = document.querySelectorAll('.kb-video-player');
+        const videoDivs = document.querySelectorAll('.ui-video-player');
 
         if (videoDivs) {
             [...(videoDivs as any)].map((videoDiv) => {
@@ -40,8 +40,8 @@ export class VideoPlayer {
             'http://www.w3.org/2000/svg',
             'svg'
         );
-        icon.classList.add('kb-icon');
-        icon.classList.add('kb-video-player__icon');
+        icon.classList.add('ui-icon');
+        icon.classList.add('ui-video-player__icon');
         icon.textContent = translate('VideoPlayerButton', 'Play video');
         icon.setAttribute('aria-hidden', 'true');
         icon.setAttribute('focusable', 'false');
@@ -74,7 +74,7 @@ export class VideoPlayer {
 
     private addVideoIframe(videoIframe: HTMLIFrameElement): void {
         const responsiveMediaContainer = this.videoContainer.querySelector(
-            '.kb-responsive-media'
+            '.ui-responsive-media'
         ) as HTMLDivElement;
 
         const videoHeight = this.videoLink?.dataset.videoHeight;
@@ -105,7 +105,7 @@ export class VideoPlayer {
             this.videoLink.setAttribute('data-modal-fetch-content', 'true');
             this.videoLink.setAttribute(
                 'data-modal-css-class',
-                'kb-video-player__modal'
+                'ui-video-player__modal'
             );
 
             this.videoLink.addEventListener('click', (e: MouseEvent) => {

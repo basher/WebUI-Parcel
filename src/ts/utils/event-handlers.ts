@@ -53,7 +53,7 @@ export const triggerEvent = (el: HTMLElement, type: any): void => {
  *
  * @example
  *
- *      bindTabsKeyboardEvent(titles, e, index, tablist, '.kb-tabs__title');
+ *      bindTabsKeyboardEvent(titles, e, index, tablist, '.ui-tabs__title');
  */
 export const bindTabsKeyboardEvent = (
     tabButtons: NodeListOf<HTMLElement>,

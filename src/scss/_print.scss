@@ -113,7 +113,7 @@ Specific component styles.
 ----------------------------------------------------------------------------
 */
 
-[class*='kb-grid'] {
+[class*='ui-grid'] {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -124,7 +124,7 @@ Specific component styles.
     }
 }
 
-.kb-form {
+.ui-form {
     &__field,
     &__fieldset {
         margin-block-end: 10pt;
@@ -137,28 +137,28 @@ Specific component styles.
     }
 }
 
-.kb-button-group {
+.ui-button-group {
     margin-block-end: 10pt;
 
-    .kb-button {
+    .ui-button {
         display: block;
         margin: 0;
     }
 }
 
-.kb-header__logo {
+.ui-header__logo {
     font-size: 16pt;
 
-    .kb-image {
+    .ui-image {
         display: block;
         max-height: 30pt;
     }
 }
 
-.kb-banner__inner {
+.ui-banner__inner {
     margin-block-end: 10pt;
 
-    &.kb-responsive-media {
+    &.ui-responsive-media {
         padding: 0 !important;
     }
 }
@@ -174,17 +174,17 @@ Notes:
 
 img,
 button,
-.kb-icon,
-.kb-skiplinks,
-.kb-navigation,
-.kb-header__search,
-.kb-header__offers,
-.kb-branch-rotator,
-.kb-product-search,
-.kb-footer__group-title,
-.kb-footer__group-content,
-.kb-footer__item:not(.kb-footer__item--copyright),
-.kb-layout__sticky--footer {
+.ui-icon,
+.ui-skiplinks,
+.ui-navigation,
+.ui-header__search,
+.ui-header__offers,
+.ui-branch-rotator,
+.ui-product-search,
+.ui-footer__group-title,
+.ui-footer__group-content,
+.ui-footer__item:not(.ui-footer__item--copyright),
+.ui-layout__sticky--footer {
     display: none;
 }
 /* stylelint-enable declaration-no-important */

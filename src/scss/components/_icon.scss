@@ -1,4 +1,4 @@
-.kb-icon {
+.ui-icon {
     fill: currentColor;
     flex-shrink: 0; // Stop icon shrinking when inside a flex container
     height: 1em; // Scale icon to match font-size of parent element
@@ -22,6 +22,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-icon) {
-    @include kb-icon;
+@if mixin-exists(ui-icon) {
+    @include ui-icon;
 }

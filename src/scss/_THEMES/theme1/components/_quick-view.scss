@@ -1,5 +1,5 @@
-@mixin kb-quick-view {
-    .kb-quick-view {
+@mixin ui-quick-view {
+    .ui-quick-view {
         background-color: $color-white;
 
         &__item {
@@ -8,9 +8,9 @@
             box-shadow: 0 0.625rem 0.625rem #{rgba(var(--themeBlack), 0.1)};
         }
 
-        .kb-product-specs {
+        .ui-product-specs {
             @at-root {
-                .kb-quick-view__item & {
+                .ui-quick-view__item & {
                     /* stylelint-disable max-nesting-depth */
                     @include bp-large {
                         margin-inline-end: -$gutter-l;
@@ -28,7 +28,7 @@
             padding-inline-start: $gutter - $gutter-s;
         }
 
-        .kb-product-summary__name {
+        .ui-product-summary__name {
             span {
                 font-family: $font-family;
                 font-size: $font-size;
@@ -36,33 +36,33 @@
             }
         }
 
-        .kb-product-summary__price {
+        .ui-product-summary__price {
             font-size: $font-size-m;
             font-weight: 700;
         }
 
-        .kb-product-summary__finance {
+        .ui-product-summary__finance {
             font-size: $font-size;
         }
 
-        .kb-product-summary__price--extra,
-        .kb-product-summary__smallprint {
+        .ui-product-summary__price--extra,
+        .ui-product-summary__smallprint {
             font-size: $font-size-xs;
         }
 
-        .kb-button-group {
+        .ui-button-group {
             justify-content: flex-end;
         }
 
         &-grid {
             // Bully specificity.
-            .kb-button.kb-button--toggle {
+            .ui-button.ui-button--toggle {
                 &.is-selected {
                     box-shadow: none;
                 }
             }
 
-            .kb-product-card {
+            .ui-product-card {
                 &.is-selected {
                     position: relative;
 

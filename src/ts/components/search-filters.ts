@@ -21,7 +21,7 @@ export class SearchFilters {
             '[data-id=products-filter-content]'
         );
         this.searchForm = document.querySelector(
-            '.kb-product-search-results__form'
+            '.ui-product-search-results__form'
         );
         this.searchCondition = document.querySelector('#Condition');
         this.searchDisplayCondition =
@@ -39,7 +39,7 @@ export class SearchFilters {
 
     public static start(): any {
         const searchFiltersContainer = document.querySelector(
-            '.kb-product-search-results'
+            '.ui-product-search-results'
         ) as HTMLElement;
 
         if (searchFiltersContainer) {
@@ -80,10 +80,10 @@ export class SearchFilters {
 
     private handleFiltersScroll(): void {
         const searchFilters = this.searchFiltersContainer.querySelector(
-            '.kb-product-filter'
+            '.ui-product-filter'
         ) as HTMLElement;
         const searchFiltersTabContents =
-            searchFilters.querySelectorAll('.kb-tabs__content');
+            searchFilters.querySelectorAll('.ui-tabs__content');
 
         const scrollCallback = (): void => {
             [...(searchFiltersTabContents as any)].map(

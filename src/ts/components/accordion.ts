@@ -12,7 +12,7 @@ export class Accordion {
     }
 
     public static start(): void {
-        const accordionContainers = document.querySelectorAll('.kb-accordion');
+        const accordionContainers = document.querySelectorAll('.ui-accordion');
 
         if (accordionContainers) {
             [...(accordionContainers as any)].map((accordion) => {
@@ -30,9 +30,9 @@ export class Accordion {
     }
 
     private initAccordion(): void {
-        const titles = this.accordion.querySelectorAll('.kb-accordion__title');
+        const titles = this.accordion.querySelectorAll('.ui-accordion__title');
 
-        // For every '.kb-accordion' instance, loop through the titles.
+        // For every '.ui-accordion' instance, loop through the titles.
         [...(titles as any)].map((title) => {
             const titleText = title.childNodes[0];
             const content = title.nextElementSibling;
@@ -58,7 +58,7 @@ export class Accordion {
         // Open 1st accordion.
         if (this.accordion.dataset.open) {
             const firstButton = this.accordion.querySelector(
-                '.kb-accordion__button'
+                '.ui-accordion__button'
             ) as HTMLButtonElement;
             firstButton.click();
         }
@@ -68,24 +68,24 @@ export class Accordion {
         const button: HTMLButtonElement = document.createElement('button');
         button.setAttribute('type', 'button');
         button.setAttribute('aria-expanded', 'false');
-        button.classList.add('kb-accordion__button');
-        button.classList.add('kb-button--toggle');
+        button.classList.add('ui-accordion__button');
+        button.classList.add('ui-button--toggle');
 
         const svgHref = svgPath();
         const buttonContent = `
-            <span class="kb-accordion__button__inner">
+            <span class="ui-accordion__button__inner">
                 ${title.textContent}
                 <svg
                     aria-hidden="true"
                     focusable="false"
-                    class="kb-icon"
+                    class="ui-icon"
                 >
                     <use href="${svgHref}#SVG015" />
                 </svg>
                 <svg
                     aria-hidden="true"
                     focusable="false"
-                    class="kb-icon"
+                    class="ui-icon"
                 >
                     <use href="${svgHref}#SVG014" />
                 </svg>

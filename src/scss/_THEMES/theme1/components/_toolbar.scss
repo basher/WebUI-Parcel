@@ -1,6 +1,6 @@
-@mixin kb-toolbar {
-    .kb-toolbar {
-        .kb-icon {
+@mixin ui-toolbar {
+    .ui-toolbar {
+        .ui-icon {
             color: $color-neutral-alt;
             stroke: $color-neutral-alt;
         }
@@ -13,7 +13,7 @@
             &__compare {
                 &.is-selected {
                     /* stylelint-disable max-nesting-depth */
-                    .kb-icon {
+                    .ui-icon {
                         fill: $color-neutral-alt;
                     }
                     /* stylelint-enable max-nesting-depth */

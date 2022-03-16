@@ -10,8 +10,8 @@ export class Modal {
 
     constructor() {
         this.body = document.body;
-        this.pageContent = document.querySelectorAll('.kb-layout');
-        this.modalOverlays = document.querySelectorAll('.kb-modal__overlay');
+        this.pageContent = document.querySelectorAll('.ui-layout');
+        this.modalOverlays = document.querySelectorAll('.ui-modal__overlay');
         this.modalAutoOpen = document.querySelector('[data-auto-open-modal]');
         this.modalOpenButtons = document.querySelectorAll('[data-modal-open]');
         this.modalCloseButtons =
@@ -113,11 +113,11 @@ export class Modal {
                     ajaxContentParent =
                         ajaxModalContent.parentNode as HTMLElement;
                     const ajaxContainer =
-                        modalOverlay.querySelector('.kb-modal__ajax');
+                        modalOverlay.querySelector('.ui-modal__ajax');
                     const ajaxContentTitle =
                         ajaxContent.querySelector('[data-modal-title]');
                     const ariaModal = modalOverlay.querySelector(
-                        '.kb-modal__inner'
+                        '.ui-modal__inner'
                     ) as HTMLDivElement;
 
                     // Assign 'aria-labelledby' to modal based on ID of main heading in Ajax-fetched modal content.
@@ -205,7 +205,7 @@ export class Modal {
     ): void {
         const modalOnOpenFocus: HTMLElement | null | undefined =
             modal?.querySelector('[data-modal-title]') ||
-            modal?.querySelector('.kb-modal__inner');
+            modal?.querySelector('.ui-modal__inner');
 
         if (modalOnOpenFocus) {
             modalOnOpenFocus.setAttribute('tabIndex', '-1');

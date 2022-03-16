@@ -6,7 +6,7 @@ import domready from 'domready';
 import whatInput from 'what-input';
 
 // Import UI initialisation.
-import { gwUIinit } from './ui-init';
+import { uiInit } from './ui-init';
 
 // Import polyfills/ponyfills (for legacy browsers). Please refer to these articles for explanation:
 // https://philipwalton.com/articles/loading-polyfills-only-when-needed/.
@@ -23,12 +23,12 @@ whatInput.ask();
 // Run UI module instantiation when DOM is ready.
 domready(function () {
     if (browserSupportsAllFeatures()) {
-        gwUIinit();
+        uiInit();
     } else {
         // Require 'promise' for Parcel, then dynamic import polyfills, then instantiate UI modules.
         require('core-js/es/promise');
         import('./polyfills')
-            .then(() => gwUIinit())
+            .then(() => uiInit())
             // eslint-disable-next-line no-console
             .catch((e) => console.error(e));
     }
@@ -38,7 +38,7 @@ domready(function () {
 const storybookUIinit = (): void => {
     // eslint-disable-next-line no-console
     console.log('Storybook custom event fired...');
-    gwUIinit();
+    uiInit();
 };
 // 'StorybookLoaded' is an event that is dispatched from Storybook.
 window.addEventListener('StorybookLoaded', storybookUIinit, false);

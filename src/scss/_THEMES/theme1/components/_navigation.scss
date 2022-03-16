@@ -1,5 +1,5 @@
-@mixin kb-navigation {
-    .kb-navigation {
+@mixin ui-navigation {
+    .ui-navigation {
         &__link {
             // Bully CSS specificity.
             &[class*='--text'] {
@@ -16,8 +16,8 @@
         }
 
         &__list {
-            .kb-button[class*='--text']:hover,
-            .kb-navigation__link:hover {
+            .ui-button[class*='--text']:hover,
+            .ui-navigation__link:hover {
                 color: $color-brand-alt;
                 opacity: unset;
                 text-decoration: none;
@@ -32,7 +32,7 @@
                     );
                 }
 
-                .kb-navigation__link {
+                .ui-navigation__link {
                     color: $color-text;
                 }
                 /* stylelint-enable no-descending-specificity */
@@ -65,11 +65,11 @@
         }
 
         .show-mobile-nav {
-            > .kb-navigation__list {
+            > .ui-navigation__list {
                 background-color: $color-white;
             }
 
-            .kb-navigation__link {
+            .ui-navigation__link {
                 color: $color-text;
             }
         }

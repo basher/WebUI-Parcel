@@ -1,5 +1,5 @@
-@mixin kb-slider {
-    .kb-slider {
+@mixin ui-slider {
+    .ui-slider {
         padding-block-end: $gutter-l + $gutter-xs;
 
         [data-button-type] {
@@ -52,7 +52,7 @@
             display: none;
         }
 
-        &.kb-gallery--gallery2,
+        &.ui-gallery--gallery2,
         &--banner {
             padding-block-end: 0;
 
@@ -117,11 +117,11 @@
         &--banner {
             // TODO: Hard-coded overlay gradient. CMS will have new option added to supply gradient based on banner image darkness.
             @include bp-medium {
-                .kb-slider__slides {
+                .ui-slider__slides {
                     z-index: z('reset');
                 }
 
-                .kb-banner--hero:before {
+                .ui-banner--hero:before {
                     background: linear-gradient(
                         to bottom,
                         #{rgba(var(--themeBlack), 0.4)},
@@ -136,13 +136,13 @@
                     z-index: z('default');
                 }
 
-                .kb-banner__overlay {
+                .ui-banner__overlay {
                     background-color: transparent;
                     z-index: z('default');
                 }
             }
 
-            .kb-slider__slide {
+            .ui-slider__slide {
                 @at-root {
                     /* stylelint-disable max-nesting-depth */
                     [data-whatintent='touch'] &:focus {

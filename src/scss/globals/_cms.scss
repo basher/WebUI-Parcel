@@ -7,7 +7,7 @@ TODO:
 ----------------------------------------------------------------------------
 */
 
-.kb-cms {
+.ui-cms {
     overflow-x: hidden; // Just in case CMS content is stupidly wide.
 
     // Add some separation between CMS (markdown content) and any elements immediately after.
@@ -40,7 +40,7 @@ TODO:
         &-image {
             margin-block-end: $gutter;
 
-            .kb-image {
+            .ui-image {
                 // Forces main image to take up all available space.
                 min-width: 100%;
             }
@@ -49,6 +49,6 @@ TODO:
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-cms) {
-    @include kb-cms;
+@if mixin-exists(ui-cms) {
+    @include ui-cms;
 }

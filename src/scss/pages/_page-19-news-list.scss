@@ -1,12 +1,12 @@
 // News list.
 .page-19 {
-    .kb-cms {
+    .ui-cms {
         @include layout-centered-content;
     }
 
-    .kb-layout__inner {
-        > .kb-layout__has-max-width:first-of-type,
-        > .kb-cms:first-of-type {
+    .ui-layout__inner {
+        > .ui-layout__has-max-width:first-of-type,
+        > .ui-cms:first-of-type {
             margin-block-start: $gutter-xl;
         }
     }

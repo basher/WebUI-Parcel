@@ -12,7 +12,7 @@ export class ShowHide {
     }
 
     public static start(): void {
-        const showHideContainers = document.querySelectorAll('.kb-show-hide');
+        const showHideContainers = document.querySelectorAll('.ui-show-hide');
 
         if (showHideContainers) {
             [...(showHideContainers as any)].map((showHide) => {
@@ -33,12 +33,12 @@ export class ShowHide {
         const button: HTMLButtonElement = document.createElement('button');
         button.setAttribute('type', 'button');
         button.setAttribute('aria-expanded', 'false');
-        button.classList.add('kb-button');
-        button.classList.add('kb-button--text');
-        button.classList.add('kb-show-hide__button');
+        button.classList.add('ui-button');
+        button.classList.add('ui-button--text');
+        button.classList.add('ui-show-hide__button');
 
         const content = this.showHide.querySelectorAll(
-            '.kb-show-hide__content'
+            '.ui-show-hide__content'
         )[0] as HTMLElement;
 
         // Apply translations.

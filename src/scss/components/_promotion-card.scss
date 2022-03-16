@@ -1,4 +1,4 @@
-.kb-promotion-card {
+.ui-promotion-card {
     @if $allow-dark-mode {
         @media (prefers-color-scheme: dark) {
             background-color: $color-grey-3;
@@ -11,17 +11,17 @@
     padding: 0;
 
     // TODO: Width is needed by Safari so that aspect-ratio padding-top hack works inside <figure> which is a flex item. Ideally, we should fix the HTML so that the <a> is attached to the card title, not the image, as per product/stock cards.
-    .kb-card__media {
+    .ui-card__media {
         width: 100%;
     }
 
-    .kb-card__content {
+    .ui-card__content {
         margin-block-start: 0;
         padding: 0 $gutter-s;
         width: 100%;
     }
 
-    .kb-toolbar {
+    .ui-toolbar {
         flex-direction: row-reverse;
         justify-content: space-between;
         margin-inline-end: -$gutter-s;
@@ -32,11 +32,11 @@
         }
     }
 
-    .kb-share__fallback {
+    .ui-share__fallback {
         right: 0;
     }
 
-    .kb-card__text {
+    .ui-card__text {
         margin-block-end: 0;
     }
 
@@ -46,7 +46,7 @@
         text-transform: uppercase;
     }
 
-    .kb-card__actions {
+    .ui-card__actions {
         align-items: flex-end;
         justify-content: space-between;
         margin-block-end: $gutter-xs;
@@ -54,7 +54,7 @@
         padding: 0 $gutter-s;
         width: 100%;
 
-        .kb-button {
+        .ui-button {
             &--text {
                 margin-inline-end: 0;
                 text-align: center;
@@ -78,23 +78,23 @@
             text-decoration: none;
         }
 
-        .kb-card__title {
+        .ui-card__title {
             color: $color-brand;
             margin: $gutter-s 0;
             text-align: center;
         }
 
-        .kb-card__media {
+        .ui-card__media {
             padding: $gutter-s $gutter-s 0;
         }
     }
 
     // In a grid.
-    &-grid.kb-grid {
+    &-grid.ui-grid {
         @include responsive-grid-columns($max-width: 18.75rem);
     }
 
-    &-grid--secondary.kb-grid {
+    &-grid--secondary.ui-grid {
         @include responsive-grid-columns($max-width: 12.5rem);
     }
 
@@ -106,6 +106,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-promotion-card) {
-    @include kb-promotion-card;
+@if mixin-exists(ui-promotion-card) {
+    @include ui-promotion-card;
 }

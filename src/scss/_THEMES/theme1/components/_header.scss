@@ -1,10 +1,10 @@
-@mixin kb-header {
-    .kb-header {
+@mixin ui-header {
+    .ui-header {
         @at-root {
             .is-js-sticky & {
-                .kb-header__search,
-                .kb-header__contact,
-                .kb-header__offers .kb-button.kb-button--text {
+                .ui-header__search,
+                .ui-header__contact,
+                .ui-header__offers .ui-button.ui-button--text {
                     box-shadow: none;
                 }
             }
@@ -29,7 +29,7 @@
             border-radius: 0;
 
             // Bully CSS specificity.
-            &.kb-button.kb-button--primary {
+            &.ui-button.ui-button--primary {
                 &[class*='--text'] {
                     /* stylelint-disable max-nesting-depth */
                     @include bp-medium {

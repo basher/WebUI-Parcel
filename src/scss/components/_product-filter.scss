@@ -1,7 +1,7 @@
-.kb-product-filter {
-    // Override default 'kb-tabs' behaviour.
-    &.kb-tabs {
-        .kb-tabs__tablist {
+.ui-product-filter {
+    // Override default 'ui-tabs' behaviour.
+    &.ui-tabs {
+        .ui-tabs__tablist {
             @include bp-medium {
                 padding-inline-end: $nav-dropdown-gutter;
                 padding-inline-start: $nav-dropdown-gutter;
@@ -10,7 +10,7 @@
             margin-block-end: $gutter;
         }
 
-        .kb-tabs__button {
+        .ui-tabs__button {
             border: 0;
             border-block-end: transparent $border-width-l $border-style;
             color: $color-text-alt;
@@ -23,7 +23,7 @@
         }
 
         &.is-js-enabled {
-            .kb-tabs__content {
+            .ui-tabs__content {
                 border: 0;
                 padding: 0;
             }
@@ -31,8 +31,8 @@
     }
 
     // This is when filter tabs become accordion on smaller screens.
-    &.kb-accordion {
-        .kb-accordion__button {
+    &.ui-accordion {
+        .ui-accordion__button {
             color: $color-brand;
 
             &:hover {
@@ -40,12 +40,12 @@
             }
         }
 
-        .kb-accordion__content {
+        .ui-accordion__content {
             margin-block-end: $gutter;
         }
     }
 
-    .kb-grid {
+    .ui-grid {
         @include responsive-grid-columns(
             $auto-layout: auto-fill,
             $max-width: 12.5rem
@@ -56,13 +56,13 @@
     // Alternate filter, where tabs look like toggle buttons on larger screens.
     &--alt {
         @include bp-medium {
-            &.kb-tabs {
+            &.ui-tabs {
                 /* stylelint-disable max-nesting-depth */
-                .kb-tabs__tablist {
+                .ui-tabs__tablist {
                     background-color: transparent;
                 }
 
-                .kb-tabs__button {
+                .ui-tabs__button {
                     border: $border-width $border-style $color-brand;
                     color: $color-brand;
                     padding: $gutter-xs;
@@ -80,7 +80,7 @@
     }
 
     // Vertical filter.
-    &.kb-tabs--vertical {
+    &.ui-tabs--vertical {
         margin-block-end: $gutter-s;
 
         &.is-js-enabled {
@@ -92,7 +92,7 @@
             padding-inline-end: $gutter-s; // So scrollbar doesn't overlay accordion buttons.
         }
 
-        .kb-tabs__tablist {
+        .ui-tabs__tablist {
             @include bp-medium {
                 padding-inline-end: 0;
                 padding-inline-start: 0;
@@ -104,7 +104,7 @@
             padding-block-start: $gutter-xs;
         }
 
-        .kb-tabs__button {
+        .ui-tabs__button {
             border: 0;
             color: $color-brand;
             font-size: $font-size-s;
@@ -122,11 +122,11 @@
         }
 
         /* stylelint-disable no-descending-specificity */
-        .kb-tabs__content {
+        .ui-tabs__content {
             margin-block-start: $gutter-xs;
         }
         /* stylelint-enable no-descending-specificity */
-        .kb-grid {
+        .ui-grid {
             align-items: center;
             gap: $gutter-xs;
         }
@@ -134,6 +134,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-product-filter) {
-    @include kb-product-filter;
+@if mixin-exists(ui-product-filter) {
+    @include ui-product-filter;
 }

@@ -1,5 +1,5 @@
-// Use '.kb-button' class for <button> and <a> elements for consistent visual appearance.
-.kb-button {
+// Use '.ui-button' class for <button> and <a> elements for consistent visual appearance.
+.ui-button {
     @include button-default;
 
     // A global style here, so that all next/previous buttons will have their icons flipped when it RTL mode
@@ -7,7 +7,7 @@
         [data-button-type] {
             /* stylelint-disable max-nesting-depth */
             [dir='rtl'] & {
-                .kb-icon {
+                .ui-icon {
                     transform: scale(-1);
                 }
             }
@@ -75,7 +75,7 @@
         display: flex;
         justify-content: space-between;
 
-        .kb-icon {
+        .ui-icon {
             margin-inline-end: $gutter-xs;
         }
 
@@ -86,7 +86,7 @@
         &--reverse {
             flex-direction: row-reverse;
 
-            .kb-icon {
+            .ui-icon {
                 margin-inline-end: 0;
                 margin-inline-start: $gutter-xs;
             }
@@ -94,10 +94,10 @@
     }
 
     &--vertical {
-        .kb-button__inner {
+        .ui-button__inner {
             flex-direction: column;
 
-            .kb-icon {
+            .ui-icon {
                 margin-block-end: $gutter-xs;
                 margin-inline-end: 0;
             }
@@ -110,7 +110,7 @@
                 flex-direction: column-reverse;
 
                 /* stylelint-disable max-nesting-depth */
-                .kb-icon {
+                .ui-icon {
                     margin-block-end: 0;
                     margin-block-start: $gutter-xs;
                 }
@@ -141,14 +141,14 @@
 
         &[aria-expanded='true'],
         &.is-selected {
-            .kb-icon:first-of-type {
+            .ui-icon:first-of-type {
                 display: none;
             }
         }
 
         &[aria-expanded='false'],
         &.is-not-selected {
-            .kb-icon:last-of-type {
+            .ui-icon:last-of-type {
                 display: none;
             }
         }
@@ -156,6 +156,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-button) {
-    @include kb-button;
+@if mixin-exists(ui-button) {
+    @include ui-button;
 }

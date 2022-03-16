@@ -1,4 +1,4 @@
-.kb-swatch {
+.ui-swatch {
     background-color: $color-white;
     overflow-y: hidden;
 
@@ -6,11 +6,11 @@
         @include visually-hide;
     }
 
-    .kb-button-group:not([role='tablist']) {
+    .ui-button-group:not([role='tablist']) {
         display: none;
     }
 
-    &.kb-slider {
+    &.ui-slider {
         [role='tab'] {
             @include bp-medium {
                 height: auto;
@@ -31,7 +31,7 @@
         }
     }
 
-    .kb-card {
+    .ui-card {
         @at-root {
             [data-whatintent='mouse'] &:hover {
                 box-shadow: none;
@@ -48,14 +48,14 @@
     }
 
     // When card layout uses Flexbox at small breakpoint, make sure image is above content.
-    .kb-card__content {
+    .ui-card__content {
         @include bp-medium {
             justify-content: center;
         }
         order: 2;
     }
 
-    .kb-card__media {
+    .ui-card__media {
         order: 1;
     }
 
@@ -65,6 +65,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-swatch) {
-    @include kb-swatch;
+@if mixin-exists(ui-swatch) {
+    @include ui-swatch;
 }

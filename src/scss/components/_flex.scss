@@ -1,4 +1,4 @@
-.kb-flex {
+.ui-flex {
     display: flex;
     flex-wrap: wrap;
 
@@ -64,7 +64,7 @@
         }
 
         // Just in case someone combines these 2!
-        &.kb-flex--row-reverse {
+        &.ui-flex--row-reverse {
             > * {
                 margin-inline-end: $gutter-xs;
                 margin-inline-start: 0;
@@ -128,6 +128,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-flex) {
-    @include kb-flex;
+@if mixin-exists(ui-flex) {
+    @include ui-flex;
 }

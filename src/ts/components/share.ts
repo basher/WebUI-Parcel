@@ -11,7 +11,7 @@ export class Share {
     }
 
     public static start(): void {
-        const shareContainers = document.querySelectorAll('.kb-share');
+        const shareContainers = document.querySelectorAll('.ui-share');
 
         if (shareContainers) {
             [...(shareContainers as any)].map((shareContainer) => {
@@ -30,7 +30,7 @@ export class Share {
 
     private initShare(): void {
         const shareButton = this.shareContainer.querySelector(
-            '.kb-share__button'
+            '.ui-share__button'
         ) as HTMLElement;
 
         let shareTitle = '';

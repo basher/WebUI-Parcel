@@ -44,9 +44,9 @@ h6 {
 }
 
 h1,
-.kb-h1 {
+.ui-h1 {
     @at-root {
-        .kb-layout__inner > & {
+        .ui-layout__inner > & {
             margin-block-start: $gutter;
         }
     }
@@ -55,27 +55,27 @@ h1,
 }
 
 h2,
-.kb-h2 {
+.ui-h2 {
     @include fluid-type-xxl;
     margin-block-end: $gutter-xs;
 }
 
 h3,
-.kb-h3 {
+.ui-h3 {
     @include fluid-type-xl;
     margin-block-end: $gutter-xs;
 }
 
 h4,
-.kb-h4 {
+.ui-h4 {
     @include fluid-type-l;
     margin-block-end: $gutter-xs;
 }
 
 h5,
 h6,
-.kb-h5,
-.kb-h6 {
+.ui-h5,
+.ui-h6 {
     font-size: $font-size-m;
 }
 
@@ -133,6 +133,6 @@ hr {
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-typography) {
-    @include kb-typography;
+@if mixin-exists(ui-typography) {
+    @include ui-typography;
 }

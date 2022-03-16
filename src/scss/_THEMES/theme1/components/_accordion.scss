@@ -1,5 +1,5 @@
-@mixin kb-accordion {
-    .kb-accordion {
+@mixin ui-accordion {
+    .ui-accordion {
         &__button {
             @at-root {
                 [data-whatintent='mouse'] &:hover,
@@ -7,14 +7,14 @@
                     background-color: $color-brand-alt;
                 }
                 // Reset styles for specific accordions.
-                [data-whatintent='mouse'] .kb-branch-rotator &:hover,
-                [data-whatintent='keyboard'] .kb-branch-rotator &:focus {
+                [data-whatintent='mouse'] .ui-branch-rotator &:hover,
+                [data-whatintent='keyboard'] .ui-branch-rotator &:focus {
                     background-color: inherit;
                 }
             }
             @at-root {
                 // Reset styles for specific accordions.
-                .kb-product-filter & {
+                .ui-product-filter & {
                     background-color: inherit;
                     color: inherit;
                     margin-block-end: $gutter-xs;
@@ -30,7 +30,7 @@
                 @at-root {
                     // Reset styles for specific accordions.
                     /* stylelint-disable max-nesting-depth */
-                    .kb-product-filter & {
+                    .ui-product-filter & {
                         background-color: inherit;
                     }
                     /* stylelint-enable max-nesting-depth */
@@ -46,7 +46,7 @@
         &__content {
             @at-root {
                 // Reset styles for specific accordions.
-                .kb-product-filter & {
+                .ui-product-filter & {
                     background-color: inherit;
                     padding: 0;
                 }

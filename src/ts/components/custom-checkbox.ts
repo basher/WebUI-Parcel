@@ -32,7 +32,7 @@ export class CustomCheckbox {
             [...(checkboxes as any)].map((checkbox) => {
                 checkbox.addEventListener('click', () => {
                     checkbox
-                        .closest('.kb-form__field')
+                        .closest('.ui-form__field')
                         .classList.toggle('is-checked');
                 });
                 return true;

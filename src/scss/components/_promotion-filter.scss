@@ -1,4 +1,4 @@
-.kb-promotion-filter {
+.ui-promotion-filter {
     @if $allow-dark-mode {
         @media (prefers-color-scheme: dark) {
             background-color: $color-grey-3;
@@ -19,6 +19,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-promotion-filter) {
-    @include kb-promotion-filter;
+@if mixin-exists(ui-promotion-filter) {
+    @include ui-promotion-filter;
 }

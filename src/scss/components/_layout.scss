@@ -17,7 +17,7 @@ Try *NOT* to add visual styles for components inside the layout structural eleme
     z-index: z('modal');
 }
 
-.kb-layout {
+.ui-layout {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -67,11 +67,11 @@ Try *NOT* to add visual styles for components inside the layout structural eleme
 
     &__header {
         &.has-open-overlay {
-            .kb-layout__header__overlay {
+            .ui-layout__header__overlay {
                 display: block;
             }
 
-            ~ .kb-layout__sticky--footer {
+            ~ .ui-layout__sticky--footer {
                 z-index: z('default') - 1;
             }
         }
@@ -98,7 +98,7 @@ Try *NOT* to add visual styles for components inside the layout structural eleme
         width: 100%;
         z-index: z('reset'); // So overlays (e.g. nav menu) can sit above.
 
-        > .kb-layout__inner {
+        > .ui-layout__inner {
             @include bp-medium {
                 padding: 0 $layout-main-bleed;
                 padding-block-end: $gutter-xl;
@@ -147,7 +147,7 @@ Try *NOT* to add visual styles for components inside the layout structural eleme
 
             &.has-open-overlay {
                 /* stylelint-disable max-nesting-depth */
-                .kb-layout__footer__overlay {
+                .ui-layout__footer__overlay {
                     display: block;
                 }
                 /* stylelint-enable max-nesting-depth */
@@ -180,17 +180,17 @@ Try *NOT* to add visual styles for components inside the layout structural eleme
     // TODO: We need to add a shared 'page-custom' CSS classname to ALL custom pages in order to add top margin to the layout containers. For now, we'll use these specific selectors because the constrained container always comes immediately after one of them.
     /* stylelint-disable order/order */
     @at-root {
-        .kb-breadcrumb,
-        .kb-cms__content-image {
-            + .kb-layout__has-max-width,
-            + .kb-layout__has-no-max-width {
+        .ui-breadcrumb,
+        .ui-cms__content-image {
+            + .ui-layout__has-max-width,
+            + .ui-layout__has-no-max-width {
                 margin-block-start: $gutter-xl;
             }
         }
 
-        .kb-layout__inner {
-            > .kb-layout__has-max-width:first-of-type,
-            > .kb-layout__has-no-max-width:first-of-type {
+        .ui-layout__inner {
+            > .ui-layout__has-max-width:first-of-type,
+            > .ui-layout__has-no-max-width:first-of-type {
                 margin-block-start: $gutter-xl;
             }
         }
@@ -206,7 +206,7 @@ Try *NOT* to add visual styles for components inside the layout structural eleme
     // Put media queries last so they can override mobile-first styles without needing to increase specificity.
     @include bp-medium {
         &__sticky--header {
-            .kb-layout__inner {
+            .ui-layout__inner {
                 gap: $gutter-xs;
             }
         }
@@ -221,7 +221,7 @@ Try *NOT* to add visual styles for components inside the layout structural eleme
             grid-template-columns: $layout-vertical-header-width minmax(0, 1fr);
             grid-template-rows: 1fr auto auto;
 
-            .kb-layout__header {
+            .ui-layout__header {
                 grid-area: sidebar;
                 height: 100%;
                 position: fixed;
@@ -229,19 +229,19 @@ Try *NOT* to add visual styles for components inside the layout structural eleme
                 z-index: z('default');
             }
 
-            .kb-layout__main {
+            .ui-layout__main {
                 grid-area: main;
             }
 
-            .kb-layout__footer {
+            .ui-layout__footer {
                 grid-area: footer;
             }
 
-            .kb-layout__sticky {
+            .ui-layout__sticky {
                 grid-area: sticky-footer;
             }
 
-            .kb-layout__header__overlay {
+            .ui-layout__header__overlay {
                 inset-block-start: 0;
                 inset-inline-start: $layout-vertical-header-width;
             }
@@ -250,6 +250,6 @@ Try *NOT* to add visual styles for components inside the layout structural eleme
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-layout) {
-    @include kb-layout;
+@if mixin-exists(ui-layout) {
+    @include ui-layout;
 }

@@ -18,7 +18,7 @@ export class QuickView {
     }
 
     public static start(): void {
-        const quickViewGrids = document.querySelectorAll('.kb-quick-view-grid');
+        const quickViewGrids = document.querySelectorAll('.ui-quick-view-grid');
 
         if (quickViewGrids) {
             [...(quickViewGrids as any)].map((quickViewGrid) => {
@@ -39,16 +39,16 @@ export class QuickView {
     private initQuickViewItem(): HTMLLIElement {
         // 1. Create an <li> to contain quick view content.
         const quickViewItem = document.createElement('li');
-        quickViewItem.classList.add('kb-quick-view__item');
+        quickViewItem.classList.add('ui-quick-view__item');
         quickViewItem.setAttribute('tabIndex', '0');
 
         // 2. Create close button.
         const quickViewClose: HTMLButtonElement =
             document.createElement('button');
         quickViewClose.setAttribute('type', 'button');
-        quickViewClose.classList.add('kb-button');
-        quickViewClose.classList.add('kb-button--icon');
-        quickViewClose.classList.add('kb-quick-view__close');
+        quickViewClose.classList.add('ui-button');
+        quickViewClose.classList.add('ui-button--icon');
+        quickViewClose.classList.add('ui-quick-view__close');
 
         const svgHref = svgPath();
         const buttonText = translate('Close', 'Close');
@@ -56,7 +56,7 @@ export class QuickView {
             <svg
                 aria-hidden="true"
                 focusable="false"
-                class="kb-icon"
+                class="ui-icon"
             >
                 <title>${buttonText}</title>
                 <use href="${svgHref}#SVG016" />
@@ -67,7 +67,7 @@ export class QuickView {
 
         // 3. Create empty <div> for Ajax content.
         const quickViewAjax: HTMLDivElement = document.createElement('div');
-        quickViewAjax.classList.add('kb-quick-view__ajax');
+        quickViewAjax.classList.add('ui-quick-view__ajax');
 
         quickViewItem.appendChild(quickViewClose);
         quickViewItem.appendChild(quickViewAjax);
@@ -90,7 +90,7 @@ export class QuickView {
                 ) as HTMLButtonElement | null;
                 // Button has a nested <span> so ensure we're passing the target as a <button>.
                 if (target && target.nodeName !== 'BUTTON') {
-                    target = target.closest('.kb-button');
+                    target = target.closest('.ui-button');
                 }
                 target &&
                     this.handleQuickViewToggleClick(target, quickViewItem);
@@ -104,12 +104,12 @@ export class QuickView {
         target: HTMLButtonElement,
         quickViewItem: HTMLLIElement
     ): void {
-        const clickedCard = target.closest('.kb-card');
+        const clickedCard = target.closest('.ui-card');
         const selectedItem = clickedCard?.closest('li');
         const isExpanded =
             target.getAttribute('aria-expanded') === 'true' || false;
         const toggleLabel = target.querySelector(
-            '.kb-icon:last-of-type'
+            '.ui-icon:last-of-type'
         )?.nextElementSibling;
         const toggleLabelText = isExpanded
             ? target.dataset.quickViewLabelOpen
@@ -158,12 +158,12 @@ export class QuickView {
     private handleCloseClick(quickViewItem: HTMLLIElement): void {
         // Work out which product card triggered quick view, and reset it.
         const clickedCard =
-            quickViewItem.previousElementSibling?.querySelector('.kb-card');
+            quickViewItem.previousElementSibling?.querySelector('.ui-card');
         const toggler = clickedCard?.querySelector(
             '[data-quick-view]'
         ) as HTMLButtonElement;
         const togglerLabel = toggler.querySelector(
-            '.kb-icon:last-of-type'
+            '.ui-icon:last-of-type'
         )?.nextElementSibling;
 
         if (togglerLabel && toggler.dataset.quickViewLabelOpen) {
@@ -185,7 +185,7 @@ export class QuickView {
                 selectedButton !== target
             ) {
                 const selectedButtonLabel = selectedButton.querySelector(
-                    '.kb-icon:last-of-type'
+                    '.ui-icon:last-of-type'
                 )?.nextElementSibling;
 
                 if (selectedButtonLabel) {
@@ -195,7 +195,7 @@ export class QuickView {
                 selectedButton.setAttribute('aria-expanded', 'false');
                 selectedButton.classList.toggle('is-selected');
                 selectedButton
-                    .closest('.kb-card')
+                    .closest('.ui-card')
                     .classList.toggle('is-selected');
             }
 
@@ -207,7 +207,7 @@ export class QuickView {
     private ajaxFetch(target: HTMLElement, quickViewItem: HTMLLIElement): void {
         const ajaxUrl = target.dataset.quickViewUrl;
         const ajaxContainer = quickViewItem.querySelector(
-            '.kb-quick-view__ajax'
+            '.ui-quick-view__ajax'
         ) as HTMLElement;
         const showAjaxLoader = true;
         const ajaxLoaderContainer = ajaxContainer;

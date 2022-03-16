@@ -1,5 +1,5 @@
-@mixin kb-swatch {
-    .kb-swatch {
+@mixin ui-swatch {
+    .ui-swatch {
         @at-root {
             [data-whatintent='touch'] &:focus {
                 background-color: $color-white;

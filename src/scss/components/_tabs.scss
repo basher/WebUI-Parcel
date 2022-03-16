@@ -1,4 +1,4 @@
-.kb-tabs {
+.ui-tabs {
     margin-block-end: $gutter-xl;
 
     &__button {
@@ -33,7 +33,7 @@
     }
 
     &.is-js-enabled {
-        .kb-tabs__content {
+        .ui-tabs__content {
             @include focus-default($opacity: false, $transform: false);
             border: $border-width $border-style $color-brand-alt;
             padding: $gutter-xs;
@@ -50,12 +50,12 @@
                 grid-template-columns: auto 1fr;
             }
 
-            .kb-tabs__content {
+            .ui-tabs__content {
                 grid-area: content;
             }
         }
 
-        .kb-tabs__tablist {
+        .ui-tabs__tablist {
             @include bp-medium {
                 grid-area: tabs;
             }
@@ -67,7 +67,7 @@
             }
         }
 
-        .kb-tabs__button {
+        .ui-tabs__button {
             border-color: transparent;
             inset-block-end: 0;
         }
@@ -81,6 +81,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-tabs) {
-    @include kb-tabs;
+@if mixin-exists(ui-tabs) {
+    @include ui-tabs;
 }

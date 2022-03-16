@@ -65,14 +65,14 @@ export const disclosure = (arg: Disclosure): void => {
         // i.e. 'tabs' component.
         if (hasAriaSelected) {
             const tabList = target?.closest(
-                '.kb-tabs__tablist'
+                '.ui-tabs__tablist'
             ) as HTMLDivElement;
             const tabButtons = tabList.childNodes as NodeListOf<HTMLElement>;
             bindTabsClickEvent(target, tabButtons);
 
             // Close any other open tab content.
             const tabContents =
-                tabList.parentElement?.querySelectorAll('.kb-tabs__content');
+                tabList.parentElement?.querySelectorAll('.ui-tabs__content');
             [...(tabContents as any)].map((tabContent) => {
                 tabContent.classList.add('is-hidden');
 

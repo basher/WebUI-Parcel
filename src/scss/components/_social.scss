@@ -1,4 +1,4 @@
-.kb-social {
+.ui-social {
     padding: $gutter-s;
 
     &__title {
@@ -18,6 +18,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-social) {
-    @include kb-social;
+@if mixin-exists(ui-social) {
+    @include ui-social;
 }

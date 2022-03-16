@@ -4,17 +4,17 @@
         @include layout-constraint;
         @include layout-centered-content;
 
-        .kb-contact-card {
+        .ui-contact-card {
             text-align: start;
         }
     }
 
-    .kb-cms {
+    .ui-cms {
         @include layout-centered-content;
     }
 
     /* stylelint-disable order/order */
-    .kb-map {
+    .ui-map {
         // Branch locator does not have an overlay, so make map take up full height.
         height: 100%;
 

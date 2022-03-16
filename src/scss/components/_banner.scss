@@ -6,12 +6,12 @@
     padding: $gutter-xs;
 }
 
-.kb-banner {
+.ui-banner {
     margin-block-end: $gutter-xl;
     position: relative;
 
     // Ensure banner image takes up all available space on widescreen / hi-res.
-    .kb-image {
+    .ui-image {
         width: 100%;
     }
 
@@ -116,12 +116,12 @@
         }
 
         // CTA in overlay.
-        .kb-button {
+        .ui-button {
             @include cta;
         }
 
-        // Overlay is a sibling of '.kb-banner__inner', to be shown on mobile (e.g. in hero banner).
-        .kb-banner__inner + & {
+        // Overlay is a sibling of '.ui-banner__inner', to be shown on mobile (e.g. in hero banner).
+        .ui-banner__inner + & {
             @include bp-medium {
                 padding: $gutter-s $gutter-xl;
             }
@@ -135,7 +135,7 @@
         }
 
         // Whole overlay is clickable. Position NOT based on '3x3' grid.
-        &.kb-banner__overlay--block-link {
+        &.ui-banner__overlay--block-link {
             height: 100%;
             inset-block-start: 0;
             inset-inline-end: 0;
@@ -169,7 +169,7 @@
             font-size: $font-size-m;
         }
 
-        // TODO: Confirm if 'kb-banner__text' are markdown wrapper DIVs.
+        // TODO: Confirm if 'ui-banner__text' are markdown wrapper DIVs.
         > * {
             margin: 0;
         }
@@ -188,7 +188,7 @@
     &--page-title {
         margin-block-end: 0;
 
-        .kb-banner__title {
+        .ui-banner__title {
             background-color: #{rgba(var(--themeBlack), 0.6)};
             color: $color-text-alt;
             padding: $gutter-xs;
@@ -213,13 +213,13 @@
             margin-block-end: $gutter;
         }
 
-        .kb-slider {
+        .ui-slider {
             margin-block-end: $gutter;
             margin-inline-end: -$gutter;
             margin-inline-start: -$gutter;
         }
 
-        .kb-banner__overlay {
+        .ui-banner__overlay {
             max-width: 50%;
         }
     }
@@ -234,7 +234,7 @@
     // Banners in a slider.
     /* stylelint-disable order/order */
     @at-root {
-        .kb-slider & {
+        .ui-slider & {
             margin-block-end: 0;
         }
     }
@@ -242,6 +242,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-banner) {
-    @include kb-banner;
+@if mixin-exists(ui-banner) {
+    @include ui-banner;
 }

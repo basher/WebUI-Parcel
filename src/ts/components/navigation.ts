@@ -37,7 +37,7 @@ export class Navigation {
             'navigation-wrap'
         ) as HTMLElement;
         this.parentNavList = document.querySelector(
-            '.kb-navigation__list'
+            '.ui-navigation__list'
         ) as HTMLUListElement;
         this.dropdownParentListItems = document.querySelectorAll(
             '[data-dropdown-open]'
@@ -177,7 +177,7 @@ export class Navigation {
         // Only trigger hoverIntent on top level menu items.
         if (
             dropdownParentListItem.parentElement.classList[0] !==
-            'kb-navigation__list--nested'
+            'ui-navigation__list--nested'
         ) {
             hoverIntent(
                 dropdownParentListItem,
@@ -229,7 +229,7 @@ export class Navigation {
 
         // Open the selected sub-menu, using the <button> not <a>.
         const openSubMenuButton =
-            dropdownParentListItem.querySelector('.kb-button');
+            dropdownParentListItem.querySelector('.ui-button');
         openSubMenuButton.addEventListener(
             'touchend',
             () => {
@@ -255,7 +255,7 @@ export class Navigation {
                 // Do nothing if the click happened inside the dropdown (unless it's the mobile nav button).
                 const thisTarget: any = e.target;
                 if (
-                    thisTarget.closest('.kb-navigation__dropdown') ||
+                    thisTarget.closest('.ui-navigation__dropdown') ||
                     thisTarget.closest('.show-mobile-nav') ||
                     thisTarget.closest('#toggle-mobile-nav')
                 ) {
@@ -292,13 +292,13 @@ export class Navigation {
 
     private adjustNavDropdownPosition(dropdownParentListItem: any): void {
         const overlay: HTMLElement = this.siteHeader.querySelector(
-            '.kb-layout__header__overlay'
+            '.ui-layout__header__overlay'
         ) as HTMLElement;
         const dropdown = dropdownParentListItem.querySelector(
-            '.kb-navigation__dropdown'
+            '.ui-navigation__dropdown'
         );
         const dropdownOverlay = dropdownParentListItem.querySelector(
-            '.kb-navigation__dropdown--overlay'
+            '.ui-navigation__dropdown--overlay'
         );
         let offset = 0;
 
@@ -307,7 +307,7 @@ export class Navigation {
             window.getComputedStyle(this.toggleMobileNavButton).display ===
             'none'
         ) {
-            if (this.navigation.classList.contains('kb-navigation--vertical')) {
+            if (this.navigation.classList.contains('ui-navigation--vertical')) {
                 return;
             }
 
@@ -343,7 +343,7 @@ export class Navigation {
             this.siteHeader.classList.contains('has-window-scrolled') &&
             !this.siteHeader.classList.contains('is-js-sticky')
         ) {
-            if (this.navigation.classList.contains('kb-navigation--vertical')) {
+            if (this.navigation.classList.contains('ui-navigation--vertical')) {
                 return;
             }
 
@@ -389,10 +389,10 @@ export class Navigation {
         const buttonBack =
             dropdownParentListItem.querySelector('[data-back-button]');
         const subMenu = dropdownParentListItem.querySelector(
-            '.kb-navigation__dropdown'
+            '.ui-navigation__dropdown'
         );
         const link = dropdownParentListItem.querySelector(
-            '.kb-navigation__link'
+            '.ui-navigation__link'
         );
 
         link.addEventListener(
@@ -403,24 +403,24 @@ export class Navigation {
                     'data-dropdown-open',
                     'true'
                 );
-                subMenu.classList.add('kb-navigation__dropdown--is-open');
+                subMenu.classList.add('ui-navigation__dropdown--is-open');
             },
             true
         );
 
         if (buttonBack) {
             const buttonBackLabel = buttonBack
-                .querySelector('.kb-button__inner')
+                .querySelector('.ui-button__inner')
                 .querySelector('span');
             const isNestedBackLink = subMenu.closest(
-                '.kb-navigation__list--nested'
+                '.ui-navigation__list--nested'
             );
 
             // Apply translations.
             if (isNestedBackLink) {
                 const parentMenuTitle =
                     isNestedBackLink.parentNode.querySelector(
-                        '.kb-navigation__title'
+                        '.ui-navigation__title'
                     );
 
                 buttonBackLabel.textContent = translate(
@@ -440,7 +440,7 @@ export class Navigation {
                     'data-dropdown-open',
                     'false'
                 );
-                subMenu.classList.remove('kb-navigation__dropdown--is-open');
+                subMenu.classList.remove('ui-navigation__dropdown--is-open');
             });
         }
     }
@@ -473,11 +473,11 @@ export class Navigation {
 
     private handlePrimaryNavSize(): void {
         // const primaryNavList = this.navigationWrap?.querySelector(
-        //     '.kb-navigation__list'
+        //     '.ui-navigation__list'
         // );
         const lastNavListItem =
             this.parentNavList.lastElementChild?.classList.contains(
-                'kb-navigation__item--buttons'
+                'ui-navigation__item--buttons'
             ) === true
                 ? this.parentNavList.lastElementChild.previousElementSibling
                 : this.parentNavList.lastElementChild;
@@ -533,22 +533,22 @@ export class Navigation {
                     e.currentTarget
                 ) as HTMLAnchorElement;
                 const dropdown = target?.closest(
-                    '.kb-navigation__dropdown'
+                    '.ui-navigation__dropdown'
                 ) as HTMLElement;
                 const productFilter =
-                    dropdown.querySelector('.kb-product-filter');
+                    dropdown.querySelector('.ui-product-filter');
                 const dropdownOverlay =
                     dropdown?.nextElementSibling as HTMLElement;
                 const overlayContent = dropdownOverlay.querySelector(
-                    '.kb-navigation__dropdown--overlay__content'
+                    '.ui-navigation__dropdown--overlay__content'
                 ) as HTMLElement;
                 const overlayButtonClose = dropdownOverlay.querySelector(
                     '[data-overlay-close]'
                 ) as HTMLButtonElement;
                 const overlayTitleText =
-                    target?.querySelector('.kb-card__title')?.textContent;
+                    target?.querySelector('.ui-card__title')?.textContent;
                 const overlayTitle = dropdownOverlay.querySelector(
-                    '.kb-navigation__dropdown--overlay__title'
+                    '.ui-navigation__dropdown--overlay__title'
                 );
 
                 if (overlayTitle && overlayTitleText) {
@@ -615,7 +615,7 @@ export class Navigation {
             // If 4th level nav is open (i.e. it does NOT have an 'is-hidden' class), click the close button.
             if (
                 !close4thLevelNavButton
-                    .closest('.kb-navigation__dropdown')
+                    .closest('.ui-navigation__dropdown')
                     .classList.contains('is-hidden')
             ) {
                 close4thLevelNavButton.click();

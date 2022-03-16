@@ -1,4 +1,4 @@
-.kb-product-summary {
+.ui-product-summary {
     > * {
         margin-block-end: $gutter-xs;
     }
@@ -42,13 +42,13 @@
     &__smallprint {
         font-size: $font-size-s;
 
-        .kb-table {
+        .ui-table {
             font-size: $font-size;
         }
     }
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-product-summary) {
-    @include kb-product-summary;
+@if mixin-exists(ui-product-summary) {
+    @include ui-product-summary;
 }

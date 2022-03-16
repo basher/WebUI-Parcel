@@ -1,4 +1,4 @@
-.kb-slider {
+.ui-slider {
     // Turn off opacity & transform as they create a new stacking context, which breaks header navigation slider.
     @include focus-default($opacity: false, $transform: false);
     @at-root {
@@ -26,7 +26,7 @@
     }
 
     &[data-slide-no-animations='true'] {
-        .kb-slider__slides {
+        .ui-slider__slides {
             transition: none;
         }
     }
@@ -48,7 +48,7 @@
         flex-shrink: 0;
     }
 
-    .kb-button-group {
+    .ui-button-group {
         margin: 0;
     }
 
@@ -127,18 +127,18 @@
             }
         }
 
-        .kb-slider__slide {
+        .ui-slider__slide {
             background-color: #{rgba(var(--themeColorBrand), 0.6)};
         }
 
-        .kb-banner__inner + .kb-banner__overlay {
+        .ui-banner__inner + .ui-banner__overlay {
             background-color: transparent;
         }
     }
 
     // Card slider (e.g. news/promotions).
     &--card {
-        .kb-slider__slide {
+        .ui-slider__slide {
             // Slide widths/padding match card grid layouts, with sufficient vertical padding to support :hover effects.
             flex-basis: $grid-item-max-width;
             padding: $gutter / 2;
@@ -156,6 +156,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-slider) {
-    @include kb-slider;
+@if mixin-exists(ui-slider) {
+    @include ui-slider;
 }

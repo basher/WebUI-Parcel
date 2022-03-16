@@ -1,4 +1,4 @@
-.kb-product-search-results {
+.ui-product-search-results {
     @include bp-medium {
         margin-inline-end: -$layout-main-bleed;
         margin-inline-start: -$layout-main-bleed;
@@ -40,29 +40,29 @@
             /* stylelint-enable max-nesting-depth */
         }
 
-        > .kb-button {
+        > .ui-button {
             display: inline-flex;
         }
 
         // Hide both icons on "All stock" button.
         .has-no-condition {
-            .kb-icon {
+            .ui-icon {
                 display: none;
             }
         }
 
-        > .kb-form__field {
+        > .ui-form__field {
             @include bp-large {
                 margin-inline-start: auto;
 
                 /* stylelint-disable max-nesting-depth */
-                &:not(.is-hidden-on-medium) + .kb-form__field {
+                &:not(.is-hidden-on-medium) + .ui-form__field {
                     margin-inline-start: 0;
                 }
                 /* stylelint-enable max-nesting-depth */
             }
 
-            .kb-form__label {
+            .ui-form__label {
                 /* stylelint-disable max-nesting-depth */
                 > span:not([class]):first-child {
                     @include visually-hide;
@@ -70,7 +70,7 @@
                 /* stylelint-enable max-nesting-depth */
             }
 
-            .kb-form__select {
+            .ui-form__select {
                 font-size: $font-size-s;
                 height: auto;
                 padding-block-end: $gutter-xs / 2;
@@ -79,26 +79,26 @@
         }
     }
 
-    .kb-form__buttons {
+    .ui-form__buttons {
         flex-basis: 100%;
     }
 
-    .kb-grid {
+    .ui-grid {
         // i.e. 2 normal Grid column widths.
         @include responsive-grid-columns(
             $auto-layout: auto-fill,
             $max-width: $grid-item-min-width * 2
         );
 
-        .kb-form__field {
+        .ui-form__field {
             justify-content: flex-start;
         }
     }
 
     // When grid is inside tabs (or accordion on small screens).
-    .kb-tabs,
-    .kb-accordion {
-        .kb-grid {
+    .ui-tabs,
+    .ui-accordion {
+        .ui-grid {
             @include responsive-grid-columns($max-width: 12.5rem);
         }
     }
@@ -109,7 +109,7 @@
         padding-inline-end: 0;
         padding-inline-start: 0;
 
-        .kb-icon {
+        .ui-icon {
             height: $icon-size-l;
             width: $icon-size-l;
         }
@@ -129,7 +129,7 @@
         border: 0;
         color: $color-brand;
 
-        .kb-icon {
+        .ui-icon {
             fill: transparent;
             height: $icon-size-l;
             stroke: $color-brand;
@@ -138,7 +138,7 @@
         }
 
         &.is-selected {
-            .kb-icon {
+            .ui-icon {
                 fill: $color-brand;
             }
         }
@@ -164,13 +164,13 @@
 
     // Modal (for filters).
     &__modal {
-        .kb-modal__inner {
+        .ui-modal__inner {
             max-height: 98%;
             padding-inline-end: $gutter - $gutter-s; // Subtract product filter padding.
             width: 98%;
         }
 
-        .kb-button[class*='--text'] {
+        .ui-button[class*='--text'] {
             @include bp-small {
                 font-size: $font-size-s;
                 padding: $gutter-xs;
@@ -180,6 +180,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-product-search-results) {
-    @include kb-product-search-results;
+@if mixin-exists(ui-product-search-results) {
+    @include ui-product-search-results;
 }

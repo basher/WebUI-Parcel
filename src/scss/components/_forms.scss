@@ -44,7 +44,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
         background-color: $color-white;
         border-color: $color-positive;
 
-        & ~ .kb-form__icon:not(.kb-form__icon--error) {
+        & ~ .ui-form__icon:not(.ui-form__icon--error) {
             display: inline-block;
             fill: $color-positive;
         }
@@ -54,18 +54,18 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
         border-color: $color-negative;
         box-shadow: inset 0 0 0 0.25rem $color-negative;
 
-        & ~ .kb-form__icon--error {
+        & ~ .ui-form__icon--error {
             display: inline-block;
             fill: $color-negative;
         }
 
-        & ~ .kb-form__error {
+        & ~ .ui-form__error {
             display: block;
         }
     }
 }
 
-.kb-form {
+.ui-form {
     margin-block-end: $gutter-xl;
     margin-inline-end: auto;
     margin-inline-start: auto;
@@ -108,7 +108,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
         }
 
         // Single checkbox.
-        .kb-form__field--checkbox & {
+        .ui-form__field--checkbox & {
             align-items: center;
             flex-direction: row-reverse;
             justify-content: flex-end;
@@ -189,23 +189,23 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
         &--radio {
             margin-block-end: $gutter-s;
 
-            .kb-form__legend {
+            .ui-form__legend {
                 margin-block-end: $gutter-formfield / 2;
             }
 
-            .kb-form__field {
+            .ui-form__field {
                 margin-block-end: $gutter-formfield;
             }
 
-            .kb-grid {
+            .ui-grid {
                 /* stylelint-disable max-nesting-depth */
-                .kb-form__field {
+                .ui-form__field {
                     margin-block-end: 0;
                 }
                 /* stylelint-enable max-nesting-depth */
             }
 
-            .kb-form__label {
+            .ui-form__label {
                 align-items: center;
                 flex-direction: row-reverse;
                 justify-content: flex-end;
@@ -219,7 +219,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
             }
         }
 
-        .kb-grid & {
+        .ui-grid & {
             margin-block-end: 0;
         }
     }
@@ -227,18 +227,18 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
     // Custom checkbox.
     /* stylelint-disable no-descending-specificity */
     &__field--checkbox-custom,
-    &__fieldset--checkbox-custom .kb-form__field {
+    &__fieldset--checkbox-custom .ui-form__field {
         @include textfield;
         height: auto;
         padding: $gutter-formfield / 2;
 
-        .kb-form__label {
+        .ui-form__label {
             flex-direction: row;
             font-size: $font-size-s;
             justify-content: space-between;
         }
 
-        .kb-form__input {
+        .ui-form__input {
             margin-inline-end: 0;
             margin-inline-start: $gutter-formfield;
         }
@@ -251,13 +251,13 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
     // Range input.
     &__range {
         /* stylelint-disable no-descending-specificity */
-        .kb-form__label {
+        .ui-form__label {
             background-color: $color-grey-1;
             font-size: $font-size;
             padding: $gutter-formfield;
         }
         /* stylelint-enable no-descending-specificity */
-        .kb-form__range__minmax {
+        .ui-form__range__minmax {
             text-transform: uppercase;
         }
 
@@ -307,7 +307,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
             max-width: unset;
 
             /* stylelint-disable no-descending-specificity */
-            > .kb-form__label {
+            > .ui-form__label {
                 /* stylelint-disable max-nesting-depth */
                 &:first-of-type {
                     padding-inline-end: $gutter-formfield / 2;
@@ -316,7 +316,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
                 &:last-of-type {
                     padding-inline-start: $gutter-formfield / 2;
 
-                    .kb-form__range__label {
+                    .ui-form__range__label {
                         // Hide visually (but not with 'visually-hide' mixin) so that flex layout is unaffected.
                         color: transparent;
                     }
@@ -324,7 +324,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
                 /* stylelint-enable max-nesting-depth */
             }
             /* stylelint-enable no-descending-specificity */
-            .kb-form__range__minmax {
+            .ui-form__range__minmax {
                 @include visually-hide;
             }
         }
@@ -333,11 +333,11 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
             /* stylelint-disable max-nesting-depth, no-descending-specificity */
             position: relative;
 
-            > .kb-form__label {
+            > .ui-form__label {
                 padding-block-start: $gutter-xl;
             }
 
-            .kb-form__fieldset {
+            .ui-form__fieldset {
                 display: none; // Only shown if JS is enabled.
                 height: auto;
                 inset-block-start: 0;
@@ -346,11 +346,11 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
                 z-index: z('default');
             }
 
-            .kb-form__legend {
+            .ui-form__legend {
                 @include visually-hide;
             }
 
-            .kb-form__field {
+            .ui-form__field {
                 display: inline-block;
                 margin-block-end: 0;
             }
@@ -360,7 +360,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
 
     // When JS is enabled, hide some elements (e.g. secondary submit buttons).
     &.is-js-enabled {
-        .kb-button--secondary[type='submit'] {
+        .ui-button--secondary[type='submit'] {
             display: none;
         }
     }
@@ -403,8 +403,8 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
             }
 
             // Checkbox errors need to be re-positioned inside their parent Flex container.
-            .kb-form__field--checkbox &,
-            .kb-form__fieldset--checkbox & {
+            .ui-form__field--checkbox &,
+            .ui-form__fieldset--checkbox & {
                 bottom: -$gutter-s;
                 position: absolute;
             }
@@ -415,7 +415,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
     }
 
     // Grid layout.
-    .kb-grid {
+    .ui-grid {
         @include responsive-grid-columns(
             $auto-layout: auto-fill,
             $min-width: 20rem
@@ -433,7 +433,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
         margin-block-end: $gutter;
 
         // Form fields inside a grid (but not with specific classes).
-        > .kb-form__field:not(.kb-form__range--multiple) {
+        > .ui-form__field:not(.ui-form__range--multiple) {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -442,7 +442,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
         }
 
         // Grid of range sliders.
-        &.kb-grid--form-ranges {
+        &.ui-grid--form-ranges {
             // i.e. 2 normal Grid column widths.
             @include responsive-grid-columns(
                 $auto-layout: auto-fill,
@@ -450,7 +450,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
             );
         }
 
-        .kb-button {
+        .ui-button {
             height: $form-input-max-height;
         }
     }
@@ -471,7 +471,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
         margin-inline-start: 0;
         max-width: none;
 
-        .kb-icon {
+        .ui-icon {
             @include bp-medium {
                 height: $icon-size-l;
                 margin-inline-start: $gutter-s;
@@ -483,14 +483,14 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
             width: $icon-size-m;
         }
 
-        .kb-form__field {
+        .ui-form__field {
             margin: 0;
             max-width: 100%;
             min-width: 0; // Prevent horizontal overflow on small screens.
             width: 100%;
         }
 
-        .kb-form__label {
+        .ui-form__label {
             margin: 0;
 
             span {
@@ -498,7 +498,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
             }
         }
 
-        .kb-form__input {
+        .ui-form__input {
             @include bp-medium {
                 height: $layout-header-grid-row-height;
             }
@@ -507,7 +507,7 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
             height: $layout-header-grid-row-height-mobile;
         }
 
-        .kb-button {
+        .ui-button {
             @include bp-small {
                 font-size: $font-size-xs;
             }
@@ -523,13 +523,13 @@ $gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
     }
 
     // Hide robot fields.
-    [id*='kb-robo'],
-    [name*='kb-robo'] {
+    [id*='ui-robo'],
+    [name*='ui-robo'] {
         display: none;
     }
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-form) {
-    @include kb-form;
+@if mixin-exists(ui-form) {
+    @include ui-form;
 }

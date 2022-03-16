@@ -1,4 +1,4 @@
-.kb-float {
+.ui-float {
     &::before,
     &::after {
         @include clearfix;
@@ -6,7 +6,7 @@
 
     &__content {
         @at-root {
-            .kb-float--reverse & {
+            .ui-float--reverse & {
                 float: inline-end;
                 margin-inline-end: 0;
                 margin-inline-start: $gutter-s;
@@ -21,6 +21,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-float) {
-    @include kb-float;
+@if mixin-exists(ui-float) {
+    @include ui-float;
 }

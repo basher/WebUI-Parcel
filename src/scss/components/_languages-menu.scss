@@ -1,5 +1,5 @@
 // This is not included in Storybook. It's simply a container at the top of the page for links to swap languages.
-.kb-languages-menu {
+.ui-languages-menu {
     padding: $gutter-xs;
 
     > a {
@@ -8,6 +8,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-languages-menu) {
-    @include kb-languages-menu;
+@if mixin-exists(ui-languages-menu) {
+    @include ui-languages-menu;
 }

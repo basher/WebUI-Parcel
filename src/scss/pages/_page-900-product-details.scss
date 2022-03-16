@@ -1,7 +1,7 @@
 // Product details.
 .page-900 {
-    .kb-banner__title,
-    .kb-product-specs__item:not(.kb-product-specs__action):first-child,
+    .ui-banner__title,
+    .ui-product-specs__item:not(.ui-product-specs__action):first-child,
     [aria-labelledby='product-variants'] {
         @include bp-medium {
             padding-inline-end: $layout-main-bleed;
@@ -13,15 +13,15 @@
 
     [id='product-variants'],
     [id='product-gallery-title'],
-    .kb-product-features > h2 {
+    .ui-product-features > h2 {
         text-align: center;
     }
 
-    .kb-cms {
+    .ui-cms {
         @include layout-centered-content;
     }
 
-    // TODO: Update DW to use correct 'kb-cms' and/or 'kb-layout' classes for this content.
+    // TODO: Update DW to use correct 'ui-cms' and/or 'ui-layout' classes for this content.
     [id='dealerHtml'] {
         @include layout-centered-content;
     }

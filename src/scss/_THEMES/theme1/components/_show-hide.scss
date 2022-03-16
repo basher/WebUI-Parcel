@@ -1,6 +1,6 @@
-@mixin kb-show-hide {
-    .kb-show-hide {
-        .kb-button {
+@mixin ui-show-hide {
+    .ui-show-hide {
+        .ui-button {
             @include button-secondary;
         }
     }

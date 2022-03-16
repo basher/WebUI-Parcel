@@ -6,12 +6,12 @@ export class StickyPosition {
 
     constructor() {
         this.stickyHeader = document.querySelector(
-            '.kb-layout__sticky--header'
+            '.ui-layout__sticky--header'
         ) as HTMLElement;
         this.stickyFooter = document.querySelector(
-            '.kb-layout__sticky--footer'
+            '.ui-layout__sticky--footer'
         ) as HTMLElement;
-        this.main = document.querySelector('.kb-layout__main') as HTMLElement;
+        this.main = document.querySelector('.ui-layout__main') as HTMLElement;
         this.headerOverlay = document.getElementById(
             'header-overlay'
         ) as HTMLElement;

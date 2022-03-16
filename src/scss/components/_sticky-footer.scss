@@ -1,4 +1,4 @@
-.kb-sticky-footer {
+.ui-sticky-footer {
     background-color: $color-brand;
     color: $color-text-alt;
     min-height: $layout-sticky-footer-height;
@@ -40,7 +40,7 @@
         color: $color-brand;
         height: 100%;
 
-        .kb-button__inner {
+        .ui-button__inner {
             @include bp-small {
                 height: 100%;
                 justify-content: center;
@@ -50,7 +50,7 @@
                     @include visually-hide;
                 }
 
-                .kb-icon {
+                .ui-icon {
                     margin: 0;
                 }
                 /* stylelint-enable max-nesting-depth */
@@ -60,6 +60,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-sticky-footer) {
-    @include kb-sticky-footer;
+@if mixin-exists(ui-sticky-footer) {
+    @include ui-sticky-footer;
 }

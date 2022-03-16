@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { translate } from './translation';
 
 /**
@@ -9,7 +8,7 @@ const ajaxLoaderContent = `
     <svg
         role="img"
         focusable="false"
-        class="kb-icon kb-ajax__icon"
+        class="ui-icon ui-ajax__icon"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         viewBox="0 0 100 100"
@@ -18,7 +17,7 @@ const ajaxLoaderContent = `
         <circle cx="50" cy="50" r="47"/>
     </svg>
 `;
-ajaxLoader.classList.add('kb-ajax__loader');
+ajaxLoader.classList.add('ui-ajax__loader');
 ajaxLoader.innerHTML = ajaxLoaderContent;
 
 /**
@@ -82,6 +81,7 @@ export const ajaxErrorHandler = (arg: AjaxError): void => {
         'Sorry, something went wrong... please try again or contact us'
     );
 
+    // eslint-disable-next-line no-console
     console.warn(error);
 
     if (ajaxContainer) {

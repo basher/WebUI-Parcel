@@ -10,7 +10,7 @@ export class ProductCard {
     }
 
     public static start(): void {
-        const productCards = document.querySelectorAll('.kb-product-card');
+        const productCards = document.querySelectorAll('.ui-product-card');
 
         if (productCards) {
             [...(productCards as any)].map((productCard) => {
@@ -28,8 +28,8 @@ export class ProductCard {
 
     private handleProductCardEvents(): void {
         const cardLink: HTMLElement | null =
-            this.productCard.querySelector('.kb-card__title > a') ||
-            this.productCard.querySelector('.kb-product-card__block-link');
+            this.productCard.querySelector('.ui-card__title > a') ||
+            this.productCard.querySelector('.ui-product-card__block-link');
 
         // Apply behaviour only if product cards is not an <a>.
         if (this.productCard.nodeName !== 'A') {
@@ -42,7 +42,7 @@ export class ProductCard {
             // Make whole card clickable, but only if event target is NOT a specific card action button or link.
             this.productCard.addEventListener('click', (e: MouseEvent) => {
                 const target = getEventElement(e.target);
-                if (target?.closest('.kb-button-group') === null) {
+                if (target?.closest('.ui-button-group') === null) {
                     cardLink?.click();
                 }
                 return true;
@@ -53,7 +53,7 @@ export class ProductCard {
     // TODO: Not sure if this method is still needed? Product cards do NOT appear to be loaded asynchronously anymore.
     private handleProductCardGrid(): void {
         // On stock list page, product cards are added asynchronously, so we use MutationObserver API to detect DOM changes, and fire the 'handleProductCardEvents()' method.
-        const domNode = document.querySelector('.kb-product-card-grid');
+        const domNode = document.querySelector('.ui-product-card-grid');
         const config = { childList: true, subtree: true };
 
         // Callback function to execute when mutations are observed.
@@ -66,8 +66,8 @@ export class ProductCard {
                     [...(mutations[i].addedNodes as any)].map((node) => {
                         if (
                             node.nodeName !== '#text' &&
-                            !node.classList.contains('kb-quick-view__item') &&
-                            !node.classList.contains('kb-quick-view')
+                            !node.classList.contains('ui-quick-view__item') &&
+                            !node.classList.contains('ui-quick-view')
                         ) {
                             this.handleProductCardEvents();
                         }

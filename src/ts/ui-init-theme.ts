@@ -4,7 +4,7 @@
 // Dynamically import & instantiate components based on current theme.
 import { currentUITheme } from './ui-current-theme';
 
-export const gwUIinitTheme = (): void => {
+export const uiInitTheme = (): void => {
     if (currentUITheme === 'whitelabel') {
         // No dynamic imports for whitelabel.
     }

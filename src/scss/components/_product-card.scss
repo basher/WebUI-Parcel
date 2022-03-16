@@ -1,4 +1,4 @@
-.kb-product-card {
+.ui-product-card {
     @if $allow-dark-mode {
         @media (prefers-color-scheme: dark) {
             background-color: $color-grey-3;
@@ -9,13 +9,13 @@
     border: 0;
     padding: 0;
 
-    .kb-card__content {
+    .ui-card__content {
         margin-block-start: 0;
         padding: 0 $gutter-s;
         width: 100%;
     }
 
-    .kb-card__title {
+    .ui-card__title {
         > a {
             // Line-clamp needs '-webkit-' prefixes. See https://css-tricks.com/line-clampin/.
             -webkit-box-orient: vertical;
@@ -25,7 +25,7 @@
             padding-block-end: 1px; // To show underline on last clamped line.
         }
 
-        .kb-product-card__block-link & {
+        .ui-product-card__block-link & {
             margin-block-end: $gutter-xs;
         }
 
@@ -92,13 +92,13 @@
         }
     }
 
-    .kb-card__actions {
+    .ui-card__actions {
         align-items: flex-start;
         justify-content: space-between;
         padding: 0 $gutter-s;
         width: 100%;
 
-        .kb-button {
+        .ui-button {
             &--text {
                 color: $color-text-alt;
                 margin-inline-end: 0;
@@ -113,8 +113,8 @@
         font-size: $font-size-xs;
         width: 100%;
 
-        // Need '.kb-table' to boost specificity!
-        &.kb-table {
+        // Need '.ui-table' to boost specificity!
+        &.ui-table {
             th,
             td {
                 border-inline-end: 0;
@@ -148,16 +148,16 @@
             text-decoration: underline;
         }
 
-        .kb-card__media {
+        .ui-card__media {
             margin-block-end: $gutter-xs;
         }
 
-        .kb-card__title {
+        .ui-card__title {
             font-size: $font-size;
             margin: 0;
         }
 
-        .kb-product-card__price {
+        .ui-product-card__price {
             background: none;
             color: $color-text;
             font-size: $font-size-s;
@@ -168,12 +168,12 @@
     /* stylelint-enable no-descending-specificity */
 
     // In a grid.
-    &-grid.kb-grid {
+    &-grid.ui-grid {
         @include responsive-grid-columns($max-width: 18.75rem);
     }
 
     // Button group (e.g. for quick view component).
-    > .kb-button-group {
+    > .ui-button-group {
         margin: 0;
         padding: 0 $gutter-s;
         width: 100%;
@@ -181,6 +181,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-product-card) {
-    @include kb-product-card;
+@if mixin-exists(ui-product-card) {
+    @include ui-product-card;
 }

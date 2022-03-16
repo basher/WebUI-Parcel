@@ -73,15 +73,15 @@ export class FormValidate {
                 group.getAttribute('data-validate-group') === groupId &&
                 group.hasAttribute('required')
             ) {
-                const field = group.closest('.kb-form__field') as HTMLElement;
+                const field = group.closest('.ui-form__field') as HTMLElement;
                 const fieldError = field.querySelector(
-                    '.kb-form__error'
+                    '.ui-form__error'
                 ) as HTMLElement;
 
                 group.removeAttribute('required');
                 group.removeAttribute('aria-invalid');
                 group.removeAttribute('aria-describedby');
-                field.classList.remove('kb-form__field--has-error');
+                field.classList.remove('ui-form__field--has-error');
                 if (fieldError) {
                     fieldError.style.display = 'none';
                 }

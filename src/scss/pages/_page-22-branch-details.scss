@@ -1,11 +1,11 @@
 // Branch details.
 .page-22 {
-    [class*='kb-cms'],
+    [class*='ui-cms'],
     [aria-labelledby='department-contact-details'] {
         @include layout-constraint;
         @include layout-centered-content;
 
-        .kb-accordion__content {
+        .ui-accordion__content {
             > div:not([class]) {
                 @include layout-centered-content;
             }

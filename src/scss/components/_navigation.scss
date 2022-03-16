@@ -34,19 +34,19 @@ By default, with JS disabled, header navigation does work, even on mobile.
     z-index: z('modal');
 }
 
-.kb-navigation {
+.ui-navigation {
     /* stylelint-disable max-nesting-depth, no-descending-specificity */
     @at-root {
         // RTL on mobile.
         [dir='rtl'] {
             .show-mobile-nav {
                 [data-dropdown-open] {
-                    .kb-navigation__dropdown {
+                    .ui-navigation__dropdown {
                         transition: right 0.3s ease-in-out;
                     }
                 }
 
-                .kb-icon {
+                .ui-icon {
                     transform: rotate(180deg);
                 }
             }
@@ -54,7 +54,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
 
         // Prevent keyboard users from accessing dropdown menus.
         [data-whatintent='keyboard'] {
-            .kb-navigation__dropdown {
+            .ui-navigation__dropdown {
                 display: none !important; // stylelint-disable-line
             }
         }
@@ -69,7 +69,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
             padding-inline-start: $nav-dropdown-gutter;
 
             // Nested sub-nav. Show directly underneath parent.
-            .kb-navigation__dropdown:not(.kb-navigation__dropdown--overlay) {
+            .ui-navigation__dropdown:not(.ui-navigation__dropdown--overlay) {
                 border: 0;
                 display: block;
                 inset-block-start: 0;
@@ -112,13 +112,13 @@ By default, with JS disabled, header navigation does work, even on mobile.
             }
 
             // Deeper nested lists are not CSS grid containers.
-            .kb-navigation__list--nested {
+            .ui-navigation__list--nested {
                 display: block;
             }
         }
 
         // Extra specificity, so we can isolate this button group from the one in the primary nav list.
-        .kb-button-group {
+        .ui-button-group {
             @include bp-medium {
                 margin-inline-end: -$nav-dropdown-gutter;
                 margin-inline-start: -$nav-dropdown-gutter;
@@ -137,7 +137,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
             }
 
             // So text doesn't wrap when JS is active.
-            .kb-navigation.is-js-enabled & {
+            .ui-navigation.is-js-enabled & {
                 flex-shrink: 0;
             }
         }
@@ -161,13 +161,13 @@ By default, with JS disabled, header navigation does work, even on mobile.
         }
 
         &:hover {
-            > .kb-navigation__dropdown {
+            > .ui-navigation__dropdown {
                 display: block;
             }
         }
 
         // Nested.
-        .kb-navigation__item {
+        .ui-navigation__item {
             @include bp-medium {
                 height: auto;
                 margin-block-end: 0;
@@ -205,7 +205,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
             }
 
             // Also increase click area in maxi menu nested subnav.
-            .kb-navigation__list--nested .kb-navigation__list--nested & {
+            .ui-navigation__list--nested .ui-navigation__list--nested & {
                 padding-block-end: $gutter-xs / 2;
                 padding-block-start: $gutter-xs / 2;
             }
@@ -228,7 +228,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
         text-decoration: none;
         width: 100%;
 
-        + .kb-button--icon {
+        + .ui-button--icon {
             color: $color-brand;
             margin-inline-start: 0.25rem; // So we have some separation.
             padding: $gutter-xs / 2;
@@ -242,21 +242,21 @@ By default, with JS disabled, header navigation does work, even on mobile.
             color: $color-brand-alt;
             text-decoration: underline;
 
-            + .kb-button--icon {
+            + .ui-button--icon {
                 color: $color-brand-alt;
             }
         }
 
-        &.kb-button {
+        &.ui-button {
             border: 0;
         }
 
         &--has-submenu {
-            .kb-button__inner {
+            .ui-button__inner {
                 flex-direction: row-reverse;
             }
 
-            .kb-icon {
+            .ui-icon {
                 /* stylelint-disable max-nesting-depth */
                 @include bp-medium {
                     display: none;
@@ -294,19 +294,19 @@ By default, with JS disabled, header navigation does work, even on mobile.
         border-block-start: $border-width $border-style $color-grey-2;
         padding: $nav-mobile-button-gutter;
 
-        .kb-button__inner {
+        .ui-button__inner {
             justify-content: start;
         }
     }
 
-    .kb-button {
+    .ui-button {
         &--text-icon {
             @include bp-medium {
                 width: auto;
             }
             width: 100%;
 
-            .kb-icon {
+            .ui-icon {
                 height: 1em;
                 width: 1em;
             }
@@ -321,7 +321,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
             }
         }
 
-        > .kb-icon {
+        > .ui-icon {
             @include bp-medium {
                 display: none;
             }
@@ -331,10 +331,10 @@ By default, with JS disabled, header navigation does work, even on mobile.
 
     // Identify which primary nav item is open.
     [data-dropdown-open='true'] {
-        > .kb-navigation__link--has-submenu {
+        > .ui-navigation__link--has-submenu {
             color: $color-brand-alt;
 
-            + .kb-button--icon {
+            + .ui-button--icon {
                 color: $color-brand-alt;
                 transform: rotate(180deg);
             }
@@ -342,22 +342,22 @@ By default, with JS disabled, header navigation does work, even on mobile.
     }
 
     // Filtered products dropdown.
-    .kb-product-filter {
+    .ui-product-filter {
         @include bp-medium {
             margin-inline-end: -$nav-dropdown-gutter;
             margin-inline-start: -$nav-dropdown-gutter;
         }
 
-        &.kb-accordion {
+        &.ui-accordion {
             margin-block-end: 0;
 
             // Center the product grid on mobile, and set max-width on image to be the same as CSS grid columns in desktop view.
-            .kb-grid {
+            .ui-grid {
                 /* stylelint-disable max-nesting-depth */
                 @include bp-small {
                     @include responsive-grid($centered: true);
 
-                    .kb-image {
+                    .ui-image {
                         max-width: $nav-grid-col-width;
                     }
                 }
@@ -365,55 +365,55 @@ By default, with JS disabled, header navigation does work, even on mobile.
             }
         }
 
-        .kb-tabs__content {
+        .ui-tabs__content {
             @include bp-medium {
                 margin-inline-end: $nav-dropdown-gutter;
                 margin-inline-start: $nav-dropdown-gutter;
             }
         }
 
-        .kb-accordion__button {
+        .ui-accordion__button {
             border-color: $color-grey-2;
             margin-block-end: 0;
             padding: $nav-mobile-button-gutter;
         }
 
-        .kb-accordion__content {
+        .ui-accordion__content {
             padding: 0 $gutter-xs;
         }
 
-        .kb-accordion__title:first-of-type {
-            .kb-accordion__button {
+        .ui-accordion__title:first-of-type {
+            .ui-accordion__button {
                 border-block-start: $border-width $border-style $color-grey-2;
             }
         }
 
-        .kb-accordion__title:last-of-type {
-            .kb-accordion__button {
+        .ui-accordion__title:last-of-type {
+            .ui-accordion__button {
                 border-block-end: 0;
                 margin-block-end: 0;
             }
 
-            + .kb-accordion__content {
+            + .ui-accordion__content {
                 margin-block-start: $gutter-xs;
             }
         }
     }
 
-    .kb-product-filter--no-tabs {
+    .ui-product-filter--no-tabs {
         @include bp-medium {
             padding: 0 $nav-dropdown-gutter $nav-dropdown-gutter;
         }
         padding: $gutter-xs;
 
         /* stylelint-disable-next-line no-descending-specificity */
-        .kb-grid {
+        .ui-grid {
             // Center the product grid on mobile, and set max-width on image to be the same as CSS grid columns in desktop view.
             @include bp-small {
                 @include responsive-grid($centered: true);
 
                 /* stylelint-disable-next-line max-nesting-depth */
-                .kb-image {
+                .ui-image {
                     max-width: $nav-grid-col-width;
                 }
             }
@@ -436,13 +436,13 @@ By default, with JS disabled, header navigation does work, even on mobile.
             margin-block-end: $gutter;
             min-height: 3.25rem; // = computed height of product filter tablist.
 
-            .kb-button {
+            .ui-button {
                 background-color: $color-brand;
                 border: 0;
                 width: auto;
             }
 
-            .kb-button__inner {
+            .ui-button__inner {
                 justify-content: flex-start;
             }
 
@@ -455,7 +455,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
         &__content {
             padding: 0 $gutter-xs;
 
-            .kb-grid {
+            .ui-grid {
                 @include responsive-grid-columns(
                     $auto-layout: auto-fill,
                     $max-width: 12.5rem
@@ -464,7 +464,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
                 @include bp-small {
                     @include responsive-grid($centered: true);
 
-                    .kb-image {
+                    .ui-image {
                         max-width: $nav-grid-col-width;
                     }
                 }
@@ -491,16 +491,16 @@ By default, with JS disabled, header navigation does work, even on mobile.
         position: relative;
         width: $layout-header-grid-row-height-mobile;
 
-        .kb-icon {
+        .ui-icon {
             fill: $color-brand;
         }
     }
 
     // 1. 'navigation-wrap' is only shown on mobile when 'toggle-mobile-nav' button is clicked.
     // 2. 'navigation-wrap' is always shown on medium, unless header is sticky, in which case mobile nav behaviour is used.
-    // 3. 'navigation-wrap' is the original ID in the HTML, before JS 'disclosure()' fires for show|hide functionality, and generates a new unique ID based on toggle button's parent container 'kb-navigation'.
+    // 3. 'navigation-wrap' is the original ID in the HTML, before JS 'disclosure()' fires for show|hide functionality, and generates a new unique ID based on toggle button's parent container 'ui-navigation'.
     [id='navigation-wrap'],
-    div[id^='kb-navigation'] {
+    div[id^='ui-navigation'] {
         @include bp-medium {
             &.is-hidden {
                 display: block !important; // stylelint-disable-line
@@ -516,7 +516,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
     /* stylelint-disable order/order, max-nesting-depth */
     @at-root {
         .is-js-sticky {
-            div[id^='kb-navigation'] {
+            div[id^='ui-navigation'] {
                 @include bp-medium {
                     &.is-hidden {
                         display: none !important; // stylelint-disable-line
@@ -530,21 +530,21 @@ By default, with JS disabled, header navigation does work, even on mobile.
     // Mobile nav.
     // This class (added by JS) triggers mobile nav behaviour.
     .show-mobile-nav {
-        > .kb-navigation__list {
+        > .ui-navigation__list {
             @include dropdown-container;
             display: flex;
             flex-direction: column;
             padding-block-start: 0;
         }
 
-        .kb-navigation__link {
+        .ui-navigation__link {
             padding: $nav-mobile-button-gutter;
             width: 100%;
         }
 
         // Move nested nav offscreen until parent link is clicked/touched.
         [data-dropdown-open] {
-            .kb-navigation__dropdown {
+            .ui-navigation__dropdown {
                 display: block;
                 inset-inline-end: auto;
                 inset-inline-start: 100vw;
@@ -554,14 +554,14 @@ By default, with JS disabled, header navigation does work, even on mobile.
 
         [data-dropdown-open='true'] {
             // 3rd level dropdown.
-            > .kb-navigation__dropdown--is-open {
+            > .ui-navigation__dropdown--is-open {
                 inset-inline-end: auto;
                 inset-inline-start: 0;
                 padding-block-start: 0;
             }
 
             // 4th level navigation (i.e. overlay).
-            > .kb-navigation__dropdown--overlay {
+            > .ui-navigation__dropdown--overlay {
                 inset-inline-end: auto;
                 inset-inline-start: 0;
             }
@@ -571,7 +571,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
             display: list-item;
         }
 
-        .kb-product-filter--no-tabs {
+        .ui-product-filter--no-tabs {
             padding: $gutter-xs;
         }
 
@@ -579,7 +579,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
         // When "mobile nav" behaviour is triggered by sticky header at medium breakpoint, we need to override alot of the default nav styles at this breakpoint.
         /* stylelint-disable order/order, max-nesting-depth, declaration-no-important */
         @include bp-medium {
-            .kb-navigation__dropdown {
+            .ui-navigation__dropdown {
                 inset-block-start: $layout-overlay-offset;
                 min-height: calc(95vh - #{$layout-overlay-offset});
                 padding-inline-end: 0;
@@ -588,17 +588,17 @@ By default, with JS disabled, header navigation does work, even on mobile.
                 width: 100vw;
             }
 
-            > .kb-navigation__list {
+            > .ui-navigation__list {
                 align-items: unset;
                 inset-block-start: $layout-header-grid-row-height; // Because sticky is anchored to top of viewport.
                 min-height: calc(95vh - #{$layout-overlay-offset});
             }
 
-            .kb-navigation__list--nested {
+            .ui-navigation__list--nested {
                 display: block;
             }
 
-            .kb-navigation__item {
+            .ui-navigation__item {
                 align-items: unset;
                 border-block-end: $border-width $border-style $color-grey-2;
                 display: list-item;
@@ -609,7 +609,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
                     display: list-item !important;
                 }
 
-                .kb-navigation__item {
+                .ui-navigation__item {
                     padding-block-end: 0;
                 }
 
@@ -618,19 +618,19 @@ By default, with JS disabled, header navigation does work, even on mobile.
                 }
             }
 
-            .kb-navigation__link {
+            .ui-navigation__link {
                 &.is-hidden-on-medium {
                     display: inline-block !important;
                 }
 
                 &--has-submenu {
-                    .kb-icon {
+                    .ui-icon {
                         display: unset;
                     }
                 }
             }
 
-            .kb-navigation__title {
+            .ui-navigation__title {
                 &.is-hidden-on-medium {
                     border-block-start: 0;
                     display: block !important;
@@ -649,20 +649,20 @@ By default, with JS disabled, header navigation does work, even on mobile.
                 display: inline-block;
                 width: 100%;
 
-                + .kb-navigation__title {
+                + .ui-navigation__title {
                     border-block-end: $border-width $border-style $color-grey-2;
                 }
             }
 
-            .kb-button-group {
+            .ui-button-group {
                 margin: 0;
             }
 
-            .kb-product-filter {
+            .ui-product-filter {
                 margin-inline-end: 0;
                 margin-inline-start: 0;
 
-                .kb-tabs__content {
+                .ui-tabs__content {
                     margin-inline-end: 0;
                     margin-inline-start: 0;
                     padding-inline-end: $gutter-xs;
@@ -670,7 +670,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
                 }
             }
 
-            .kb-navigation__dropdown--overlay {
+            .ui-navigation__dropdown--overlay {
                 &__header {
                     margin-inline-end: 0;
                     margin-inline-start: 0;
@@ -684,31 +684,31 @@ By default, with JS disabled, header navigation does work, even on mobile.
     &.is-js-enabled {
         @include bp-small {
             // Show buttons on mobile.
-            .kb-button:not(.is-hidden-on-small) {
+            .ui-button:not(.is-hidden-on-small) {
                 display: inline-block;
             }
 
-            .kb-button--icon:not(.is-hidden-on-small) {
+            .ui-button--icon:not(.is-hidden-on-small) {
                 display: inline-flex;
             }
 
-            .kb-navigation__item {
+            .ui-navigation__item {
                 padding-inline-end: 0;
             }
         }
 
         /* stylelint-disable max-nesting-depth */
         @include bp-medium {
-            .kb-navigation__list {
+            .ui-navigation__list {
                 // Only show 1st level sub-nav when JS toggles 'data-dropdown-open'.
                 > [data-dropdown-open='true'] {
-                    .kb-navigation__dropdown {
+                    .ui-navigation__dropdown {
                         display: block;
                     }
                 }
                 // Hide 1st level sub-nav on normal CSS :HOVER until JS kicks in.
                 > [data-dropdown-open='false']:hover {
-                    .kb-navigation__dropdown {
+                    .ui-navigation__dropdown {
                         display: none;
                     }
                 }
@@ -717,7 +717,7 @@ By default, with JS disabled, header navigation does work, even on mobile.
         /* stylelint-enable max-nesting-depth */
 
         // Show buttons.
-        .kb-navigation__item--buttons {
+        .ui-navigation__item--buttons {
             display: block;
         }
     }
@@ -731,22 +731,22 @@ By default, with JS disabled, header navigation does work, even on mobile.
             [data-dropdown-open='true'] {
                 background-color: $color-grey-1;
 
-                > .kb-navigation__link--has-submenu {
+                > .ui-navigation__link--has-submenu {
                     color: $color-brand;
 
-                    & + .kb-button--icon {
+                    & + .ui-button--icon {
                         color: $color-brand;
                         opacity: 1;
                     }
                 }
             }
 
-            .kb-navigation__item {
+            .ui-navigation__item {
                 padding-inline-start: $gutter-xs;
                 width: 100%;
             }
 
-            .kb-navigation__dropdown {
+            .ui-navigation__dropdown {
                 background-color: $color-grey-1;
                 height: 100%;
                 inset-block-start: 0;
@@ -756,25 +756,25 @@ By default, with JS disabled, header navigation does work, even on mobile.
                 padding-inline-start: $gutter-xs;
                 width: auto;
 
-                .kb-button-group {
+                .ui-button-group {
                     margin-inline-end: 0;
                     margin-inline-start: 0;
                     max-width: $nav-grid-col-width;
                 }
 
-                .kb-navigation__item {
+                .ui-navigation__item {
                     padding-inline-start: 0;
                 }
             }
 
-            .kb-navigation__link {
+            .ui-navigation__link {
                 &:hover {
                     color: $color-brand;
                     opacity: 1;
                 }
             }
 
-            .kb-navigation__list {
+            .ui-navigation__list {
                 align-items: start;
                 flex-direction: column;
 
@@ -783,8 +783,8 @@ By default, with JS disabled, header navigation does work, even on mobile.
                 }
             }
 
-            .kb-button--icon.is-hidden-on-small {
-                .kb-icon {
+            .ui-button--icon.is-hidden-on-small {
+                .ui-icon {
                     @at-root {
                         [dir='rtl'] & {
                             transform: rotate(90deg);
@@ -795,11 +795,11 @@ By default, with JS disabled, header navigation does work, even on mobile.
                 }
             }
 
-            .kb-product-filter {
+            .ui-product-filter {
                 margin-inline-end: 0;
                 margin-inline-start: 0;
 
-                & + .kb-navigation__list--nested {
+                & + .ui-navigation__list--nested {
                     /* stylelint-disable-next-line prettier/prettier */
                     padding-inline-start: $nav-dropdown-gutter;
                 }
@@ -810,6 +810,6 @@ By default, with JS disabled, header navigation does work, even on mobile.
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-navigation) {
-    @include kb-navigation;
+@if mixin-exists(ui-navigation) {
+    @include ui-navigation;
 }

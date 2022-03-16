@@ -3,7 +3,7 @@
     grid-template-columns: minmax(auto, 20vw) auto minmax(50vw, 1fr);
 }
 
-.kb-header {
+.ui-header {
     /* stylelint-disable max-nesting-depth */
     @at-root {
         // Place sticky header CSS Grid items in 1 row.
@@ -21,7 +21,7 @@
                     auto
                 );
 
-                .kb-header__contact {
+                .ui-header__contact {
                     display: block;
                 }
             }
@@ -34,7 +34,7 @@
         .is-js-sticky &__home {
             margin-inline-end: 0;
 
-            .kb-image {
+            .ui-image {
                 height: $icon-size-home-mobile;
 
                 &.is-hidden-on-large {
@@ -42,7 +42,7 @@
                     display: block !important;
                 }
 
-                & + .kb-image {
+                & + .ui-image {
                     display: none;
                 }
             }
@@ -95,7 +95,7 @@
         margin: 0 $gutter-xs;
         padding: 0;
 
-        .kb-image {
+        .ui-image {
             @include bp-xsmall {
                 height: auto;
             }
@@ -106,7 +106,7 @@
             height: $icon-size-home-mobile;
             width: auto;
 
-            & + .kb-image {
+            & + .ui-image {
                 /* stylelint-disable-next-line max-nesting-depth */
                 @include bp-large {
                     display: block;
@@ -133,7 +133,7 @@
         margin: 0 $gutter-s;
 
         /* stylelint-disable-next-line no-descending-specificity */
-        .kb-image {
+        .ui-image {
             max-height: 3.125rem; // 50px.
             max-width: 15.625rem; // 250px.
         }
@@ -173,7 +173,7 @@
         display: flex;
         justify-content: space-between;
 
-        .kb-header__home {
+        .ui-header__home {
             margin: 0;
             padding: $gutter-xs;
         }
@@ -181,6 +181,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-header) {
-    @include kb-header;
+@if mixin-exists(ui-header) {
+    @include ui-header;
 }

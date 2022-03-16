@@ -1,12 +1,12 @@
-.kb-video-card {
+.ui-video-card {
     align-items: center;
     text-align: center;
 
-    .kb-card__media {
+    .ui-card__media {
         margin-block-end: $gutter-s;
     }
 
-    &.kb-card--media-inline {
+    &.ui-card--media-inline {
         text-align: start;
 
         &-alt {
@@ -14,15 +14,15 @@
         }
     }
 
-    &.kb-card--media-inline,
-    &.kb-card--media-inline-alt {
-        .kb-card__media {
+    &.ui-card--media-inline,
+    &.ui-card--media-inline-alt {
+        .ui-card__media {
             margin-block-end: 0;
         }
     }
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-video-card) {
-    @include kb-video-card;
+@if mixin-exists(ui-video-card) {
+    @include ui-video-card;
 }

@@ -1,4 +1,4 @@
-.kb-news-card {
+.ui-news-card {
     @if $allow-dark-mode {
         @media (prefers-color-scheme: dark) {
             background-color: $color-grey-3;
@@ -11,17 +11,17 @@
     padding: 0;
 
     // TODO: Width is needed by Safari so that aspect-ratio padding-top hack works inside <figure> which is a flex item. Ideally, we should fix the HTML so that the <a> is attached to the card title, not the image, as per product/stock cards.
-    .kb-card__media {
+    .ui-card__media {
         width: 100%;
     }
 
-    .kb-card__content {
+    .ui-card__content {
         margin-block-start: 0;
         padding: 0 $gutter-s;
         width: 100%;
     }
 
-    .kb-toolbar {
+    .ui-toolbar {
         flex-direction: row-reverse;
         justify-content: space-between;
         margin-inline-end: -$gutter-s;
@@ -32,12 +32,12 @@
         }
     }
 
-    .kb-share__fallback {
+    .ui-share__fallback {
         right: 0;
     }
 
     // In a grid.
-    &-grid.kb-grid {
+    &-grid.ui-grid {
         @include responsive-grid-columns($max-width: 18.75rem);
     }
 
@@ -49,6 +49,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-news-card) {
-    @include kb-news-card;
+@if mixin-exists(ui-news-card) {
+    @include ui-news-card;
 }

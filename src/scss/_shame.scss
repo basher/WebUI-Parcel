@@ -59,6 +59,6 @@ iframes.
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-shame) {
-    @include kb-shame;
+@if mixin-exists(ui-shame) {
+    @include ui-shame;
 }

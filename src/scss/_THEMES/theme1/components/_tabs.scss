@@ -1,5 +1,5 @@
-@mixin kb-tabs {
-    .kb-tabs {
+@mixin ui-tabs {
+    .ui-tabs {
         [aria-selected='true'] {
             background-color: $color-grey-1;
             border-block-end-color: $color-grey-1;

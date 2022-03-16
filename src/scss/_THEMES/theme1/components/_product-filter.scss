@@ -1,15 +1,15 @@
-@mixin kb-product-filter {
-    .kb-product-filter {
+@mixin ui-product-filter {
+    .ui-product-filter {
         background-color: $color-white;
 
-        &.kb-tabs:not(.kb-tabs--vertical) {
-            .kb-tabs__tablist {
+        &.ui-tabs:not(.ui-tabs--vertical) {
+            .ui-tabs__tablist {
                 background-color: $color-grey-1;
                 flex-wrap: wrap;
                 padding-block-start: $gutter-xs;
             }
 
-            .kb-tabs__button {
+            .ui-tabs__button {
                 @include button-secondary;
                 margin-block-end: $gutter-xs;
 
@@ -20,7 +20,7 @@
             }
         }
 
-        .kb-tabs__content {
+        .ui-tabs__content {
             background-color: transparent;
         }
     }

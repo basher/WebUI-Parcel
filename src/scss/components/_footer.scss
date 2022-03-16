@@ -1,4 +1,4 @@
-.kb-footer {
+.ui-footer {
     @if $allow-dark-mode {
         @media (prefers-color-scheme: dark) {
             color: $color-text;
@@ -37,7 +37,7 @@
         margin-block-end: $gutter-xs;
 
         &--logo {
-            .kb-image {
+            .ui-image {
                 flex-shrink: 1;
                 height: $icon-size-home-mobile;
                 width: auto;
@@ -101,7 +101,7 @@
             }
         }
 
-        .kb-social {
+        .ui-social {
             align-items: center;
             display: flex;
             flex-wrap: wrap;
@@ -119,13 +119,13 @@
             }
         }
 
-        .kb-footer__item {
+        .ui-footer__item {
             @include bp-xsmall {
                 flex-basis: 100%;
             }
         }
 
-        .kb-footer__list {
+        .ui-footer__list {
             align-items: center;
             display: flex;
             flex-wrap: wrap;
@@ -141,7 +141,7 @@
                     margin-inline-end: $gutter-xs;
                 }
 
-                .kb-footer__item {
+                .ui-footer__item {
                     @include bp-xsmall {
                         flex-basis: auto;
                     }
@@ -152,13 +152,13 @@
     }
 
     &__manufacturer {
-        .kb-image {
+        .ui-image {
             height: 3.75rem;
         }
     }
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-footer) {
-    @include kb-footer;
+@if mixin-exists(ui-footer) {
+    @include ui-footer;
 }

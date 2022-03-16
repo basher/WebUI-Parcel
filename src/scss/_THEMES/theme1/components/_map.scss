@@ -1,7 +1,7 @@
-@mixin kb-map {
-    .kb-map {
+@mixin ui-map {
+    .ui-map {
         &__overlay {
-            .kb-contact-card {
+            .ui-contact-card {
                 box-shadow: none;
             }
         }

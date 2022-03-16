@@ -1,5 +1,5 @@
-@mixin kb-ratings {
-    .kb-ratings {
+@mixin ui-ratings {
+    .ui-ratings {
         &-signpost {
             background-color: #{rgba(var(--themeColorBrand), 0.9)};
         }

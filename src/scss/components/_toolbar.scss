@@ -1,11 +1,11 @@
-.kb-toolbar {
+.ui-toolbar {
     align-items: center;
     display: flex;
     font-size: $font-size; // Allows any text & icons to inherit this size.
     gap: $gutter-xs;
     margin-block-end: $gutter-xs;
 
-    .kb-button {
+    .ui-button {
         &--text-icon,
         &--icon {
             background-color: transparent;
@@ -16,7 +16,7 @@
         }
     }
 
-    .kb-button-group {
+    .ui-button-group {
         align-items: center;
         flex-wrap: unset;
         justify-content: space-between;
@@ -28,7 +28,7 @@
         }
     }
 
-    .kb-icon {
+    .ui-icon {
         height: 1.5em; // Scale in proportion to toolbar font-size.
         width: 1.5em;
     }
@@ -37,7 +37,7 @@
     &--stock {
         width: 100%;
 
-        .kb-button-group {
+        .ui-button-group {
             width: 100%;
 
             > :first-child {
@@ -51,13 +51,13 @@
             line-height: 1;
             padding: $gutter-xs $gutter-s;
 
-            .kb-icon {
+            .ui-icon {
                 margin-inline-end: $gutter-xs;
             }
         }
 
         &__compare {
-            .kb-icon {
+            .ui-icon {
                 fill: transparent;
                 stroke: $color-text;
                 stroke-width: $icon-stroke-width;
@@ -65,20 +65,20 @@
 
             &.is-selected {
                 /* stylelint-disable max-nesting-depth */
-                .kb-icon {
+                .ui-icon {
                     fill: inherit;
                 }
                 /* stylelint-enable max-nesting-depth */
             }
         }
 
-        .kb-share__fallback {
+        .ui-share__fallback {
             right: 0;
         }
     }
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-toolbar) {
-    @include kb-toolbar;
+@if mixin-exists(ui-toolbar) {
+    @include ui-toolbar;
 }

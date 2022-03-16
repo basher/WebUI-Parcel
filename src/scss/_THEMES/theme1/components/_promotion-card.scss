@@ -1,11 +1,11 @@
-@mixin kb-promotion-card {
-    .kb-promotion-card {
+@mixin ui-promotion-card {
+    .ui-promotion-card {
         background-color: $color-white;
         box-shadow: 0 0.625rem 0.625rem #{rgba(var(--themeBlack), 0.1)};
 
         &:hover {
-            .kb-card__media {
-                .kb-image {
+            .ui-card__media {
+                .ui-image {
                     border-start-end-radius: $border-radius-small;
                     border-start-start-radius: $border-radius-small;
                 }
@@ -15,7 +15,7 @@
         &--secondary {
             background: $color-white;
 
-            .kb-card__title {
+            .ui-card__title {
                 font-family: $font-family-title;
                 font-weight: 200;
                 letter-spacing: 0.01875rem;
@@ -30,7 +30,7 @@
             text-decoration: none;
             text-transform: uppercase;
 
-            .kb-card__title {
+            .ui-card__title {
                 text-align: center;
             }
         }

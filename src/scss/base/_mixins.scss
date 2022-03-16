@@ -149,7 +149,7 @@ Usage:
 
 3. If you can't add the 'grid' classes to the HTML directly, include Sass mixin(s) on parent container instead:
 
-    .kb-widget {
+    .ui-widget {
         @include responsive-grid-columns;
         @include responsive-grid;
     }
@@ -368,7 +368,7 @@ Cards.
         order: 1;
     }
 
-    > .kb-button-group {
+    > .ui-button-group {
         order: 3;
     }
 }
@@ -385,16 +385,16 @@ Cards.
             grid-template-rows: repeat(2, auto);
             width: auto;
 
-            .kb-card__content {
+            .ui-card__content {
                 grid-area: content;
             }
 
-            .kb-card__media {
+            .ui-card__media {
                 grid-area: media;
                 margin-inline-end: auto;
             }
 
-            .kb-button-group {
+            .ui-button-group {
                 grid-area: buttons;
                 margin-block-start: 0;
             }
@@ -406,7 +406,7 @@ Cards.
                 'content media'
                 'buttons buttons';
 
-            .kb-card__media {
+            .ui-card__media {
                 margin-inline-end: 0;
                 margin-inline-start: auto;
             }
@@ -418,7 +418,7 @@ Cards.
         @include card-media-top;
     }
 
-    .kb-card__content {
+    .ui-card__content {
         > :last-child {
             margin-block-end: 0;
         }

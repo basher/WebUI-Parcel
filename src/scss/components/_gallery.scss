@@ -1,9 +1,9 @@
 $grid-gap-gallery: 0.25rem;
 
-.kb-gallery {
+.ui-gallery {
     overflow-x: hidden;
 
-    + .kb-gallery {
+    + .ui-gallery {
         margin-block-start: -$gutter-xl + $grid-gap-gallery;
     }
 
@@ -22,7 +22,7 @@ $grid-gap-gallery: 0.25rem;
         position: relative;
     }
 
-    .kb-image {
+    .ui-image {
         height: 100%; // So it fills CSS grid cell.
         width: 100%;
     }
@@ -42,14 +42,14 @@ $grid-gap-gallery: 0.25rem;
         transition: opacity 0.5s ease-in-out;
         width: 100%;
 
-        .kb-gallery__link:hover &,
-        .kb-gallery__link:focus & {
+        .ui-gallery__link:hover &,
+        .ui-gallery__link:focus & {
             opacity: 1;
         }
     }
 
     // Gallery (thumbnail images) in a grid. Default behaviour.
-    &.kb-grid {
+    &.ui-grid {
         @include responsive-grid-columns(
             $auto-layout: auto-fill,
             $min-width: 15rem
@@ -85,7 +85,7 @@ $grid-gap-gallery: 0.25rem;
             );
         }
 
-        &.kb-gallery--layout-thumbs-3 {
+        &.ui-gallery--layout-thumbs-3 {
             grid-template-areas: 'large large .' 'large large .';
 
             > :first-child {
@@ -93,7 +93,7 @@ $grid-gap-gallery: 0.25rem;
             }
         }
 
-        &.kb-gallery--layout-thumbs-3-alt {
+        &.ui-gallery--layout-thumbs-3-alt {
             grid-template-areas: '. large large' '. large large';
 
             > :last-child {
@@ -121,20 +121,20 @@ $grid-gap-gallery: 0.25rem;
     /* stylelint-enable order/order, max-nesting-depth */
 
     // Gallery (thumbnail images) in tabs.
-    &__tabs.kb-tabs {
+    &__tabs.ui-tabs {
         &.is-js-enabled {
-            .kb-tabs__content {
+            .ui-tabs__content {
                 border: 0;
                 padding: 0;
             }
         }
 
-        .kb-tabs__tablist {
+        .ui-tabs__tablist {
             justify-content: center;
             margin-block-end: $gutter;
         }
 
-        .kb-tabs__button {
+        .ui-tabs__button {
             border: $border-width $border-style $color-brand;
             inset-block-end: 0;
             margin: 0;
@@ -149,13 +149,13 @@ $grid-gap-gallery: 0.25rem;
     }
 
     // Gallery (full-size images) in a slider.
-    &.kb-slider {
-        .kb-slider__slide {
+    &.ui-slider {
+        .ui-slider__slide {
             display: flex;
             justify-content: center;
         }
 
-        .kb-gallery__caption {
+        .ui-gallery__caption {
             height: auto;
             opacity: 1;
             padding: $gutter-xs;
@@ -168,8 +168,8 @@ $grid-gap-gallery: 0.25rem;
     }
 
     // Gallery (full-size images) in a modal lightbox.
-    &__modal.kb-modal__overlay {
-        .kb-modal__inner {
+    &__modal.ui-modal__overlay {
+        .ui-modal__inner {
             background: transparent;
             max-height: 98%;
             padding: 0;
@@ -195,21 +195,21 @@ $grid-gap-gallery: 0.25rem;
             }
         }
 
-        .kb-gallery {
+        .ui-gallery {
             margin: 0;
         }
 
         // Enforce 4:3 aspect ratio in modal gallery.
-        .kb-slider__slide {
+        .ui-slider__slide {
             @include responsive-media($aspect-ratio: 4/3, $padding: 75%);
 
             // Bully CSS specificityby chaining class to itself!
-            &.kb-slider__slide {
+            &.ui-slider__slide {
                 width: 100%;
             }
         }
 
-        .kb-image {
+        .ui-image {
             max-height: 98vh;
             object-fit: contain; // So we don't get any top/bottom cropping of images.
         }
@@ -223,29 +223,29 @@ $grid-gap-gallery: 0.25rem;
     /* stylelint-disable no-descending-specificity */
     &--gallery2,
     &--gallery2-thumbs {
-        .kb-slider__slide {
+        .ui-slider__slide {
             padding-inline-end: $gutter-xs / 2;
             padding-inline-start: $gutter-xs / 2;
         }
 
-        .kb-gallery__link {
+        .ui-gallery__link {
             @include responsive-media($aspect-ratio: 4/3, $padding: 75%);
 
             // Bully CSS specificityby chaining class to itself!
-            &.kb-gallery__link {
+            &.ui-gallery__link {
                 width: 100%;
             }
         }
     }
 
     &--gallery2 {
-        + .kb-gallery--gallery2-thumbs {
+        + .ui-gallery--gallery2-thumbs {
             margin-block-start: -$gutter-xl + $gutter-xs;
         }
     }
 
     &--gallery2-thumbs {
-        .kb-slider__slide {
+        .ui-slider__slide {
             @include bp-xsmall {
                 flex-basis: 33.333%;
             }
@@ -262,6 +262,6 @@ $grid-gap-gallery: 0.25rem;
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-gallery) {
-    @include kb-gallery;
+@if mixin-exists(ui-gallery) {
+    @include ui-gallery;
 }

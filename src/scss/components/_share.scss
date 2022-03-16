@@ -1,4 +1,4 @@
-.kb-share {
+.ui-share {
     display: none;
     position: relative;
 
@@ -14,24 +14,24 @@
         position: absolute;
         z-index: z('default');
 
-        .kb-form__label,
-        .kb-form__input,
-        .kb-button {
+        .ui-form__label,
+        .ui-form__input,
+        .ui-button {
             font-size: $font-size-s;
         }
 
-        .kb-form__input {
+        .ui-form__input {
             height: auto;
             padding: $gutter-xs $gutter-s;
         }
 
-        .kb-button {
+        .ui-button {
             padding: $gutter-xs;
         }
     }
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-share) {
-    @include kb-share;
+@if mixin-exists(ui-share) {
+    @include ui-share;
 }

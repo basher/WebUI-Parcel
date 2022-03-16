@@ -28,8 +28,8 @@ $layout-main-bleed-mobile: 1.875rem !default;
 $layout-content-gutter-top: 1.875rem !default; // Same as default $gutter.
 
 // Overlay offset (for modals, etc) takes into account:
-// '.kb-layout' top margin|padding.
-// '.kb-header' CSS Grid row height|gap.
+// '.ui-layout' top margin|padding.
+// '.ui-header' CSS Grid row height|gap.
 $layout-overlay-offset: 4.75rem !default;
 $layout-overlay-offset-mobile: 3rem !default;
 

@@ -1,14 +1,14 @@
-@mixin kb-product-search-results {
-    .kb-product-search-results {
+@mixin ui-product-search-results {
+    .ui-product-search-results {
         [data-id='stock-compare'] {
             font-family: $font-family;
 
-            .kb-icon {
+            .ui-icon {
                 stroke: $color-neutral-alt;
             }
 
             &.is-selected {
-                .kb-icon {
+                .ui-icon {
                     fill: $color-neutral-alt;
                 }
             }
@@ -24,7 +24,7 @@
             }
         }
 
-        .kb-form__select {
+        .ui-form__select {
             background-color: $color-white;
         }
     }

@@ -67,9 +67,9 @@ export class Slider {
             Slides are the individual slides, i.e. <li>
         */
         const sliderList = slider.querySelector(
-            '.kb-slider__slides'
+            '.ui-slider__slides'
         ) as HTMLElement;
-        const slides = slider.querySelectorAll('.kb-slider__slide');
+        const slides = slider.querySelectorAll('.ui-slider__slide');
 
         if (sliderList == null || slides == null) {
             throw new Error('Cannot initialize slider instance');
@@ -83,9 +83,9 @@ export class Slider {
     }
 
     public static start(): void {
-        const sliderContainers = document.querySelectorAll('.kb-slider');
+        const sliderContainers = document.querySelectorAll('.ui-slider');
         if (sliderContainers) {
-            // Loop through outer '.kb-slider' wrapper elements.
+            // Loop through outer '.ui-slider' wrapper elements.
             [...(sliderContainers as any)].map((slider) => {
                 addJSClass(slider);
 
@@ -323,7 +323,7 @@ export class Slider {
 
         // TODO: what's this for?
         [...(this.slider.children as any)].map((child) => {
-            if (child.classList.contains('kb-button-group')) {
+            if (child.classList.contains('ui-button-group')) {
                 child.parentNode?.removeChild(child);
             }
 
@@ -334,7 +334,7 @@ export class Slider {
             buttonNext.addEventListener('click', () => this.next());
             buttonBack.addEventListener('click', () => this.back());
 
-            buttonContainer.classList.add('kb-button-group');
+            buttonContainer.classList.add('ui-button-group');
             buttonContainer.appendChild(buttonNext);
             buttonContainer.appendChild(buttonBack);
             this.slider.insertBefore(buttonContainer, this.sliderList);
@@ -356,8 +356,8 @@ export class Slider {
             // Create tablist container.
             const tablist: HTMLDivElement = document.createElement('div');
             tablist.setAttribute('role', 'tablist');
-            tablist.classList.add('kb-button-group');
-            tablist.classList.add('kb-button-group--centered');
+            tablist.classList.add('ui-button-group');
+            tablist.classList.add('ui-button-group--centered');
             this.slider.insertBefore(tablist, this.sliderList);
 
             // Add 1 button (which will behave as a tab) per slide.
@@ -367,7 +367,7 @@ export class Slider {
                 button.setAttribute('role', 'tab');
                 button.setAttribute('data-id', `${i}`);
                 button.setAttribute('aria-controls', this.id);
-                button.classList.add('kb-button');
+                button.classList.add('ui-button');
 
                 if (i === this.currentSlide) {
                     button.setAttribute('aria-selected', 'true');
@@ -407,7 +407,7 @@ export class Slider {
 
             // Handle tab button events.
             const tabButtons: NodeListOf<HTMLElement> =
-                tablist.querySelectorAll('.kb-button');
+                tablist.querySelectorAll('.ui-button');
             [...(tabButtons as any)].map((tabButton, index) => {
                 tabButton.addEventListener('click', (e: MouseEvent) => {
                     const target = getEventElement(
@@ -433,7 +433,7 @@ export class Slider {
                         e,
                         index,
                         tablist,
-                        '.kb-button'
+                        '.ui-button'
                     );
                 });
 
@@ -479,7 +479,7 @@ export class Slider {
             '[role=tablist]'
         ) as HTMLDivElement;
         const tabButtons: NodeListOf<HTMLElement> =
-            tablist.querySelectorAll('.kb-button');
+            tablist.querySelectorAll('.ui-button');
 
         [...(tabButtons as any)].map((tabButton) => {
             if (tabButton.dataset.id === index.toString()) {
@@ -594,13 +594,13 @@ export class Slider {
 
         if (allVisible) {
             this.buttonContainer.classList.add('is-hidden');
-            this.slider.classList.add('kb-slider--no-buttons');
+            this.slider.classList.add('ui-slider--no-buttons');
             if (this.currentSlide > 0) {
                 this.goTo(0, true);
             }
         } else {
             this.buttonContainer.classList.remove('is-hidden');
-            this.slider.classList.remove('kb-slider--no-buttons');
+            this.slider.classList.remove('ui-slider--no-buttons');
         }
     }
 
@@ -658,8 +658,8 @@ export class Slider {
         button.setAttribute('type', 'button');
         button.setAttribute('aria-controls', this.id);
         button.setAttribute('data-button-type', label);
-        button.classList.add('kb-button');
-        button.classList.add('kb-button--icon');
+        button.classList.add('ui-button');
+        button.classList.add('ui-button--icon');
 
         let iconType: string;
 
@@ -684,7 +684,7 @@ export class Slider {
         <svg
             aria-hidden="true"
             focusable="false"
-            class="kb-icon"
+            class="ui-icon"
         >
             <title>${buttonLabel}</title>
             <use href="${svgHref}${iconType}" />

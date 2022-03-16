@@ -11,7 +11,7 @@ export class RangeInput {
 
     public static start(): void {
         const rangeInputContainers =
-            document.querySelectorAll('.kb-form__range');
+            document.querySelectorAll('.ui-form__range');
 
         if (rangeInputContainers) {
             [...(rangeInputContainers as any)].map((rangeInput) => {
@@ -27,7 +27,7 @@ export class RangeInput {
     }
 
     private initRangeInput(): void {
-        if (this.rangeInput.classList.contains('kb-form__range--multiple')) {
+        if (this.rangeInput.classList.contains('ui-form__range--multiple')) {
             this.handleRangeInputMultiple();
         } else {
             this.handleRangeInputSingle();
@@ -39,7 +39,7 @@ export class RangeInput {
             '[type=range]'
         ) as HTMLInputElement;
         const bubble = this.rangeInput.querySelector(
-            '.kb-form__range__bubble'
+            '.ui-form__range__bubble'
         ) as HTMLOutputElement;
 
         bubble.innerHTML = range.value;
@@ -60,12 +60,12 @@ export class RangeInput {
 
         if (
             this.rangeInput.classList.contains(
-                'kb-form__range--unit-conversions'
+                'ui-form__range--unit-conversions'
             )
         ) {
             // Show radio buttons.
             const radios = this.rangeInput.querySelector(
-                '.kb-form__fieldset'
+                '.ui-form__fieldset'
             ) as HTMLElement;
             radios.style.display = 'block';
 
@@ -126,7 +126,7 @@ export class RangeInput {
 
                     if (target) {
                         const hiddenFields = target
-                            .closest('.kb-form__field')
+                            .closest('.ui-form__field')
                             ?.querySelectorAll('input[type=hidden');
 
                         [...(hiddenFields as any)].map((hiddenField) => {

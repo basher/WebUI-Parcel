@@ -1,4 +1,4 @@
-.kb-product-leader-image {
+.ui-product-leader-image {
     display: grid;
     gap: 0;
     grid-template-areas: 'a b';
@@ -9,7 +9,7 @@
         display: block;
     }
 
-    .kb-image {
+    .ui-image {
         width: 100%;
     }
 
@@ -23,6 +23,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-product-leader-image) {
-    @include kb-product-leader-image;
+@if mixin-exists(ui-product-leader-image) {
+    @include ui-product-leader-image;
 }

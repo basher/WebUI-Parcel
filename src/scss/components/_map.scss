@@ -1,5 +1,5 @@
-// Apply responsive behaviour as per 'kb-responsive-media' component.
-.kb-map {
+// Apply responsive behaviour as per 'ui-responsive-media' component.
+.ui-map {
     /* stylelint-disable order/order, property-no-unknown */
     @include bp-xsmall {
         height: 35%;
@@ -58,7 +58,7 @@
         max-width: none;
         position: relative;
 
-        .kb-contact-card {
+        .ui-contact-card {
             @include bp-medium {
                 padding: $gutter-s $layout-main-bleed;
             }
@@ -83,6 +83,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-map) {
-    @include kb-map;
+@if mixin-exists(ui-map) {
+    @include ui-map;
 }

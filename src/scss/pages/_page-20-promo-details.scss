@@ -1,14 +1,14 @@
 // Promo details.
 .page-20 {
-    .kb-layout__fullbleed {
+    .ui-layout__fullbleed {
         background-color: $color-white;
 
-        & + .kb-layout__has-max-width {
+        & + .ui-layout__has-max-width {
             margin-block-start: $gutter-xl;
         }
     }
 
-    .kb-toolbar--promotions {
+    .ui-toolbar--promotions {
         @include bp-medium {
             padding: 0 $layout-main-bleed;
         }
@@ -18,7 +18,7 @@
         }
         padding: 0 $layout-main-bleed-mobile;
 
-        .kb-share__button {
+        .ui-share__button {
             margin-left: -$gutter-s;
         }
     }

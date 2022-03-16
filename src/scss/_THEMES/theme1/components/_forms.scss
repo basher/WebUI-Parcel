@@ -1,5 +1,5 @@
-@mixin kb-form {
-    .kb-form {
+@mixin ui-form {
+    .ui-form {
         &__title,
         &__description {
             text-align: center;
@@ -87,7 +87,7 @@
         }
 
         &__field--checkbox-custom,
-        &__fieldset--checkbox-custom .kb-form__field {
+        &__fieldset--checkbox-custom .ui-form__field {
             background-color: $color-white;
             border-radius: $border-radius-small;
             color: $color-brand;
@@ -116,14 +116,14 @@
             color: $color-text-alt;
             opacity: 1;
 
-            &.kb-form__select {
+            &.ui-form__select {
                 background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="fill: rgb(255, 255, 255)"><path d="M20,40l2.8-2.8L50,64.3l27.2-27.1L80,40L50,70L20,40z"/></svg>');
             }
         }
 
         .is-disabled {
-            &.kb-form__fieldset--checkbox,
-            &.kb-form__fieldset--radio {
+            &.ui-form__fieldset--checkbox,
+            &.ui-form__fieldset--radio {
                 span {
                     background-color: $color-grey-2;
                     color: $color-text-alt;
@@ -149,7 +149,7 @@
                 }
             }
 
-            &.kb-form__fieldset--radio {
+            &.ui-form__fieldset--radio {
                 span {
                     /* stylelint-disable max-nesting-depth */
                     &:after {
@@ -161,7 +161,7 @@
         }
 
         &[id='site-search'] {
-            .kb-form__input {
+            .ui-form__input {
                 @at-root {
                     /* stylelint-disable max-nesting-depth */
                     [data-whatintent='mouse'] &:focus,
@@ -173,7 +173,7 @@
                 border-radius: 0;
             }
 
-            .kb-button {
+            .ui-button {
                 background-color: $color-brand-alt;
                 height: auto;
                 margin-inline-end: $gutter-xs;

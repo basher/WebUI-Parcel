@@ -1,18 +1,18 @@
-@mixin kb-product-search {
-    .kb-product-search {
+@mixin ui-product-search {
+    .ui-product-search {
         background-color: $color-brand;
         padding-block-start: $gutter-s;
 
-        .kb-form__legend {
+        .ui-form__legend {
             color: $color-white;
             font-family: $font-family-title;
             margin-block-end: 0;
             text-transform: uppercase;
         }
 
-        .kb-button--positive {
+        .ui-button--positive {
             // Bully CSS specificity.
-            &.kb-button {
+            &.ui-button {
                 &[class*='--text'] {
                     background-color: $color-white;
                     border-color: $color-white;

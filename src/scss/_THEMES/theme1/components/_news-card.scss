@@ -1,11 +1,11 @@
-@mixin kb-news-card {
-    .kb-news-card {
+@mixin ui-news-card {
+    .ui-news-card {
         background-color: $color-white;
         box-shadow: 0 0.625rem 0.625rem #{rgba(var(--themeBlack), 0.1)};
 
         &:hover {
-            .kb-card__media {
-                .kb-image {
+            .ui-card__media {
+                .ui-image {
                     border-start-end-radius: $border-radius-small;
                     border-start-start-radius: $border-radius-small;
                 }
@@ -20,7 +20,7 @@
             text-decoration: none;
             text-transform: uppercase;
 
-            .kb-card__title {
+            .ui-card__title {
                 text-align: center;
             }
         }

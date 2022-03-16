@@ -1,7 +1,7 @@
-.kb-accordion {
+.ui-accordion {
     margin-block-end: $gutter-xl;
 
-    .kb-icon {
+    .ui-icon {
         margin-inline-start: $gutter-s;
     }
 
@@ -28,13 +28,13 @@
     }
 
     &.is-js-enabled {
-        .kb-accordion__content {
+        .ui-accordion__content {
             @include focus-default($opacity: false, $transform: false);
         }
     }
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-accordion) {
-    @include kb-accordion;
+@if mixin-exists(ui-accordion) {
+    @include ui-accordion;
 }

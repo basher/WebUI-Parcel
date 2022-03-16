@@ -1,4 +1,4 @@
-.kb-ajax {
+.ui-ajax {
     @keyframes svg-animation {
         0% {
             transform: rotateZ(0deg);
@@ -38,7 +38,7 @@
     &__icon {
         animation: 2s linear infinite svg-animation;
 
-        &.kb-icon {
+        &.ui-icon {
             fill: transparent;
             height: $icon-size-loader;
             width: $icon-size-loader;
@@ -59,6 +59,6 @@
 }
 
 // This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
-@if mixin-exists(kb-ajax) {
-    @include kb-ajax;
+@if mixin-exists(ui-ajax) {
+    @include ui-ajax;
 }
