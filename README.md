@@ -1,10 +1,8 @@
 # Web UI architecture with Parcel bundler
 
-[[_TOC_]]
-
 ## QUICK START - How to use the UI assets in this repo for local development
 
->> NOTE: We use Node environment variables for theming in the Parcel `start/build` commands, but there seems to be an issue in Node 16. We therefore need to use an earlier version (e.g. Node 14) for Parcel, hence the need to install `Node Version Manager` in step 1 to allow multiple versions of Node to be installed concurrently on the same machine. Be aware that the Azure build pipelines currently use Node 12.18.4.
+>> NOTE: Node environment variables are used for theming in the Parcel `start/build` commands, but there seems to be an issue in Node 16. Therefore, use an earlier version (e.g. Node 14) for Parcel, hence the need to install `Node Version Manager` in step 1 to allow multiple versions of Node to be installed concurrently on the same machine.
 > 1. Install `nvm-windows` via the [nvm-setup.zip download](https://github.com/coreybutler/nvm-windows/releases). Once installed, run the following commands from a terminal with **administrator privileges**.
 >```
 > nvm install 14
@@ -23,7 +21,7 @@
 > ```
 >> NOTE: The start (and build) commands make use of Node config variables in the `.npmrc` file. On Windows, change all references of `$npm_package_config_theme` in the `package.json` to `%npm_package_config_theme%`.
 > 6. Leave this Node process running, but you can close the `localhost:1234` browser tab if it is opened.
-> 7. Start Storybook or your local dev (.NET) server, and ensure your rendered HTML contains the theme CSS in the document `<head>` and JavaScript at the end of the `<body>`:
+> 7. Start Storybook or a local dev server, and ensure rendered HTML contains the theme CSS in the document `<head>` and JavaScript at the end of the `<body>`:
 > ```
 > <link href="http://localhost:1234/index.css" rel="stylesheet" />
 >
@@ -33,7 +31,7 @@
 > ```
 > npm run start:theme --web-ui-parcel:theme=theme1
 > ```
-> 9. Refresh Storybook or your local dev (.NET) browser to render the new theme.
+> 9. Refresh Storybook or local dev browser to render the new theme.
 
 ## Parcel UI asset bundling
 
@@ -48,7 +46,7 @@
 
 ### Default `browserslist` configuration in `package.json`
 
-- This default configuration ensures that `TypeScript`, `babel` and `autoprefixer` will correctly transpile our JavaScript/CSS to work in the browsers specified.
+- This default configuration ensures that `TypeScript`, `babel` and `autoprefixer` will correctly transpile JavaScript/CSS to work in the browsers specified.
 ```json
 "browserslist": [
     "defaults",
@@ -68,21 +66,20 @@ parameter, and there needs to be a `"targets": { "app": {} }` property in the `p
 
 #### Code splitting with dynamic imports
 
-- We're using dynamic imports inside `.\src\ts\index.ts` to create a separate `polyfills.js` bundle for [legacy browsers that need them](https://philipwalton.com/articles/loading-polyfills-only-when-needed/).
-- We also dynamically import certain components that are not regarded as "**core platform**" features. This is managed **per theme** inside `..\src\ts\ui-init-theme.ts`.
+- Using dynamic imports inside `.\src\ts\index.ts` to create a separate `polyfills.js` bundle for [legacy browsers that need them](https://philipwalton.com/articles/loading-polyfills-only-when-needed/).
+- Also dynamically import certain components that are not regarded as "**core platform**" features. This is managed **per theme** inside `..\src\ts\ui-init-theme.ts`.
 - This massively reduces the JavaScript bundle size for modern browsers.
-- Unfortunately, we are not able to further optimise bundle size with differential bundling, as we cannot dynamically set `theme-specific npm package entry points` to use in conjunction with different `npm targets`.
 
 ## UI code formatting & linting
 
 - This repo requires `eslint`, `stylelint` and `prettier`.
 - They are all installed, after cloning the repo, by running `npm install`.
 - Developers are encouraged to also install the appropriate VSCode extensions for these linters to assist with identifying formatting & linting issues at the code authoring stage.
-- We use `git hooks` (via `husky` and `lint-staged`) to ensure no linting errors are committed to the remote codebase.
+- Uses `git hooks` (via `husky` and `lint-staged`) to ensure no linting errors are committed to the remote codebase.
 
 > NOTES:
 > - `eslint` errors will only be shown in VSCode if you open VSCode from the project root folder, not a parent folder.
-> - VSCode `stylelint` extension introduced breaking changes in V14. To lint Sass files, you need to add the following into your VSCode `settings.json` file:
+> - VSCode `stylelint` extension introduced breaking changes in V14. To lint Sass files, add the following into VSCode `settings.json` file:
 > ```
 > "css.validate": false,
 > "scss.validate": false,
@@ -113,9 +110,9 @@ parameter, and there needs to be a `"targets": { "app": {} }` property in the `p
 
 ## JavaScript architecture
 
-- We're using `TypeScript`, so all files end in `.ts`.
-- Author code using `ES6+` syntax, which is transpiled to ES5 by Babel and TypeScript for older browsers.
-- We wrap any JavaScript code that requires DOM manipulation inside a `domready` event in `.\src\ts\index.ts`.
+- Using `TypeScript`, so all files end in `.ts`.
+- Code authored using `ES6+` syntax, which is transpiled to ES5 by Babel and TypeScript for older browsers.
+- Any JavaScript code that requires DOM manipulation is placed inside a `domready` event in `.\src\ts\index.ts`.
 
 ### JavaScript folder structure
 
@@ -146,7 +143,7 @@ parameter, and there needs to be a `"targets": { "app": {} }` property in the `p
 ## Sass architecture
 
 - Mobile first, with media queries that handle layouts as screen real estate increases.
-- Inside our main entry point `.\src\ts\index.ts`, we import a single Sass file `.\src\scss\index.scss`, which itself imports all the required Sass partials.
+- Inside main entry point `.\src\ts\index.ts` is a single Sass file `.\src\scss\index.scss`, which itself imports all the required Sass partials.
 - The Sass compilation to CSS is performed by Parcel when `npm start...` or `npm build...` commands are run.
 
 ### PostCSS, ponyfills and legacy browser support
@@ -359,9 +356,9 @@ npm run start:theme --web-ui-parcel:theme=[theme-name]
 - Ensure the Parcel server is started with the correct theme, as mentioned earlier.
 - Then:
     - Start Storybook if you want to develop/test UI components in isolation - follow the instructions in [Web UI Storybook repo README](TBC/_git/WebUIStorybook).
-    - Or refresh your local .NET dev environment.
+    - Or refresh your local dev environment browser.
 
-> - We have disabled Hot Module Reloading (HMR) in Parcel because it doesn't work when accessed from another repo, and causes browser console errors.
+> - Hot Module Reloading (HMR) is disabled in Parcel because it doesn't work when accessed from another repo, and causes browser console errors.
 > - This means that CSS/JavaScript changes do **NOT** automatically refresh the UI.
 
 ## Storybook - UI component library
@@ -382,7 +379,7 @@ npm run build:theme --web-ui-parcel:theme=[theme-name]
 
 ### Differential bundling for JavaScript
 - See [this article](https://web.dev/publish-modern-javascript/) that explains how to ship modern JavaScript (ES6+) that is not transpiled to modern browsers, and transpiled ES5 to older browsers.
-- We achieve this by changing our Node entry point in the build step in `package.json` to be `index.html`:
+- Achieve by changing Node entry point in the build step in `package.json` to be `index.html`:
 ```
 parcel build index.html ...
 ```
@@ -390,7 +387,7 @@ parcel build index.html ...
 ```
 <script defer type="module" src="./src/ts/index.ts"></script>
 ```
-- This allows Parcel to build 2 JavaScript bundles, which can then be referenced in our production HTML using 2 `<script>` tags:
+- This allows Parcel to build 2 JavaScript bundles, which can then be referenced in production HTML using 2 `<script>` tags:
 ```
 <script defer type="module" src="[modern-bundle]"></script>
 <script defer nomodule src="[legacy-bundle]"></script>
