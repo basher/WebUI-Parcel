@@ -1,0 +1,53 @@
+.kb-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-block-end: $gutter-xl;
+
+    &:empty {
+        margin-block-end: 0;
+    }
+
+    > * {
+        margin-block-end: $gutter-xs;
+        margin-inline-end: $gutter-xs;
+
+        &:last-child {
+            margin-inline-end: 0;
+        }
+    }
+
+    &--centered {
+        justify-content: center;
+    }
+
+    &--toggle {
+        @if $allow-dark-mode {
+            @media (prefers-color-scheme: dark) {
+                background-color: $color-grey-3;
+            }
+        }
+
+        @at-root {
+            .kb-layout__inner & {
+                /* stylelint-disable max-nesting-depth */
+                @include bp-medium {
+                    margin-inline-end: -$layout-main-bleed;
+                    margin-inline-start: -$layout-main-bleed;
+                }
+                /* stylelint-enable max-nesting-depth */
+                margin-inline-end: -$layout-main-bleed-mobile;
+                margin-inline-start: -$layout-main-bleed-mobile;
+            }
+        }
+        background-color: $color-white;
+        justify-content: center;
+        margin-block-start: $gutter-xl;
+        padding: $gutter-xs * 2;
+        padding-block-end: $gutter-xs;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-button-group) {
+    @include kb-button-group;
+}

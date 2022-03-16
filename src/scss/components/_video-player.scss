@@ -1,0 +1,56 @@
+$video-button-size: 4rem;
+
+.kb-video-player {
+    width: fit-content;
+
+    > a {
+        display: block;
+        position: relative;
+
+        [data-whatintent='keyboard'] &:focus {
+            box-shadow: 0 0 0 0.25rem $color-neutral;
+        }
+    }
+
+    &__icon {
+        background-color: rgba(var(--themeColorBrand), 0.4);
+        border: 1rem solid transparent;
+        border-radius: 50%;
+        color: rgb(var(--themeColorTextAlt));
+        height: 4rem;
+        inset-block-start: calc(50% - 2rem);
+        inset-inline-start: calc(50% - 2rem);
+        position: absolute;
+        width: 4rem;
+    }
+
+    // Style video modal just like gallery modal
+    &__modal.kb-modal__overlay {
+        .kb-modal__inner {
+            background-color: $color-background-alt;
+            max-height: 98%;
+            max-width: 95%;
+            padding-block-end: 0;
+            padding-block-start: $gutter-xl;
+        }
+
+        [data-modal-close] {
+            background-color: unset;
+            color: $color-text-alt;
+            margin-inline-end: $gutter-xs;
+            z-index: z('default');
+        }
+
+        // <br> selector required because CMS editor can add random line breaks into HTML!
+        .kb-responsive-media {
+            br {
+                display: none;
+            }
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-video-player) {
+    @include kb-video-player;
+}

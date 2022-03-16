@@ -1,0 +1,10 @@
+@mixin kb-social {
+    .kb-social {
+        background-color: $color-white;
+        text-align: center;
+
+        &__icons {
+            justify-content: center;
+        }
+    }
+}

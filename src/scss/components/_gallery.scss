@@ -1,0 +1,267 @@
+$grid-gap-gallery: 0.25rem;
+
+.kb-gallery {
+    overflow-x: hidden;
+
+    + .kb-gallery {
+        margin-block-start: -$gutter-xl + $grid-gap-gallery;
+    }
+
+    &__link {
+        @at-root {
+            [data-whatintent='keyboard'] &:focus {
+                box-shadow: 0 0 0 0.25rem $color-neutral;
+            }
+        }
+        display: block;
+        width: 100%;
+    }
+
+    &__figure {
+        height: 100%; // So it fills CSS grid cell.
+        position: relative;
+    }
+
+    .kb-image {
+        height: 100%; // So it fills CSS grid cell.
+        width: 100%;
+    }
+
+    &__caption {
+        align-items: center;
+        background-color: #{rgba(var(--themeColorBackgroundAlt), 0.5)};
+        bottom: 0;
+        color: $color-text-alt;
+        display: flex;
+        font-weight: bold;
+        height: 100%;
+        justify-content: center;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        transition: opacity 0.5s ease-in-out;
+        width: 100%;
+
+        .kb-gallery__link:hover &,
+        .kb-gallery__link:focus & {
+            opacity: 1;
+        }
+    }
+
+    // Gallery (thumbnail images) in a grid. Default behaviour.
+    &.kb-grid {
+        @include responsive-grid-columns(
+            $auto-layout: auto-fill,
+            $min-width: 15rem
+        );
+        @include responsive-grid($gap: $grid-gap-gallery);
+    }
+
+    // Alternate gallery grid layouts, with specific numbers of columns.
+    &[class*='--layout-thumbs'] {
+        margin-inline-end: auto;
+        margin-inline-start: auto;
+        width: min(#{$layout-max-width}, 100%);
+    }
+
+    /* stylelint-disable order/order, max-nesting-depth */
+    @supports (grid-area: auto) {
+        &[class*='--layout-thumbs'] {
+            @include bp-xsmall {
+                // Easiest way to override grid columns on small screen is to change display property.
+                display: block;
+
+                > * + * {
+                    margin-block-start: $grid-gap-gallery;
+                }
+            }
+        }
+
+        &[class*='--layout-thumbs-2'] {
+            @include responsive-grid-columns(
+                $auto-layout: 2,
+                $min-width: calc((100% / 2) - (#{$grid-gap-gallery} / 2)),
+                $max-width: calc((100% / 2) - (#{$grid-gap-gallery} / 2))
+            );
+        }
+
+        &.kb-gallery--layout-thumbs-3 {
+            grid-template-areas: 'large large .' 'large large .';
+
+            > :first-child {
+                grid-area: large;
+            }
+        }
+
+        &.kb-gallery--layout-thumbs-3-alt {
+            grid-template-areas: '. large large' '. large large';
+
+            > :last-child {
+                grid-area: large;
+            }
+        }
+
+        &[class*='--layout-thumbs-3'] {
+            @include responsive-grid-columns(
+                $auto-layout: 3,
+                $min-width: calc((100% / 3) - (2 * #{$grid-gap-gallery} / 3)),
+                $max-width: calc((100% / 3) - (2 * #{$grid-gap-gallery} / 3))
+            );
+            @include bp-small {
+                // Force 2-col layout, with large image spanning both cols.
+                @include responsive-grid-columns(
+                    $auto-layout: 2,
+                    $min-width: calc((100% / 2) - (#{$grid-gap-gallery} / 2)),
+                    $max-width: calc((100% / 2) - (#{$grid-gap-gallery} / 2))
+                );
+                grid-template-areas: 'large large' '. .';
+            }
+        }
+    }
+    /* stylelint-enable order/order, max-nesting-depth */
+
+    // Gallery (thumbnail images) in tabs.
+    &__tabs.kb-tabs {
+        &.is-js-enabled {
+            .kb-tabs__content {
+                border: 0;
+                padding: 0;
+            }
+        }
+
+        .kb-tabs__tablist {
+            justify-content: center;
+            margin-block-end: $gutter;
+        }
+
+        .kb-tabs__button {
+            border: $border-width $border-style $color-brand;
+            inset-block-end: 0;
+            margin: 0;
+        }
+
+        [aria-selected='true'] {
+            background-color: $color-brand;
+            border-block-end-color: $color-brand;
+            bottom: 0;
+            color: $color-text-alt;
+        }
+    }
+
+    // Gallery (full-size images) in a slider.
+    &.kb-slider {
+        .kb-slider__slide {
+            display: flex;
+            justify-content: center;
+        }
+
+        .kb-gallery__caption {
+            height: auto;
+            opacity: 1;
+            padding: $gutter-xs;
+        }
+
+        // Tab controls.
+        [role='tablist'] {
+            bottom: $gutter-xl;
+        }
+    }
+
+    // Gallery (full-size images) in a modal lightbox.
+    &__modal.kb-modal__overlay {
+        .kb-modal__inner {
+            background: transparent;
+            max-height: 98%;
+            padding: 0;
+            width: 95%;
+        }
+
+        [data-modal-close] {
+            background-color: $color-background-alt;
+            color: $color-text-alt;
+            z-index: z('default');
+        }
+
+        [data-modal-title] {
+            @include visually-hide;
+
+            // Make sure it's still visually hidden on :focus.
+            &:focus {
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                width: 1px;
+            }
+        }
+
+        .kb-gallery {
+            margin: 0;
+        }
+
+        // Enforce 4:3 aspect ratio in modal gallery.
+        .kb-slider__slide {
+            @include responsive-media($aspect-ratio: 4/3, $padding: 75%);
+
+            // Bully CSS specificityby chaining class to itself!
+            &.kb-slider__slide {
+                width: 100%;
+            }
+        }
+
+        .kb-image {
+            max-height: 98vh;
+            object-fit: contain; // So we don't get any top/bottom cropping of images.
+        }
+    }
+
+    // Gallery 2 (composite of 2 gallery sliders).
+    &__wrap {
+        max-width: 64rem; // Same size as large image = 1024px.
+    }
+
+    /* stylelint-disable no-descending-specificity */
+    &--gallery2,
+    &--gallery2-thumbs {
+        .kb-slider__slide {
+            padding-inline-end: $gutter-xs / 2;
+            padding-inline-start: $gutter-xs / 2;
+        }
+
+        .kb-gallery__link {
+            @include responsive-media($aspect-ratio: 4/3, $padding: 75%);
+
+            // Bully CSS specificityby chaining class to itself!
+            &.kb-gallery__link {
+                width: 100%;
+            }
+        }
+    }
+
+    &--gallery2 {
+        + .kb-gallery--gallery2-thumbs {
+            margin-block-start: -$gutter-xl + $gutter-xs;
+        }
+    }
+
+    &--gallery2-thumbs {
+        .kb-slider__slide {
+            @include bp-xsmall {
+                flex-basis: 33.333%;
+            }
+            @include bp-medium {
+                flex-basis: 20%;
+            }
+            @include bp-large {
+                flex-basis: 16.667%;
+            }
+            flex-basis: 25%;
+        }
+    }
+    /* stylelint-enable no-descending-specificity */
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-gallery) {
+    @include kb-gallery;
+}

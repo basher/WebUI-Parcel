@@ -1,0 +1,130 @@
+/*
+----------------------------------------------------------------------------
+Dark mode.
+
+Usage:
+    @if $allow-dark-mode {
+        @media (prefers-color-scheme: dark) {
+            // code...
+        }
+    }
+----------------------------------------------------------------------------
+*/
+$allow-dark-mode: true !default;
+
+/*
+----------------------------------------------------------------------------
+Layout.
+----------------------------------------------------------------------------
+*/
+// In case we want to set a max-width to constrain content inside <main>.
+$layout-max-width: var(--themeMaxContentWidth) !default;
+
+// Main content "bleed" areas.
+$layout-main-bleed: 5rem !default;
+$layout-main-bleed-mobile: 1.875rem !default;
+
+// Push content away from <header> by a uniform amount across the entire UI.
+$layout-content-gutter-top: 1.875rem !default; // Same as default $gutter.
+
+// Overlay offset (for modals, etc) takes into account:
+// '.kb-layout' top margin|padding.
+// '.kb-header' CSS Grid row height|gap.
+$layout-overlay-offset: 4.75rem !default;
+$layout-overlay-offset-mobile: 3rem !default;
+
+$layout-header-grid-row-height: 4rem !default;
+$layout-header-grid-row-height-mobile: 3rem !default;
+$layout-sticky-footer-height: 2.5rem !default;
+$layout-sticky-footer-height-mobile: 4rem !default;
+$layout-vertical-header-width: 10rem !default;
+
+/*
+----------------------------------------------------------------------------
+CSS Grid.
+----------------------------------------------------------------------------
+*/
+$grid-gap: 1.875rem !default;
+$grid-item-min-width: 12.5rem !default; // 200px
+$grid-item-max-width: 16.5rem !default; // 264px
+
+/*
+----------------------------------------------------------------------------
+Gutters.
+----------------------------------------------------------------------------
+*/
+$gutter-xs: 0.75rem !default; // 12px
+$gutter-s: 1.25rem !default; // 20px
+$gutter: 1.875rem !default; // 30px
+$gutter-l: 2.5rem !default; // 40px
+$gutter-xl: 3.75rem !default; // 60px
+
+/*
+----------------------------------------------------------------------------
+Borders.
+----------------------------------------------------------------------------
+*/
+$border-color: null !default;
+$border-style: solid !default;
+$border-width: 0.0625rem !default;
+
+$border-width-m: 0.125rem !default;
+$border-width-l: 0.25rem !default;
+
+$prefers-rounded-corners: null !default;
+$border-radius: null !default;
+$border-radius-round: 50% !default;
+
+/*
+----------------------------------------------------------------------------
+Icons.
+----------------------------------------------------------------------------
+*/
+$icon-size-s: 1rem !default;
+$icon-size-m: 1.5rem !default;
+$icon-size-l: 2rem !default;
+$icon-stroke-width: 0.25rem !default;
+
+$icon-size-loader: 3rem !default;
+
+$icon-size-home: $layout-header-grid-row-height !default;
+$icon-size-home-mobile: 2rem !default;
+
+/*
+----------------------------------------------------------------------------
+Forms.
+----------------------------------------------------------------------------
+*/
+$form-field-max-width: 100% !default;
+$form-field-max-width-small: 10rem !default;
+$form-input-max-height: 3rem !default;
+
+/*
+----------------------------------------------------------------------------
+Maps.
+----------------------------------------------------------------------------
+*/
+$map-aspect-ratio: 2.5 / 1 !default; // Based on 1920x750.
+
+/*
+----------------------------------------------------------------------------
+Navigation.
+----------------------------------------------------------------------------
+*/
+$nav-dropdown-gutter: $gutter-xl !default;
+$nav-mobile-button-gutter: $gutter / 2 $gutter-xs !default;
+$nav-grid-col-width: 12.5rem !default;
+
+/*
+----------------------------------------------------------------------------
+Slider.
+----------------------------------------------------------------------------
+*/
+$slider-button-size: 2rem !default;
+
+/*
+----------------------------------------------------------------------------
+Swatch.
+----------------------------------------------------------------------------
+*/
+$swatch-thumb-size-mobile: 2.5rem !default;

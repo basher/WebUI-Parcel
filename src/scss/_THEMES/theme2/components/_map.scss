@@ -1,0 +1,9 @@
+@mixin gw-map {
+    .gw-map {
+        &__overlay {
+            .gw-contact-card {
+                box-shadow: none;
+            }
+        }
+    }
+}

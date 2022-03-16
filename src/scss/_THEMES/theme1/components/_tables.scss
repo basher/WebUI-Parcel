@@ -1,0 +1,24 @@
+@mixin kb-table {
+    .kb-table {
+        th {
+            background-color: $color-grey-2;
+            color: $color-text-alt;
+        }
+
+        &--striped {
+            th {
+                background-color: transparent;
+                color: inherit;
+            }
+
+            tr:nth-child(odd) {
+                background-color: $color-grey-2;
+                color: $color-text-alt;
+            }
+
+            tr:nth-child(even) {
+                background-color: $color-grey-1;
+            }
+        }
+    }
+}

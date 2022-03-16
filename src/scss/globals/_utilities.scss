@@ -1,0 +1,86 @@
+/*
+----------------------------------------------------------------------------
+Utilities.
+
+- '!important' is OK for global utility classes.
+----------------------------------------------------------------------------
+*/
+
+/* stylelint-disable declaration-no-important */
+
+/*
+----------------------------------------------------------------------------
+Accessibility - for screen readers.
+----------------------------------------------------------------------------
+*/
+
+.sr-only {
+    @include visually-hide;
+}
+
+/*
+----------------------------------------------------------------------------
+Hide content (e.g. in 'show|hide' component).
+----------------------------------------------------------------------------
+*/
+
+.is-hidden {
+    display: none !important;
+}
+
+.is-hidden-on-small {
+    @include bp-small {
+        display: none !important;
+    }
+}
+
+.is-hidden-on-medium {
+    @include bp-medium {
+        display: none !important;
+    }
+}
+
+.is-hidden-on-large {
+    @include bp-large {
+        display: none !important;
+    }
+}
+
+/*
+----------------------------------------------------------------------------
+Prevent scrolling on BODY when modal is open.
+See https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior
+----------------------------------------------------------------------------
+*/
+
+.has-open-modal {
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+/*
+----------------------------------------------------------------------------
+Add scroll margin so content is not hidden below sticky header.
+----------------------------------------------------------------------------
+*/
+
+.has-scroll-margin {
+    @include has-scroll-margin;
+}
+
+/*
+----------------------------------------------------------------------------
+Applies same styling as ':disabled' elements (e.g. to a form field that has a disabled input inside it).
+----------------------------------------------------------------------------
+*/
+
+.is-disabled,
+.is-disabled * {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-utilities) {
+    @include kb-utilities;
+}

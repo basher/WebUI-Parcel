@@ -1,0 +1,86 @@
+.kb-tabs {
+    margin-block-end: $gutter-xl;
+
+    &__button {
+        @include focus-default($opacity: false, $transform: false);
+        border: $border-width $border-style transparent;
+        color: inherit;
+        inset-block-end: -$border-width;
+        padding: $gutter-xs;
+        position: relative;
+        z-index: z('default');
+
+        &[aria-selected='true'] {
+            @if $allow-dark-mode {
+                /* stylelint-disable max-nesting-depth */
+                @media (prefers-color-scheme: dark) {
+                    color: inherit;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+            border-color: $color-brand-alt $color-brand-alt $color-background;
+            color: $color-brand;
+        }
+    }
+
+    &__tablist {
+        display: flex;
+
+        > * {
+            margin-block-end: 0;
+            margin-inline-end: $gutter-xs;
+        }
+    }
+
+    &.is-js-enabled {
+        .kb-tabs__content {
+            @include focus-default($opacity: false, $transform: false);
+            border: $border-width $border-style $color-brand-alt;
+            padding: $gutter-xs;
+        }
+    }
+
+    // Vertical tabs.
+    &--vertical {
+        &.is-js-enabled {
+            @include bp-medium {
+                display: grid;
+                gap: 0;
+                grid-template-areas: 'tabs content';
+                grid-template-columns: auto 1fr;
+            }
+
+            .kb-tabs__content {
+                grid-area: content;
+            }
+        }
+
+        .kb-tabs__tablist {
+            @include bp-medium {
+                grid-area: tabs;
+            }
+            flex-direction: column;
+
+            > * {
+                margin-block-end: $gutter-xs;
+                margin-inline-end: 0;
+            }
+        }
+
+        .kb-tabs__button {
+            border-color: transparent;
+            inset-block-end: 0;
+        }
+
+        [aria-selected='true'] {
+            border-color: $color-brand-alt;
+            border-inline-end-color: $color-background;
+            inset-inline-end: -$border-width;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-tabs) {
+    @include kb-tabs;
+}

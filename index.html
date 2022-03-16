@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Web UI Parcel Bundler</title>
+</head>
+<body>
+    <!--
+        This page is not rendered in browser.
+
+        It is used purely as a Node entry point for Parcel bundler in the NPM build script:
+
+        npm run build
+
+        This facilitates differential bundling using the module/nomodule pattern, generating 2 JavaScript bundles:
+
+            - Smaller bundle for modern browsers without transpiled ES6+ code.
+            - Larger bundle with ES5 transpiled code for older browsers.
+
+        See https://parceljs.org/blog/rc0/
+    -->
+    <script defer type="module" src="./src/ts/index.ts"></script>
+</body>
+</html>

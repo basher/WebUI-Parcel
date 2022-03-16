@@ -1,0 +1,532 @@
+/* stylelint-disable order/order */
+
+/*
+----------------------------------------------------------------------------
+Mixins.
+----------------------------------------------------------------------------
+*/
+
+/*
+----------------------------------------------------------------------------
+Accessibility - for screen readers.
+
+Usage:
+1.
+.classname {
+    @include visually-hide;
+}
+
+2. Or just add 'sr-only' class in the HTML to the appropriate element, as it already uses this mixin.
+----------------------------------------------------------------------------
+*/
+@mixin visually-hide {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+
+    &:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        width: auto;
+    }
+}
+
+/*
+----------------------------------------------------------------------------
+Add scroll margin so content is not hidden below sticky header.
+----------------------------------------------------------------------------
+*/
+
+@mixin has-scroll-margin {
+    @include bp-large {
+        scroll-margin: ($layout-header-grid-row-height * 2) 0 0;
+    }
+}
+
+/*
+----------------------------------------------------------------------------
+Fluid typography. Uses 'clamp()' to set MIN|MAX values, with a simple non-responsive fallback for older browsers.
+
+See https://piccalil.li/tutorial/fluid-typography-with-css-clamp.
+----------------------------------------------------------------------------
+*/
+@mixin dir-rtl($min, $ideal, $max) {
+    [dir='rtl'] & {
+        font-size: clamp(
+            $min,
+            calc(#{$ideal} * #{$font-size-rtl-multiplier}),
+            $max
+        );
+    }
+}
+@mixin fluid-type-default(
+    $min: $font-size,
+    $ideal: calc(1rem + #{$fluid-type-target}),
+    $max: $font-size-m
+) {
+    font-size: 100%;
+    font-size: clamp($min, $ideal, $max);
+    line-height: $line-height;
+
+    @include dir-rtl($min, $ideal, $max);
+}
+
+@mixin fluid-type-l(
+    $min: $font-size-m,
+    $ideal: calc(1rem + #{$fluid-type-target-l}),
+    $max: $font-size-l
+) {
+    font-size: $font-size-l;
+    font-size: clamp($min, $ideal, $max);
+    line-height: $line-height-l;
+
+    @include dir-rtl($min, $ideal, $max);
+}
+
+@mixin fluid-type-xl(
+    $min: $font-size-l,
+    $ideal: calc(1rem + #{$fluid-type-target-xl}),
+    $max: $font-size-xl
+) {
+    font-size: $font-size-xl;
+    font-size: clamp($min, $ideal, $max);
+    line-height: $line-height-xl;
+
+    @include dir-rtl($min, $ideal, $max);
+}
+
+@mixin fluid-type-xxl(
+    $min: $font-size-xl,
+    $ideal: calc(1rem + #{$fluid-type-target-xxl}),
+    $max: $font-size-xxl
+) {
+    font-size: $font-size-xxl;
+    font-size: clamp($min, $ideal, $max);
+    line-height: $line-height-xxl;
+
+    @include dir-rtl($min, $ideal, $max);
+}
+
+@mixin fluid-type-xxxl(
+    $min: $font-size-xxl,
+    $ideal: calc(1rem + #{$fluid-type-target-xxxl}),
+    $max: $font-size-xxxl
+) {
+    font-size: $font-size-xxxl;
+    font-size: clamp($min, $ideal, $max);
+    line-height: $line-height-xxxl;
+
+    @include dir-rtl($min, $ideal, $max);
+}
+
+/*
+----------------------------------------------------------------------------
+Grid - for internal gallery or grid layouts.
+
+- Uses CSS Grid, with automatic responsive behaviour as per https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/.
+- Fallback to Flexbox for browsers that either don't understand '@supports' directive, or don't support 'grid-area: auto'.
+
+Usage:
+1. Default responsive grid, HTML markup:
+    <ul class="grid">
+        <li>[...content...]</li>
+    </ul>
+
+2. Grid variants:
+
+    - Centered layout:
+        <ul class="grid grid--centered">...</ul>
+
+    - Remove gaps between grid items:
+        <ul class="grid grid--no-gap">...</ul>
+
+3. If you can't add the 'grid' classes to the HTML directly, include Sass mixin(s) on parent container instead:
+
+    .kb-widget {
+        @include responsive-grid-columns;
+        @include responsive-grid;
+    }
+----------------------------------------------------------------------------
+*/
+
+@mixin responsive-grid-columns(
+    $auto-layout: auto-fit,
+    $min-width: $grid-item-min-width,
+    $max-width: 1fr
+) {
+    // Flexbox fallback.
+    > * {
+        min-width: $min-width;
+    }
+
+    @supports (grid-area: auto) {
+        grid-template-columns: repeat(
+            #{$auto-layout},
+            minmax(#{$min-width}, #{$max-width})
+        );
+    }
+}
+
+@mixin responsive-grid($gap: $grid-gap, $centered: false) {
+    // Flexbox fallback.
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+
+    @if $centered {
+        justify-content: center;
+    }
+
+    > * {
+        margin: $gap / 2;
+    }
+
+    @supports (grid-area: auto) {
+        // We can't use Grid's 'justify-content: center' when we have 'auto-fit' column widths, so we need to use Flexbox instead for centering.
+        @if $centered {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            justify-content: center;
+
+            > * {
+                flex-grow: 0;
+                margin: $gap / 2;
+            }
+        } @else {
+            display: grid;
+            gap: $gap;
+
+            > * {
+                height: 100%;
+                margin: 0;
+            }
+        }
+    }
+}
+
+@mixin responsive-grid-asymmetric($col1: 60%, $col2: 40%, $alt-layout: false) {
+    $col1-width: calc(#{$col1} - #{$grid-gap} / 2);
+    $col2-width: calc(#{$col2} - #{$grid-gap} / 2);
+
+    @include bp-large {
+        display: grid;
+        gap: $grid-gap;
+        grid-template-areas: 'col1 col2';
+        grid-template-columns: $col1-width $col2-width;
+        margin-block-end: $gutter-xl;
+
+        > :first-child {
+            grid-area: col1;
+        }
+
+        > :last-child {
+            grid-area: col2;
+        }
+
+        @if $alt-layout {
+            grid-template-areas: 'col2 col1';
+            grid-template-columns: $col2-width $col1-width;
+        }
+    }
+}
+
+/*
+----------------------------------------------------------------------------
+Focus management.
+
+- Explicitly setting :HOVER behaviour for mouse, and :FOCUS behaviour for keyboard interactions, using "what-input" NPM package.
+
+TODO:
+- Replace non-JS fallback with ':focus-visible'? See https://css-tricks.com/the-focus-visible-trick/.
+----------------------------------------------------------------------------
+*/
+@mixin focus-default($opacity: true, $transform: true) {
+    @at-root {
+        [data-whatintent='keyboard'] &:focus {
+            box-shadow: inset 0 0 0 0.25rem $color-neutral;
+            outline: 0;
+        }
+
+        [data-whatintent='touch'] &:focus {
+            background-color: #{rgba(var(--themeColorBrand), 0.2)};
+            outline: 0;
+        }
+    }
+    @at-root [data-whatintent='mouse'] &:focus {
+        outline: 0;
+    }
+
+    @if $opacity {
+        @at-root [data-whatintent='mouse'] &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    @if $transform {
+        &:active {
+            transform: scale(0.975);
+        }
+    }
+
+    transition: box-shadow 150ms ease-in-out, color 250ms ease-in-out,
+        opacity 250ms ease-in-out, outline 150ms ease-in-out,
+        transform 150ms ease-in-out;
+
+    // Non-JS fallback.
+    &:focus {
+        outline: 0.25rem $border-style $color-neutral;
+    }
+}
+
+/*
+----------------------------------------------------------------------------
+Buttons.
+
+- <button>
+- <a href=""> links styled to look like buttons.
+----------------------------------------------------------------------------
+*/
+@mixin button-default {
+    @include focus-default;
+    display: inline-block;
+    text-decoration: none;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.8;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &:active {
+            transform: none;
+        }
+    }
+}
+
+/*
+----------------------------------------------------------------------------
+Cards.
+----------------------------------------------------------------------------
+*/
+@mixin card {
+    @at-root {
+        [data-whatintent='mouse'] &:hover,
+        [data-whatintent='keyboard'] &:focus-within,
+        [data-whatintent='touch'] &:focus-within {
+            box-shadow: 0 0 0.25rem 0.25rem #{rgba(var(--themeColorBrand), 0.2)};
+            transform: scale(1.0125);
+            transition: box-shadow 150ms ease-in-out,
+                transform 150ms ease-in-out;
+        }
+    }
+    @include bp-medium {
+        // Clamp width on larger screens, so card doesn't stretch to 100%.
+        width: 50%;
+        width: clamp(40ch, 50%, 60ch);
+    }
+    display: flex;
+    flex-direction: column;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        max-width: 60ch; // Keeps line lengths readable.
+    }
+
+    &__media {
+        flex-grow: 0;
+    }
+
+    &--media-top {
+        @include card-media-top;
+    }
+
+    &--media-inline,
+    &--media-inline-alt {
+        @include card-media-inline;
+    }
+}
+
+@mixin card-media-top {
+    [class$='__content'] {
+        margin-block-start: $gutter-s;
+        order: 2;
+    }
+
+    [class$='__media'] {
+        order: 1;
+    }
+
+    > .kb-button-group {
+        order: 3;
+    }
+}
+
+@mixin card-media-inline {
+    @include bp-medium {
+        &[class*='--media-inline'] {
+            display: grid;
+            gap: $gutter-s;
+            grid-template-areas:
+                'media content'
+                'buttons buttons';
+            grid-template-columns: repeat(2, auto);
+            grid-template-rows: repeat(2, auto);
+            width: auto;
+
+            .kb-card__content {
+                grid-area: content;
+            }
+
+            .kb-card__media {
+                grid-area: media;
+                margin-inline-end: auto;
+            }
+
+            .kb-button-group {
+                grid-area: buttons;
+                margin-block-start: 0;
+            }
+        }
+
+        &[class*='--media-inline-alt'] {
+            gap: $gutter-s;
+            grid-template-areas:
+                'content media'
+                'buttons buttons';
+
+            .kb-card__media {
+                margin-inline-end: 0;
+                margin-inline-start: auto;
+            }
+        }
+    }
+
+    // On mobile, show the media first.
+    @include bp-small {
+        @include card-media-top;
+    }
+
+    .kb-card__content {
+        > :last-child {
+            margin-block-end: 0;
+        }
+    }
+}
+
+/*
+----------------------------------------------------------------------------
+Responsive media.
+
+Browsers that do NOT support 'aspect-ratio' use padding on parent container to enable aspect ratio of media to be preserved.
+
+See https://css-tricks.com/aspect-ratio-boxes/
+----------------------------------------------------------------------------
+*/
+@mixin responsive-media(
+    $aspect-ratio: var(--themeMediaAspectRatio),
+    $padding: 56.25%
+) {
+    display: block;
+    overflow: hidden;
+    padding-block-start: $padding; // Old browsers. 56.25% = 16/9 ratio.
+    position: relative;
+    width: 100%; // Explicit width needed.
+
+    @supports (aspect-ratio: auto) {
+        // Need to use !important so that inline style can be overridden.
+        padding-block-start: unset !important; // stylelint-disable
+        width: unset;
+    }
+
+    // <br> selector required because CMS editor can add random line breaks into HTML!
+    > :first-child,
+    > br + * {
+        height: 100%;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        position: absolute;
+        width: 100%;
+
+        @supports (aspect-ratio: auto) {
+            /* stylelint-disable property-no-unknown */
+            aspect-ratio: $aspect-ratio;
+            /* stylelint-enable property-no-unknown */
+            height: unset;
+            position: unset;
+        }
+    }
+}
+
+/*
+----------------------------------------------------------------------------
+Apply max-width constraint and optionally center container with auto margins.
+----------------------------------------------------------------------------
+*/
+
+@mixin layout-constraint($center: true) {
+    @if $center {
+        margin: 0 auto;
+    }
+    max-width: $layout-max-width;
+}
+
+/*
+----------------------------------------------------------------------------
+Center content within container.
+----------------------------------------------------------------------------
+*/
+
+@mixin layout-centered-content {
+    text-align: center;
+
+    // Setting auto margins on direct children without a CSS classname ensures that typographic elements whose max width is constrained by "$max-line-length" will be correctly centered.
+    > :not([class]) {
+        margin-inline-end: auto;
+        margin-inline-start: auto;
+    }
+}
+
+/*
+----------------------------------------------------------------------------
+Micro clearfix hack - see http://nicolasgallagher.com/micro-clearfix-hack/
+----------------------------------------------------------------------------
+*/
+@mixin clearfix {
+    clear: both;
+    content: '';
+    display: table;
+}
+
+/*
+----------------------------------------------------------------------------
+Detect Safari.
+
+Usage:
+.my-selector {
+    @include safari {
+        // Safari code...
+    }
+}
+----------------------------------------------------------------------------
+*/
+@mixin safari {
+    @media not all and (min-resolution: 0.001dpcm) {
+        @supports (-webkit-appearance: none) and (stroke-color: transparent) {
+            @content;
+        }
+    }
+}
+
+/* stylelint-enable order/order */

@@ -1,0 +1,31 @@
+@mixin gw-product-search-results {
+    .gw-product-search-results {
+        [data-id='stock-compare'] {
+            font-family: $font-family;
+
+            .gw-icon {
+                stroke: $color-neutral-alt;
+            }
+
+            &.is-selected {
+                .gw-icon {
+                    fill: $color-neutral-alt;
+                }
+            }
+        }
+
+        [data-id='products-filter-button'] {
+            color: $color-brand;
+            font-family: $font-family;
+
+            &.is-selected {
+                background-color: transparent;
+                color: inherit;
+            }
+        }
+
+        .gw-form__select {
+            background-color: $color-white;
+        }
+    }
+}

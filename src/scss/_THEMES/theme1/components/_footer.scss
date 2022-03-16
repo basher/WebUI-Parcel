@@ -1,0 +1,22 @@
+@mixin kb-footer {
+    .kb-footer {
+        &--supplementary {
+            .kb-social {
+                background-color: transparent;
+
+                &__title {
+                    color: $color-text-alt;
+                    text-transform: none;
+                }
+
+                &__icons {
+                    justify-content: flex-start;
+                }
+            }
+        }
+
+        &__group-title {
+            color: inherit;
+        }
+    }
+}

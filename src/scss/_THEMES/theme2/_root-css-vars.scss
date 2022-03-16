@@ -1,0 +1,54 @@
+/*
+----------------------------------------------------------------------------
+CSS variables for dynamic theming.
+
+- Color values are specified as a comma-separated list of RGB values. This allows us to leverage the Sass 'rgba()' function.
+- Theme overrides can be applied via the CMS, rendered in HTML <style> blocks.
+- Legacy browsers can only leverage CSS variables if they are defined inside ':root' element.
+----------------------------------------------------------------------------
+*/
+
+:root {
+    --themeColorBrand: 178, 94, 36;
+    --themeColorBrandAlt: 94, 81, 77;
+    --themeColorBrandAlt2: 91, 103, 112;
+    --themeColorBackground: 255, 255, 255;
+    --themeColorBackgroundAlt: 83, 86, 90; // Same as --themeGrey4
+    --themeColorText: 94, 81, 77;
+    --themeColorTextAlt: 255, 255, 255;
+    --themeColorLink: 178, 94, 36;
+    --themeColorLinkAlt: 232, 236, 239;
+
+    --themeColorSecondary1: 81, 40, 79; // TODO: might be obsolete
+    --themeColorSecondary2: 141, 116, 147; // TODO: might be obsolete
+    --themeColorSecondary3: 147, 157, 168; // TODO: might be obsolete
+
+    --themeBlack: 0, 0, 0;
+    --themeWhite: 255, 255, 255;
+    --themeGrey1: 241, 240, 239;
+    --themeGrey2: 219, 219, 219;
+    --themeGrey3: 116, 118, 119;
+    --themeGrey4: 83, 86, 90; // TODO: might be obsolete
+
+    --themeAccentPositive: 15, 130, 18;
+    --themeAccentPositiveAlt: 15, 130, 18;
+    --themeAccentNegative: 214, 45, 22;
+    --themeAccentNegativeAlt: 214, 45, 22;
+    --themeAccentNeutral: 141, 116, 147;
+    --themeAccentNeutralAlt: 141, 116, 147;
+
+    --themeFontFamily: LincolnProximaNova;
+    --themeFontFamilyTitle: LincolnMillerB;
+    --themeFontFamilyArabic: LincolnProximaNova;
+    --themeFontFamilyArabicTitle: LincolnMillerB;
+    --themeFontFamilyVietnamese: LincolnProximaNova;
+    --themeFontFamilyVietnameseTitle: LincolnMillerB;
+    --themeFontSize: 100%;
+    --themeFontSize2K: 110%;
+    --themeFontSize4K: 200%;
+
+    --themeMaxLineLength: 85ch;
+    --themeMaxContentWidth: 65rem;
+
+    --themeMediaAspectRatio: 16/9;
+}

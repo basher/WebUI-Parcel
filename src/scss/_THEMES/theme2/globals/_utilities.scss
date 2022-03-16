@@ -1,0 +1,6 @@
+@mixin gw-utilities {
+    .is-disabled,
+    .is-disabled * {
+        opacity: 1;
+    }
+}

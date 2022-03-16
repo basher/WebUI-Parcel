@@ -1,0 +1,161 @@
+// Use '.kb-button' class for <button> and <a> elements for consistent visual appearance.
+.kb-button {
+    @include button-default;
+
+    // A global style here, so that all next/previous buttons will have their icons flipped when it RTL mode
+    @at-root {
+        [data-button-type] {
+            /* stylelint-disable max-nesting-depth */
+            [dir='rtl'] & {
+                .kb-icon {
+                    transform: scale(-1);
+                }
+            }
+            /* stylelint-enable max-nesting-depth */
+        }
+    }
+
+    color: inherit;
+    font-size: $font-size;
+    line-height: 1;
+
+    &--text,
+    &--text-icon {
+        @if $prefers-rounded-corners {
+            border-radius: $border-radius;
+        }
+        background-color: $color-background;
+        border: $border-width $border-style;
+        font-weight: bold;
+    }
+
+    &--text {
+        padding: $gutter-xs;
+    }
+
+    &--text-icon {
+        padding: $gutter-xs;
+    }
+
+    // Apply colours to button variants.
+    &--primary {
+        background-color: $color-brand;
+        border-color: $color-brand;
+        color: $color-text-alt;
+    }
+
+    &--secondary {
+        border-color: $color-brand;
+        color: $color-brand;
+    }
+
+    &--positive {
+        background-color: $color-positive;
+        border-color: $color-positive;
+        color: $color-text-alt;
+    }
+
+    &--negative {
+        background-color: $color-negative;
+        border-color: $color-negative;
+        color: $color-text-alt;
+    }
+
+    // Even though <button> elements cannot be flex containers, adding 'display: inline-flex' here allows the icon to fit precisely, with no extra whitespace.
+    &--icon {
+        align-items: center;
+        display: inline-flex;
+        justify-content: center;
+        padding: $gutter-xs;
+    }
+
+    // Buttons cannot be flex containers, so we need extra <span>.
+    &__inner {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        .kb-icon {
+            margin-inline-end: $gutter-xs;
+        }
+
+        span {
+            text-align: start;
+        }
+
+        &--reverse {
+            flex-direction: row-reverse;
+
+            .kb-icon {
+                margin-inline-end: 0;
+                margin-inline-start: $gutter-xs;
+            }
+        }
+    }
+
+    &--vertical {
+        .kb-button__inner {
+            flex-direction: column;
+
+            .kb-icon {
+                margin-block-end: $gutter-xs;
+                margin-inline-end: 0;
+            }
+
+            span {
+                text-align: center;
+            }
+
+            &--reverse {
+                flex-direction: column-reverse;
+
+                /* stylelint-disable max-nesting-depth */
+                .kb-icon {
+                    margin-block-end: 0;
+                    margin-block-start: $gutter-xs;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+        }
+    }
+
+    // Text buttons only, as icon button sizes are determined by the context of their parent container font-size (or their icon size overrides).
+    &--small {
+        font-size: $font-size-s;
+        padding: $gutter-s / 2;
+    }
+
+    // Toggle buttons. They need JavaScript to do something useful (e.g. open|close) but we can handle the toggling of the icons here.
+    &--toggle {
+        // Apply colour to text-based toggles.
+        &[class*='--text'] {
+            border-color: $color-brand;
+            color: $color-brand;
+
+            &.is-selected {
+                background-color: $color-brand;
+                border-color: $color-brand;
+                color: $color-text-alt;
+            }
+        }
+
+        &[aria-expanded='true'],
+        &.is-selected {
+            .kb-icon:first-of-type {
+                display: none;
+            }
+        }
+
+        &[aria-expanded='false'],
+        &.is-not-selected {
+            .kb-icon:last-of-type {
+                display: none;
+            }
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-button) {
+    @include kb-button;
+}

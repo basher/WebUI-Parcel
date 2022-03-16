@@ -1,0 +1,30 @@
+// Promo details.
+.page-20 {
+    .kb-layout__fullbleed {
+        background-color: $color-white;
+
+        & + .kb-layout__has-max-width {
+            margin-block-start: $gutter-xl;
+        }
+    }
+
+    .kb-toolbar--promotions {
+        @include bp-medium {
+            padding: 0 $layout-main-bleed;
+        }
+        @include bp-large {
+            @include layout-constraint;
+            padding: 0;
+        }
+        padding: 0 $layout-main-bleed-mobile;
+
+        .kb-share__button {
+            margin-left: -$gutter-s;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(page-20-promo-details) {
+    @include page-20-promo-details;
+}

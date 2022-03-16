@@ -1,0 +1,6 @@
+@mixin kb-utilities {
+    .is-disabled,
+    .is-disabled * {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,9 @@
+@mixin kb-map {
+    .kb-map {
+        &__overlay {
+            .kb-contact-card {
+                box-shadow: none;
+            }
+        }
+    }
+}

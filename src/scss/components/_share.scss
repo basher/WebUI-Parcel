@@ -1,0 +1,37 @@
+.kb-share {
+    display: none;
+    position: relative;
+
+    &.is-js-enabled {
+        display: block;
+    }
+
+    &__fallback {
+        background-color: $color-white;
+        border: $border-width $border-style $color-grey-2;
+        margin: 0 $gutter-xs;
+        padding: $gutter-xs;
+        position: absolute;
+        z-index: z('default');
+
+        .kb-form__label,
+        .kb-form__input,
+        .kb-button {
+            font-size: $font-size-s;
+        }
+
+        .kb-form__input {
+            height: auto;
+            padding: $gutter-xs $gutter-s;
+        }
+
+        .kb-button {
+            padding: $gutter-xs;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-share) {
+    @include kb-share;
+}

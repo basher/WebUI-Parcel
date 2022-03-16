@@ -1,0 +1,23 @@
+@mixin kb-tabs {
+    .kb-tabs {
+        [aria-selected='true'] {
+            background-color: $color-grey-1;
+            border-block-end-color: $color-grey-1;
+        }
+
+        &__content {
+            background-color: $color-grey-1;
+        }
+
+        &--vertical {
+            [aria-selected='true'] {
+                border-block-end-color: $color-brand-alt;
+                border-inline-end-color: $color-grey-1;
+            }
+        }
+    }
+
+    [role='tab'] {
+        border-radius: 0;
+    }
+}

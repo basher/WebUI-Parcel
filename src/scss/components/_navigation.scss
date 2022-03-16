@@ -1,0 +1,815 @@
+/*
+----------------------------------------------------------------------------
+Site navigation.
+
+1. Using 'hoverIntent' plugin for managing header nav dropdown on :HOVER.
+2. Mobile nav behaviour is triggered via toggle button.
+3. Mobile sub-navigation is triggered by CLICK/TOUCH event on parent links.
+4. Dropdown should NOT be shown on keyboard :FOCUS as this is regarded as bad for accessibility/usability. Instead, the parent links should all go to a relevant landing page.
+
+By default, with JS disabled, header navigation does work, even on mobile.
+----------------------------------------------------------------------------
+*/
+
+// Container that holds either entire mobile nav, or just sub-menus on larger screens.
+@mixin dropdown-container {
+    @include bp-medium {
+        height: auto;
+        inset-block-start: $layout-overlay-offset;
+        max-height: calc(95vh - #{$layout-overlay-offset});
+    }
+    background-color: $color-background;
+    color: $color-text;
+    display: none;
+    height: calc(100vh - #{$layout-overlay-offset-mobile});
+    inset-block-start: $layout-overlay-offset-mobile;
+    inset-inline-end: auto;
+    inset-inline-start: 0;
+    max-height: calc(100vh - #{$layout-overlay-offset-mobile});
+    overflow-y: auto;
+    padding-block-end: $gutter-xs;
+    padding-block-start: $gutter-s;
+    position: fixed;
+    width: 100vw;
+    z-index: z('modal');
+}
+
+.kb-navigation {
+    /* stylelint-disable max-nesting-depth, no-descending-specificity */
+    @at-root {
+        // RTL on mobile.
+        [dir='rtl'] {
+            .show-mobile-nav {
+                [data-dropdown-open] {
+                    .kb-navigation__dropdown {
+                        transition: right 0.3s ease-in-out;
+                    }
+                }
+
+                .kb-icon {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        // Prevent keyboard users from accessing dropdown menus.
+        [data-whatintent='keyboard'] {
+            .kb-navigation__dropdown {
+                display: none !important; // stylelint-disable-line
+            }
+        }
+    }
+    overflow: hidden;
+
+    /* stylelint-enable max-nesting-depth, no-descending-specificity */
+    &__dropdown {
+        @include dropdown-container;
+        @include bp-medium {
+            padding-inline-end: $nav-dropdown-gutter;
+            padding-inline-start: $nav-dropdown-gutter;
+
+            // Nested sub-nav. Show directly underneath parent.
+            .kb-navigation__dropdown:not(.kb-navigation__dropdown--overlay) {
+                border: 0;
+                display: block;
+                inset-block-start: 0;
+                inset-inline-end: 0;
+                inset-inline-start: 0;
+                max-height: initial;
+                overflow: initial;
+                padding-block-end: 0;
+                padding-block-start: 0;
+                padding-inline-end: 0;
+                padding-inline-start: 0;
+                position: relative;
+                width: auto;
+            }
+        }
+    }
+
+    &__list {
+        @at-root {
+            .has-nav-overflow & {
+                flex-wrap: wrap;
+                height: auto;
+                min-height: 100%;
+            }
+        }
+        @include bp-medium {
+            align-items: center;
+        }
+        display: flex;
+        height: 100%;
+
+        &--nested {
+            // Make them CSS grid containers.
+            @include bp-medium {
+                @include responsive-grid-columns(
+                    $auto-layout: auto-fill,
+                    $max-width: $nav-grid-col-width
+                );
+                @include responsive-grid;
+            }
+
+            // Deeper nested lists are not CSS grid containers.
+            .kb-navigation__list--nested {
+                display: block;
+            }
+        }
+
+        // Extra specificity, so we can isolate this button group from the one in the primary nav list.
+        .kb-button-group {
+            @include bp-medium {
+                margin-inline-end: -$nav-dropdown-gutter;
+                margin-inline-start: -$nav-dropdown-gutter;
+            }
+            background-color: $color-grey-1;
+            margin-block-end: 0;
+            padding: $gutter-xs $gutter-xs 0;
+        }
+    }
+
+    &__item {
+        @at-root {
+            // Add some separation as nav items are wrapping.
+            .has-nav-overflow & {
+                margin-block-end: $gutter-xs / 2;
+            }
+
+            // So text doesn't wrap when JS is active.
+            .kb-navigation.is-js-enabled & {
+                flex-shrink: 0;
+            }
+        }
+        @include bp-medium {
+            align-items: center;
+            border: 0;
+            display: flex;
+            flex-shrink: 1; // Allow text to wrap at medium breakpoint.
+            height: 100%;
+        }
+        border-block-end: $border-width $border-style $color-grey-2;
+        flex-shrink: 0; // So text doesn't wrap on mobile with CSS only.
+        font-size: $font-size;
+        padding-inline-end: $gutter-s;
+
+        &:first-of-type {
+            @include bp-medium {
+                border: 0;
+            }
+            border-block-start: $border-width $border-style $color-grey-2;
+        }
+
+        &:hover {
+            > .kb-navigation__dropdown {
+                display: block;
+            }
+        }
+
+        // Nested.
+        .kb-navigation__item {
+            @include bp-medium {
+                height: auto;
+                margin-block-end: 0;
+                padding-block-end: $gutter-xs;
+            }
+
+            // No grandchildren.
+            &--no-grandchild {
+                display: block;
+            }
+        }
+
+        // Hide button group when no JS.
+        &--buttons {
+            display: none;
+        }
+
+        // "Hoisted" grandchild link that is rendered 1 level up in mobile & sticky menu.
+        &.is-hoisted {
+            display: none;
+        }
+    }
+
+    &__link {
+        @at-root {
+            // Increase click area as nav items are wrapping...
+            .has-nav-overflow & {
+                padding-block-end: $gutter-xs / 2;
+                padding-block-start: $gutter-xs / 2;
+            }
+
+            // ...but override in mobile nav view.
+            .has-nav-overflow .show-mobile-nav & {
+                padding: $nav-mobile-button-gutter;
+            }
+
+            // Also increase click area in maxi menu nested subnav.
+            .kb-navigation__list--nested .kb-navigation__list--nested & {
+                padding-block-end: $gutter-xs / 2;
+                padding-block-start: $gutter-xs / 2;
+            }
+        }
+        @if $allow-dark-mode {
+            @media (prefers-color-scheme: dark) {
+                color: currentColor;
+            }
+        }
+        @include bp-medium {
+            padding: 0;
+            width: auto;
+        }
+        background-color: inherit;
+        color: $color-brand;
+        display: inline-block;
+        font-weight: normal;
+        line-height: 1;
+        padding: $nav-mobile-button-gutter;
+        text-decoration: none;
+        width: 100%;
+
+        + .kb-button--icon {
+            color: $color-brand;
+            margin-inline-start: 0.25rem; // So we have some separation.
+            padding: $gutter-xs / 2;
+
+            &:hover {
+                color: $color-brand-alt;
+            }
+        }
+
+        &:hover {
+            color: $color-brand-alt;
+            text-decoration: underline;
+
+            + .kb-button--icon {
+                color: $color-brand-alt;
+            }
+        }
+
+        &.kb-button {
+            border: 0;
+        }
+
+        &--has-submenu {
+            .kb-button__inner {
+                flex-direction: row-reverse;
+            }
+
+            .kb-icon {
+                /* stylelint-disable max-nesting-depth */
+                @include bp-medium {
+                    display: none;
+                }
+                /* stylelint-enable max-nesting-depth */
+                height: 1em;
+                margin-inline-end: 0;
+                margin-inline-start: $gutter-xs;
+                width: 1em;
+            }
+        }
+    }
+
+    &__title {
+        border-block-end: $border-width $border-style $color-grey-2;
+        color: $color-text;
+        display: block;
+        font-size: $font-size;
+        margin-block-end: $gutter-xs;
+        padding-block-end: $gutter-xs;
+
+        &.is-hidden-on-medium {
+            border-block-start: $border-width $border-style $color-grey-2;
+            font-size: $font-size-l;
+            margin-block-end: 0;
+            padding: $gutter-xs;
+        }
+    }
+
+    &__button--back {
+        @include bp-medium {
+            display: none;
+        }
+        border: 0;
+        border-block-start: $border-width $border-style $color-grey-2;
+        padding: $nav-mobile-button-gutter;
+
+        .kb-button__inner {
+            justify-content: start;
+        }
+    }
+
+    .kb-button {
+        &--text-icon {
+            @include bp-medium {
+                width: auto;
+            }
+            width: 100%;
+
+            .kb-icon {
+                height: 1em;
+                width: 1em;
+            }
+        }
+    }
+
+    [data-dropdown-open] {
+        @include bp-medium {
+            // Nested.
+            [data-dropdown-open] {
+                display: block;
+            }
+        }
+
+        > .kb-icon {
+            @include bp-medium {
+                display: none;
+            }
+            margin-inline-start: $gutter-xs;
+        }
+    }
+
+    // Identify which primary nav item is open.
+    [data-dropdown-open='true'] {
+        > .kb-navigation__link--has-submenu {
+            color: $color-brand-alt;
+
+            + .kb-button--icon {
+                color: $color-brand-alt;
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    // Filtered products dropdown.
+    .kb-product-filter {
+        @include bp-medium {
+            margin-inline-end: -$nav-dropdown-gutter;
+            margin-inline-start: -$nav-dropdown-gutter;
+        }
+
+        &.kb-accordion {
+            margin-block-end: 0;
+
+            // Center the product grid on mobile, and set max-width on image to be the same as CSS grid columns in desktop view.
+            .kb-grid {
+                /* stylelint-disable max-nesting-depth */
+                @include bp-small {
+                    @include responsive-grid($centered: true);
+
+                    .kb-image {
+                        max-width: $nav-grid-col-width;
+                    }
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+        }
+
+        .kb-tabs__content {
+            @include bp-medium {
+                margin-inline-end: $nav-dropdown-gutter;
+                margin-inline-start: $nav-dropdown-gutter;
+            }
+        }
+
+        .kb-accordion__button {
+            border-color: $color-grey-2;
+            margin-block-end: 0;
+            padding: $nav-mobile-button-gutter;
+        }
+
+        .kb-accordion__content {
+            padding: 0 $gutter-xs;
+        }
+
+        .kb-accordion__title:first-of-type {
+            .kb-accordion__button {
+                border-block-start: $border-width $border-style $color-grey-2;
+            }
+        }
+
+        .kb-accordion__title:last-of-type {
+            .kb-accordion__button {
+                border-block-end: 0;
+                margin-block-end: 0;
+            }
+
+            + .kb-accordion__content {
+                margin-block-start: $gutter-xs;
+            }
+        }
+    }
+
+    .kb-product-filter--no-tabs {
+        @include bp-medium {
+            padding: 0 $nav-dropdown-gutter $nav-dropdown-gutter;
+        }
+        padding: $gutter-xs;
+
+        /* stylelint-disable-next-line no-descending-specificity */
+        .kb-grid {
+            // Center the product grid on mobile, and set max-width on image to be the same as CSS grid columns in desktop view.
+            @include bp-small {
+                @include responsive-grid($centered: true);
+
+                /* stylelint-disable-next-line max-nesting-depth */
+                .kb-image {
+                    max-width: $nav-grid-col-width;
+                }
+            }
+        }
+    }
+
+    // 4th level navigation overlay.
+    &__dropdown--overlay {
+        &__header {
+            @include bp-medium {
+                margin-inline-end: -$nav-dropdown-gutter;
+                margin-inline-start: -$nav-dropdown-gutter;
+            }
+            align-items: center;
+            background-color: $color-brand;
+            color: $color-text-alt;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-block-end: $gutter;
+            min-height: 3.25rem; // = computed height of product filter tablist.
+
+            .kb-button {
+                background-color: $color-brand;
+                border: 0;
+                width: auto;
+            }
+
+            .kb-button__inner {
+                justify-content: flex-start;
+            }
+
+            > span {
+                margin: 0 auto;
+            }
+        }
+
+        /* stylelint-disable no-descending-specificity, max-nesting-depth */
+        &__content {
+            padding: 0 $gutter-xs;
+
+            .kb-grid {
+                @include responsive-grid-columns(
+                    $auto-layout: auto-fill,
+                    $max-width: 12.5rem
+                );
+                // Center the product grid on mobile, and set max-width on image to be the same as CSS grid columns in desktop view.
+                @include bp-small {
+                    @include responsive-grid($centered: true);
+
+                    .kb-image {
+                        max-width: $nav-grid-col-width;
+                    }
+                }
+            }
+        }
+        /* stylelint-enable no-descending-specificity, max-nesting-depth */
+    }
+
+    // Mobile nav toggle button.
+    [id='toggle-mobile-nav'] {
+        @at-root {
+            // Need to show it when header is sticky.
+            .is-js-sticky & {
+                display: inline-flex !important; // stylelint-disable-line
+            }
+        }
+        @include bp-medium {
+            height: $layout-header-grid-row-height;
+            width: $layout-header-grid-row-height;
+        }
+        display: none; // Shown via JS.
+        height: $layout-header-grid-row-height-mobile;
+        padding: 0;
+        position: relative;
+        width: $layout-header-grid-row-height-mobile;
+
+        .kb-icon {
+            fill: $color-brand;
+        }
+    }
+
+    // 1. 'navigation-wrap' is only shown on mobile when 'toggle-mobile-nav' button is clicked.
+    // 2. 'navigation-wrap' is always shown on medium, unless header is sticky, in which case mobile nav behaviour is used.
+    // 3. 'navigation-wrap' is the original ID in the HTML, before JS 'disclosure()' fires for show|hide functionality, and generates a new unique ID based on toggle button's parent container 'kb-navigation'.
+    [id='navigation-wrap'],
+    div[id^='kb-navigation'] {
+        @include bp-medium {
+            &.is-hidden {
+                display: block !important; // stylelint-disable-line
+            }
+        }
+        height: 100%;
+    }
+
+    [id='navigation-wrap'] {
+        overflow-x: auto; // Only when JS is disabled.
+    }
+
+    /* stylelint-disable order/order, max-nesting-depth */
+    @at-root {
+        .is-js-sticky {
+            div[id^='kb-navigation'] {
+                @include bp-medium {
+                    &.is-hidden {
+                        display: none !important; // stylelint-disable-line
+                    }
+                }
+            }
+        }
+    }
+    /* stylelint-enable order/order, max-nesting-depth */
+
+    // Mobile nav.
+    // This class (added by JS) triggers mobile nav behaviour.
+    .show-mobile-nav {
+        > .kb-navigation__list {
+            @include dropdown-container;
+            display: flex;
+            flex-direction: column;
+            padding-block-start: 0;
+        }
+
+        .kb-navigation__link {
+            padding: $nav-mobile-button-gutter;
+            width: 100%;
+        }
+
+        // Move nested nav offscreen until parent link is clicked/touched.
+        [data-dropdown-open] {
+            .kb-navigation__dropdown {
+                display: block;
+                inset-inline-end: auto;
+                inset-inline-start: 100vw;
+                transition: left 0.3s ease-in-out;
+            }
+        }
+
+        [data-dropdown-open='true'] {
+            // 3rd level dropdown.
+            > .kb-navigation__dropdown--is-open {
+                inset-inline-end: auto;
+                inset-inline-start: 0;
+                padding-block-start: 0;
+            }
+
+            // 4th level navigation (i.e. overlay).
+            > .kb-navigation__dropdown--overlay {
+                inset-inline-end: auto;
+                inset-inline-start: 0;
+            }
+        }
+
+        .is-hoisted {
+            display: list-item;
+        }
+
+        .kb-product-filter--no-tabs {
+            padding: $gutter-xs;
+        }
+
+        // Sticky nav.
+        // When "mobile nav" behaviour is triggered by sticky header at medium breakpoint, we need to override alot of the default nav styles at this breakpoint.
+        /* stylelint-disable order/order, max-nesting-depth, declaration-no-important */
+        @include bp-medium {
+            .kb-navigation__dropdown {
+                inset-block-start: $layout-overlay-offset;
+                min-height: calc(95vh - #{$layout-overlay-offset});
+                padding-inline-end: 0;
+                padding-inline-start: 0;
+                position: fixed;
+                width: 100vw;
+            }
+
+            > .kb-navigation__list {
+                align-items: unset;
+                inset-block-start: $layout-header-grid-row-height; // Because sticky is anchored to top of viewport.
+                min-height: calc(95vh - #{$layout-overlay-offset});
+            }
+
+            .kb-navigation__list--nested {
+                display: block;
+            }
+
+            .kb-navigation__item {
+                align-items: unset;
+                border-block-end: $border-width $border-style $color-grey-2;
+                display: list-item;
+                font-size: unset;
+                padding-inline-end: 0;
+
+                &.is-hidden-on-medium {
+                    display: list-item !important;
+                }
+
+                .kb-navigation__item {
+                    padding-block-end: 0;
+                }
+
+                .is-hidden-on-small {
+                    display: none;
+                }
+            }
+
+            .kb-navigation__link {
+                &.is-hidden-on-medium {
+                    display: inline-block !important;
+                }
+
+                &--has-submenu {
+                    .kb-icon {
+                        display: unset;
+                    }
+                }
+            }
+
+            .kb-navigation__title {
+                &.is-hidden-on-medium {
+                    border-block-start: 0;
+                    display: block !important;
+                }
+            }
+
+            [data-dropdown-open] {
+                [data-dropdown-open] {
+                    display: list-item;
+                }
+            }
+
+            [data-back-button] {
+                border-block-end: $border-width $border-style $color-grey-2;
+                border-block-start: 0;
+                display: inline-block;
+                width: 100%;
+
+                + .kb-navigation__title {
+                    border-block-end: $border-width $border-style $color-grey-2;
+                }
+            }
+
+            .kb-button-group {
+                margin: 0;
+            }
+
+            .kb-product-filter {
+                margin-inline-end: 0;
+                margin-inline-start: 0;
+
+                .kb-tabs__content {
+                    margin-inline-end: 0;
+                    margin-inline-start: 0;
+                    padding-inline-end: $gutter-xs;
+                    padding-inline-start: $gutter-xs;
+                }
+            }
+
+            .kb-navigation__dropdown--overlay {
+                &__header {
+                    margin-inline-end: 0;
+                    margin-inline-start: 0;
+                }
+            }
+        }
+        /* stylelint-enable order/order, max-nesting-depth, declaration-no-important */
+    }
+
+    // When JS is enabled...
+    &.is-js-enabled {
+        @include bp-small {
+            // Show buttons on mobile.
+            .kb-button:not(.is-hidden-on-small) {
+                display: inline-block;
+            }
+
+            .kb-button--icon:not(.is-hidden-on-small) {
+                display: inline-flex;
+            }
+
+            .kb-navigation__item {
+                padding-inline-end: 0;
+            }
+        }
+
+        /* stylelint-disable max-nesting-depth */
+        @include bp-medium {
+            .kb-navigation__list {
+                // Only show 1st level sub-nav when JS toggles 'data-dropdown-open'.
+                > [data-dropdown-open='true'] {
+                    .kb-navigation__dropdown {
+                        display: block;
+                    }
+                }
+                // Hide 1st level sub-nav on normal CSS :HOVER until JS kicks in.
+                > [data-dropdown-open='false']:hover {
+                    .kb-navigation__dropdown {
+                        display: none;
+                    }
+                }
+            }
+        }
+        /* stylelint-enable max-nesting-depth */
+
+        // Show buttons.
+        .kb-navigation__item--buttons {
+            display: block;
+        }
+    }
+
+    // Vertical navigation.
+    &--vertical {
+        /* stylelint-disable max-nesting-depth */
+        @include bp-medium {
+            overflow-y: auto;
+
+            [data-dropdown-open='true'] {
+                background-color: $color-grey-1;
+
+                > .kb-navigation__link--has-submenu {
+                    color: $color-brand;
+
+                    & + .kb-button--icon {
+                        color: $color-brand;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .kb-navigation__item {
+                padding-inline-start: $gutter-xs;
+                width: 100%;
+            }
+
+            .kb-navigation__dropdown {
+                background-color: $color-grey-1;
+                height: 100%;
+                inset-block-start: 0;
+                inset-inline-start: $layout-vertical-header-width;
+                max-height: 100vh;
+                padding-inline-end: $gutter-xs;
+                padding-inline-start: $gutter-xs;
+                width: auto;
+
+                .kb-button-group {
+                    margin-inline-end: 0;
+                    margin-inline-start: 0;
+                    max-width: $nav-grid-col-width;
+                }
+
+                .kb-navigation__item {
+                    padding-inline-start: 0;
+                }
+            }
+
+            .kb-navigation__link {
+                &:hover {
+                    color: $color-brand;
+                    opacity: 1;
+                }
+            }
+
+            .kb-navigation__list {
+                align-items: start;
+                flex-direction: column;
+
+                &--nested {
+                    width: $nav-grid-col-width;
+                }
+            }
+
+            .kb-button--icon.is-hidden-on-small {
+                .kb-icon {
+                    @at-root {
+                        [dir='rtl'] & {
+                            transform: rotate(90deg);
+                        }
+                    }
+
+                    transform: rotate(-90deg);
+                }
+            }
+
+            .kb-product-filter {
+                margin-inline-end: 0;
+                margin-inline-start: 0;
+
+                & + .kb-navigation__list--nested {
+                    /* stylelint-disable-next-line prettier/prettier */
+                    padding-inline-start: $nav-dropdown-gutter;
+                }
+            }
+        }
+        /* stylelint-enable max-nesting-depth */
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-navigation) {
+    @include kb-navigation;
+}

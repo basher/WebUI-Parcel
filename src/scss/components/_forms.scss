@@ -1,0 +1,535 @@
+$gutter-formfield: $gutter-xs; // Uniform gutter for padding/margin/offset.
+
+@mixin slider-thumb {
+    background-color: $color-brand;
+    border: 0;
+    border-radius: $border-radius-round;
+    height: $icon-size-l;
+    width: $icon-size-l;
+}
+
+@mixin slider-track {
+    background-color: $color-background;
+    cursor: pointer;
+    height: 0.25rem;
+    width: 100%;
+}
+
+@mixin textfield {
+    @include focus-default($opacity: false, $transform: false);
+
+    // Enhance 'focus-default' by adding :focus styling for mouse users.
+    @at-root [data-whatintent='mouse'] &:focus {
+        box-shadow: inset 0 0 0 0.25rem $color-neutral;
+    }
+
+    background-color: $color-background;
+    border: $border-width $border-style $color-grey-2;
+    height: $form-input-max-height;
+    padding: $gutter-formfield;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.8;
+    }
+
+    // HTML5 validation using :valid/:invalid/:required pseudo classes.
+    &:valid:required,
+    &:valid:not(:empty):required {
+        @if $allow-dark-mode {
+            @media (prefers-color-scheme: dark) {
+                background-color: $color-background;
+            }
+        }
+        background-color: $color-white;
+        border-color: $color-positive;
+
+        & ~ .kb-form__icon:not(.kb-form__icon--error) {
+            display: inline-block;
+            fill: $color-positive;
+        }
+    }
+
+    &:invalid:required:focus {
+        border-color: $color-negative;
+        box-shadow: inset 0 0 0 0.25rem $color-negative;
+
+        & ~ .kb-form__icon--error {
+            display: inline-block;
+            fill: $color-negative;
+        }
+
+        & ~ .kb-form__error {
+            display: block;
+        }
+    }
+}
+
+.kb-form {
+    margin-block-end: $gutter-xl;
+    margin-inline-end: auto;
+    margin-inline-start: auto;
+    max-width: $layout-max-width;
+
+    &__field {
+        margin-block-end: $gutter-s;
+        max-width: $form-field-max-width;
+
+        &--small {
+            max-width: $form-field-max-width-small;
+        }
+
+        &--checkbox {
+            display: flex;
+        }
+    }
+
+    &__legend {
+        margin-block-end: $gutter-s;
+
+        > * {
+            margin-block-end: 0;
+        }
+    }
+
+    &__label {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1; // Stop UI jumping when error messages are shown.
+        position: relative;
+
+        > span:first-child {
+            margin-block-end: $gutter-formfield / 2;
+            padding-inline-end: $gutter-s; // For validation icon.
+        }
+
+        & + * {
+            margin-block-start: $gutter-formfield;
+        }
+
+        // Single checkbox.
+        .kb-form__field--checkbox & {
+            align-items: center;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+
+            span {
+                margin-block-end: 0;
+            }
+        }
+    }
+
+    &__input {
+        @include textfield;
+        margin: 0;
+
+        &[type='checkbox'],
+        &[type='radio'] {
+            @at-root {
+                /* stylelint-disable max-nesting-depth */
+                [data-whatintent='mouse'] &:focus,
+                [data-whatintent='keyboard'] &:focus {
+                    box-shadow: 0 0 0 0.25rem $color-neutral;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+            font-size: $font-size;
+            height: 1rem;
+            line-height: 1;
+            margin-inline-end: $gutter-formfield;
+
+            &:invalid:required:focus {
+                box-shadow: 0 0 0 0.25rem $color-negative;
+            }
+        }
+    }
+
+    // Custom styling: background-image data URI, using hardcoded SVG 'down-arrow' taken from SVG sprite, and hardcoded fill color from theme color palette.
+    &__select {
+        @at-root {
+            [dir='rtl'] & {
+                background-position: left 0.5em top 50%;
+            }
+        }
+        @if $allow-dark-mode {
+            @media (prefers-color-scheme: dark) {
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="fill: rgb(243, 244, 244)"><path d="M20,40l2.8-2.8L50,64.3l27.2-27.1L80,40L50,70L20,40z"/></svg>');
+            }
+        }
+        @include textfield;
+        appearance: none;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="fill: rgb(0, 58, 82)"><path d="M20,40l2.8-2.8L50,64.3l27.2-27.1L80,40L50,70L20,40z"/></svg>');
+        background-position: right 0.5em top 50%;
+        background-repeat: no-repeat;
+        background-size: 2em;
+        padding-inline-end: $gutter-l;
+
+        option {
+            font-family: $font-family, sans-serif;
+            font-weight: normal;
+        }
+
+        &[multiple] {
+            background-position: right 1em top 0.4em;
+
+            option {
+                padding: 0 0 $gutter-formfield;
+            }
+        }
+    }
+
+    &__textarea {
+        @include textfield;
+        height: auto;
+    }
+
+    // Checkbox & radio button groups.
+    &__fieldset {
+        &--checkbox,
+        &--radio {
+            margin-block-end: $gutter-s;
+
+            .kb-form__legend {
+                margin-block-end: $gutter-formfield / 2;
+            }
+
+            .kb-form__field {
+                margin-block-end: $gutter-formfield;
+            }
+
+            .kb-grid {
+                /* stylelint-disable max-nesting-depth */
+                .kb-form__field {
+                    margin-block-end: 0;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+
+            .kb-form__label {
+                align-items: center;
+                flex-direction: row-reverse;
+                justify-content: flex-end;
+
+                /* stylelint-disable max-nesting-depth */
+                span {
+                    margin-block-end: 0;
+                    padding-inline-end: 0;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+        }
+
+        .kb-grid & {
+            margin-block-end: 0;
+        }
+    }
+
+    // Custom checkbox.
+    /* stylelint-disable no-descending-specificity */
+    &__field--checkbox-custom,
+    &__fieldset--checkbox-custom .kb-form__field {
+        @include textfield;
+        height: auto;
+        padding: $gutter-formfield / 2;
+
+        .kb-form__label {
+            flex-direction: row;
+            font-size: $font-size-s;
+            justify-content: space-between;
+        }
+
+        .kb-form__input {
+            margin-inline-end: 0;
+            margin-inline-start: $gutter-formfield;
+        }
+    }
+    /* stylelint-enable no-descending-specificity */
+    &__buttons {
+        margin-block-end: 0;
+    }
+
+    // Range input.
+    &__range {
+        /* stylelint-disable no-descending-specificity */
+        .kb-form__label {
+            background-color: $color-grey-1;
+            font-size: $font-size;
+            padding: $gutter-formfield;
+        }
+        /* stylelint-enable no-descending-specificity */
+        .kb-form__range__minmax {
+            text-transform: uppercase;
+        }
+
+        [type='range'] {
+            @at-root {
+                /* stylelint-disable max-nesting-depth */
+                [data-whatintent='keyboard'] &:focus {
+                    outline: 0.25rem solid $color-neutral;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+            -webkit-appearance: none;
+            background-color: transparent;
+            border: 0;
+            height: auto;
+            max-width: inherit;
+            padding: $gutter-formfield 0;
+            width: 100%;
+
+            &::-webkit-slider-thumb {
+                @include slider-thumb;
+                -webkit-appearance: none;
+                margin-block-start: -0.75rem;
+            }
+
+            &::-webkit-slider-runnable-track {
+                @include slider-track;
+            }
+
+            &::-moz-range-thumb {
+                @include slider-thumb;
+            }
+
+            &::-moz-range-track {
+                @include slider-track;
+            }
+        }
+
+        &__bubble {
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        &--multiple {
+            @include responsive-grid-columns($auto-layout: auto-fill);
+            @include responsive-grid($gap: 0);
+            max-width: unset;
+
+            /* stylelint-disable no-descending-specificity */
+            > .kb-form__label {
+                /* stylelint-disable max-nesting-depth */
+                &:first-of-type {
+                    padding-inline-end: $gutter-formfield / 2;
+                }
+
+                &:last-of-type {
+                    padding-inline-start: $gutter-formfield / 2;
+
+                    .kb-form__range__label {
+                        // Hide visually (but not with 'visually-hide' mixin) so that flex layout is unaffected.
+                        color: transparent;
+                    }
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+            /* stylelint-enable no-descending-specificity */
+            .kb-form__range__minmax {
+                @include visually-hide;
+            }
+        }
+
+        &--unit-conversions {
+            /* stylelint-disable max-nesting-depth, no-descending-specificity */
+            position: relative;
+
+            > .kb-form__label {
+                padding-block-start: $gutter-xl;
+            }
+
+            .kb-form__fieldset {
+                display: none; // Only shown if JS is enabled.
+                height: auto;
+                inset-block-start: 0;
+                inset-inline-start: $gutter-formfield;
+                position: absolute;
+                z-index: z('default');
+            }
+
+            .kb-form__legend {
+                @include visually-hide;
+            }
+
+            .kb-form__field {
+                display: inline-block;
+                margin-block-end: 0;
+            }
+            /* stylelint-enable max-nesting-depth, no-descending-specificity */
+        }
+    }
+
+    // When JS is enabled, hide some elements (e.g. secondary submit buttons).
+    &.is-js-enabled {
+        .kb-button--secondary[type='submit'] {
+            display: none;
+        }
+    }
+
+    // Form validation icon.
+    &__icon {
+        display: none;
+        height: $icon-size-s;
+        inset-block-start: 0;
+        inset-inline-end: 0;
+        position: absolute;
+        width: $icon-size-s;
+    }
+
+    // Error handling. List of errors.
+    &__errors {
+        color: $color-negative;
+
+        &__title {
+            color: inherit;
+        }
+    }
+
+    // Error handling. Individual form field. "field--has-error" modifier class is added server-side if form posted OK but has been returned with errors.
+    &__field--has-error {
+        :not(:disabled) {
+            border-color: $color-negative;
+
+            &:not(:valid):focus {
+                box-shadow: inset 0 0 0 0.25rem $color-negative;
+            }
+        }
+    }
+
+    // Error message.
+    &__error {
+        @at-root {
+            .is-disabled & {
+                display: none;
+            }
+
+            // Checkbox errors need to be re-positioned inside their parent Flex container.
+            .kb-form__field--checkbox &,
+            .kb-form__fieldset--checkbox & {
+                bottom: -$gutter-s;
+                position: absolute;
+            }
+        }
+        color: $color-negative;
+        display: none;
+        margin-block-start: $gutter-formfield / 2;
+    }
+
+    // Grid layout.
+    .kb-grid {
+        @include responsive-grid-columns(
+            $auto-layout: auto-fill,
+            $min-width: 20rem
+        );
+        @include bp-xsmall {
+            grid-template-columns: 1fr;
+
+            > * {
+                min-width: 0;
+            }
+        }
+        @include bp-medium {
+            @include responsive-grid-columns($auto-layout: 2);
+        }
+        margin-block-end: $gutter;
+
+        // Form fields inside a grid (but not with specific classes).
+        > .kb-form__field:not(.kb-form__range--multiple) {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            margin-block-end: 0;
+            max-width: initial;
+        }
+
+        // Grid of range sliders.
+        &.kb-grid--form-ranges {
+            // i.e. 2 normal Grid column widths.
+            @include responsive-grid-columns(
+                $auto-layout: auto-fill,
+                $max-width: $grid-item-min-width * 2
+            );
+        }
+
+        .kb-button {
+            height: $form-input-max-height;
+        }
+    }
+
+    // Site search form.
+    &[id='site-search'] {
+        /* stylelint-disable no-descending-specificity */
+        @if $allow-dark-mode {
+            @media (prefers-color-scheme: dark) {
+                background-color: $color-grey-3;
+            }
+        }
+        align-items: center;
+        background-color: $color-grey-1;
+        display: flex;
+        margin-block-end: 0;
+        margin-inline-end: 0;
+        margin-inline-start: 0;
+        max-width: none;
+
+        .kb-icon {
+            @include bp-medium {
+                height: $icon-size-l;
+                margin-inline-start: $gutter-s;
+                width: $icon-size-l;
+            }
+            color: $color-brand;
+            height: $icon-size-m;
+            margin-inline-start: $gutter-formfield;
+            width: $icon-size-m;
+        }
+
+        .kb-form__field {
+            margin: 0;
+            max-width: 100%;
+            min-width: 0; // Prevent horizontal overflow on small screens.
+            width: 100%;
+        }
+
+        .kb-form__label {
+            margin: 0;
+
+            span {
+                @include visually-hide;
+            }
+        }
+
+        .kb-form__input {
+            @include bp-medium {
+                height: $layout-header-grid-row-height;
+            }
+            background-color: transparent;
+            border: 0;
+            height: $layout-header-grid-row-height-mobile;
+        }
+
+        .kb-button {
+            @include bp-small {
+                font-size: $font-size-xs;
+            }
+            @include bp-medium {
+                height: $layout-header-grid-row-height;
+            }
+            background-color: $color-grey-3;
+            color: $color-text-alt;
+            height: $layout-header-grid-row-height-mobile;
+            padding: $gutter-xs;
+        }
+        /* stylelint-enable no-descending-specificity */
+    }
+
+    // Hide robot fields.
+    [id*='kb-robo'],
+    [name*='kb-robo'] {
+        display: none;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-form) {
+    @include kb-form;
+}

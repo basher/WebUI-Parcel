@@ -1,0 +1,83 @@
+@mixin gw-navigation {
+    .gw-navigation {
+        &__link {
+            // Bully CSS specificity.
+            &[class*='--text'] {
+                border-radius: 0;
+                font-family: inherit;
+                padding-inline-end: 0;
+                padding-inline-start: 0;
+
+                .show-mobile-nav & {
+                    padding-inline-end: $gutter-xs;
+                    padding-inline-start: $gutter-xs;
+                }
+            }
+        }
+
+        &__item {
+            .gw-navigation__link.gw-button {
+                font-size: $font-size;
+            }
+        }
+
+        &__list {
+            .gw-button[class*='--text']:hover,
+            .gw-navigation__link:hover {
+                color: $color-brand-alt;
+                opacity: unset;
+                text-decoration: none;
+            }
+
+            &--nested {
+                /* stylelint-disable no-descending-specificity */
+                @include bp-medium {
+                    @include responsive-grid-columns(
+                        $min-width: 17rem,
+                        $max-width: 17rem
+                    );
+                }
+
+                .gw-navigation__link {
+                    color: $color-text;
+                }
+                /* stylelint-enable no-descending-specificity */
+            }
+        }
+
+        &__title {
+            border-color: #{rgba(var(--themeBlack), 0.2)};
+            color: $color-brand;
+            font-family: $font-family-title;
+            font-size: $font-size-m;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        &__dropdown {
+            background-color: $color-white;
+        }
+
+        &__button--back {
+            background-color: $color-white;
+            border-radius: 0;
+
+            // Bully CSS specificity.
+            &[class*='--text'] {
+                font-family: inherit;
+                padding-inline-end: $gutter-xs;
+                padding-inline-start: $gutter-xs;
+            }
+        }
+
+        .show-mobile-nav {
+            > .gw-navigation__list {
+                background-color: $color-white;
+            }
+
+            .gw-navigation__link {
+                color: $color-text;
+            }
+        }
+    }
+}

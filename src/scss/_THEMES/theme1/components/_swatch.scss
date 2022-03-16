@@ -1,0 +1,13 @@
+@mixin kb-swatch {
+    .kb-swatch {
+        @at-root {
+            [data-whatintent='touch'] &:focus {
+                background-color: $color-white;
+            }
+        }
+
+        &__title {
+            @include visually-hide;
+        }
+    }
+}

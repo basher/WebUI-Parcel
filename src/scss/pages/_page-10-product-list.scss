@@ -1,0 +1,27 @@
+// Product list.
+.page-10 {
+    .kb-cms {
+        @include layout-centered-content;
+    }
+
+    .kb-layout__inner {
+        > .kb-cms:first-of-type {
+            margin-block-start: $gutter-xl;
+        }
+    }
+
+    .kb-product-card-grid {
+        margin-block-end: $gutter-xl;
+    }
+
+    .kb-product-card__block-link {
+        p:first-of-type {
+            color: $color-text;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(page-10-product-list) {
+    @include page-10-product-list;
+}

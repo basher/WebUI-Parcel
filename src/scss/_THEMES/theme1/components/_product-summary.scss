@@ -1,0 +1,20 @@
+@mixin kb-product-summary {
+    .kb-product-summary {
+        &__name {
+            span {
+                color: $color-grey-3;
+                font-size: $font-size-l;
+            }
+        }
+
+        &__price {
+            font-family: $font-family-title;
+            font-size: $font-size-xxl;
+            font-weight: bold;
+        }
+
+        &__finance {
+            font-family: $font-family-title;
+        }
+    }
+}

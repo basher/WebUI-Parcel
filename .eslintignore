@@ -1,0 +1,3 @@
+# Ignore files/folders
+src/ts/polyfills.ts
+.eslintrc.js

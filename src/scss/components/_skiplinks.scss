@@ -1,0 +1,20 @@
+.kb-skiplinks {
+    position: absolute;
+
+    &__link {
+        @include visually-hide;
+        background-color: $color-brand;
+        color: #fff;
+        display: inline-block;
+        left: 1rem;
+        min-width: 10vw;
+        padding: 1rem;
+        text-align: center;
+        z-index: z('default') + 1;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-skiplinks) {
+    @include kb-skiplinks;
+}

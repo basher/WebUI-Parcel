@@ -1,0 +1,64 @@
+/*
+----------------------------------------------------------------------------
+NOTE:
+
+DO NOT EDIT 'index.scss' directly.
+
+Instead, make changes to '_index.scss.template', which will then be copied to 'index.scss' by Parcel bundler.
+----------------------------------------------------------------------------
+Default CSS variables.
+----------------------------------------------------------------------------
+*/
+@import '_THEMES/{{ theme }}/root-css-vars';
+
+/*
+----------------------------------------------------------------------------
+THEME import goes before Sass variable declarations.
+See https://robots.thoughtbot.com/sass-default
+----------------------------------------------------------------------------
+*/
+@import '_THEMES/{{ theme }}/{{ theme }}';
+
+/*
+----------------------------------------------------------------------------
+Base scaffold, containing all !default Sass variables.
+----------------------------------------------------------------------------
+*/
+@import 'base';
+
+/*
+----------------------------------------------------------------------------
+Fonts & globals.
+----------------------------------------------------------------------------
+*/
+@import 'fonts';
+@import 'globals';
+
+@media screen {
+    /*
+    ----------------------------------------------------------------------------
+    Components & pages.
+    ----------------------------------------------------------------------------
+    */
+    @import 'components';
+    @import 'pages';
+    @import 'multi-franchise';
+
+    /*
+    ----------------------------------------------------------------------------
+    ShameCSS - for hacks.
+    ----------------------------------------------------------------------------
+    */
+    @import 'shame';
+}
+
+@media print {
+    @import 'print';
+}
+
+/*
+----------------------------------------------------------------------------
+Finally, pages that need specific treatment for print, but still need to inherit current theme styling in the browser (e.g. stock details).
+----------------------------------------------------------------------------
+*/
+@import 'print-pages';

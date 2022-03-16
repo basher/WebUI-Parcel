@@ -1,0 +1,70 @@
+.kb-swatch {
+    background-color: $color-white;
+    overflow-y: hidden;
+
+    &__title {
+        @include visually-hide;
+    }
+
+    .kb-button-group:not([role='tablist']) {
+        display: none;
+    }
+
+    &.kb-slider {
+        [role='tab'] {
+            @include bp-medium {
+                height: auto;
+                width: auto;
+            }
+            border-color: transparent;
+            border-radius: 0;
+            border-width: $border-width-l;
+            height: $swatch-thumb-size-mobile;
+            margin: 0;
+            padding: 0;
+            width: $swatch-thumb-size-mobile;
+
+            &[aria-selected='true'] {
+                background-color: transparent;
+                border-color: $color-brand;
+            }
+        }
+    }
+
+    .kb-card {
+        @at-root {
+            [data-whatintent='mouse'] &:hover {
+                box-shadow: none;
+            }
+        }
+        grid-template-columns: 2fr 1fr;
+        margin-block-start: $gutter-xl;
+    }
+
+    // TODO: Temp styles until we can update .NET image helper to accept 'data-' attributes so we can remove wrapper <span>.
+    [data-slide-tab] {
+        display: block;
+        line-height: 0;
+    }
+
+    // When card layout uses Flexbox at small breakpoint, make sure image is above content.
+    .kb-card__content {
+        @include bp-medium {
+            justify-content: center;
+        }
+        order: 2;
+    }
+
+    .kb-card__media {
+        order: 1;
+    }
+
+    [role='tablist'] {
+        margin-block-end: $gutter-xl;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-swatch) {
+    @include kb-swatch;
+}

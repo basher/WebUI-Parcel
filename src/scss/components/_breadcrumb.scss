@@ -1,0 +1,39 @@
+.kb-breadcrumb {
+    background-color: $color-white;
+    padding: 0 $gutter-s;
+
+    &__list {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__item {
+        font-size: $font-size-xs;
+        line-height: 1;
+        margin-block-end: $gutter-xs;
+        margin-block-start: $gutter-xs;
+        padding-inline-end: $gutter;
+        position: relative;
+
+        &:not(:last-child):after {
+            content: '>';
+            inset-block-start: 0;
+            inset-inline-end: $gutter-s / 2;
+            position: absolute;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-breadcrumb) {
+    @include kb-breadcrumb;
+}

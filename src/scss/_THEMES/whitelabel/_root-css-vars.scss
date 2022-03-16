@@ -1,0 +1,69 @@
+/*
+----------------------------------------------------------------------------
+CSS variables for dynamic theming.
+
+- Color values are specified as a comma-separated list of RGB values. This allows us to leverage the Sass 'rgba()' function.
+- Theme overrides can be applied via the CMS, rendered in HTML <style> blocks.
+- Legacy browsers can only leverage CSS variables if they are defined inside ':root' element.
+----------------------------------------------------------------------------
+*/
+
+:root {
+    --themeColorBrand: 0, 58, 82;
+    --themeColorBrandAlt: 170, 189, 205;
+    --themeColorBrandAlt2: 170, 189, 205;
+    --themeColorBackground: 255, 255, 255;
+    --themeColorBackgroundAlt: 0, 0, 0;
+    --themeColorText: 88, 89, 91;
+    --themeColorTextAlt: 255, 255, 255;
+    --themeColorLink: 0, 58, 82;
+
+    --themeColorSecondary1: null;
+    --themeColorSecondary2: null;
+    --themeColorSecondary3: null;
+
+    --themeBlack: 0, 0, 0;
+    --themeWhite: 255, 255, 255;
+    --themeGrey1: 243, 244, 244;
+    --themeGrey2: 167, 169, 172;
+    --themeGrey3: 88, 89, 91;
+    --themeGrey4: null; //todo - might be obsolete
+
+    --themeAccentPositive: 70, 112, 0;
+    --themeAccentPositiveAlt: 70, 112, 0;
+    --themeAccentNegative: 190, 31, 36;
+    --themeAccentNegativeAlt: 190, 31, 36;
+    --themeAccentNeutral: 235, 201, 90;
+    --themeAccentNeutralAlt: 235, 201, 90;
+
+    --themeFontFamily: robotolight;
+    --themeFontFamilyTitle: roboto_slabregular;
+    --themeFontFamilyArabic: robotolight;
+    --themeFontFamilyArabicTitle: roboto_slabregular;
+    --themeFontFamilyVietnamese: robotolight;
+    --themeFontFamilyVietnameseTitle: roboto_slabregular;
+    --themeFontSize: 100%;
+    --themeFontSize2K: 110%;
+    --themeFontSize4K: 200%;
+
+    --themeMaxLineLength: 85ch;
+    --themeMaxContentWidth: 65rem;
+
+    --themeMediaAspectRatio: 16/9;
+}
+
+// Dark theme: ensure black & white are NOT truly black & white.
+@media (prefers-color-scheme: dark) {
+    :root {
+        --themeColorBrand: 146, 141, 186;
+        --themeColorBrandAlt: 192, 189, 217;
+        --themeColorBackground: 34, 34, 34;
+        --themeColorBackgroundAlt: 243, 244, 244;
+        --themeColorText: 243, 244, 244;
+        --themeColorTextAlt: 34, 34, 34;
+        --themeColorLink: 170, 189, 205;
+
+        --themeBlack: 34, 34, 34;
+        --themeWhite: 243, 244, 244;
+    }
+}

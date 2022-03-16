@@ -1,0 +1,49 @@
+@mixin gw-breadcrumb {
+    .gw-breadcrumb {
+        background-color: #{rgba(var(--themeWhite), 0.6)};
+
+        &__item {
+            margin: 0;
+            padding-block-end: $gutter-s / 2;
+            padding-block-start: $gutter-s / 2;
+            padding-inline-end: $gutter-s;
+
+            &:first-child {
+                background-color: #{rgba(var(--themeGrey2), 0.1)};
+                margin-inline-end: $gutter-s;
+                margin-inline-start: -$gutter-s;
+                padding-block-end: $gutter-s / 2;
+                padding-block-start: $gutter-s / 2;
+                padding-inline-start: $gutter-s;
+
+                &:after {
+                    border-block-end: 1rem solid transparent;
+                    border-block-start: 1rem solid transparent;
+                    border-inline-start: 0.5rem solid #{rgba(
+                            var(--themeGrey2),
+                            0.1
+                        )};
+                    content: '';
+                    inset-inline-end: -0.5rem;
+                }
+            }
+
+            &:not(:last-child):not(:first-child):after {
+                color: $color-grey-2;
+                font-family: $font-family-title;
+                font-size: 1.25rem;
+                inset-block-start: calc(50% - 0.675rem);
+                inset-inline-start: calc(100% - #{$gutter-s} + 0.375rem);
+                width: 0.375rem;
+            }
+        }
+
+        &__link {
+            padding: $gutter-s / 2 0;
+
+            &:not([aria-current]) {
+                color: $color-text;
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+@mixin gw-news-card {
+    .gw-news-card {
+        background-color: $color-white;
+
+        &:hover {
+            .gw-card__media {
+                .gw-image {
+                    border-start-end-radius: $border-radius-small;
+                    border-start-start-radius: $border-radius-small;
+                }
+            }
+        }
+
+        .gw-toolbar__item {
+            font-size: $font-size-s;
+        }
+
+        .gw-card__title {
+            font-family: $font-family;
+            font-size: $font-size-alt;
+        }
+
+        &--block-link {
+            background-color: $color-grey-1;
+            font-weight: 200;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            .gw-card__title {
+                text-align: center;
+            }
+        }
+    }
+}

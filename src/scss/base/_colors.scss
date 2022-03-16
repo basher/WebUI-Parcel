@@ -1,0 +1,47 @@
+/*
+----------------------------------------------------------------------------
+Colors.
+
+- Please use JSDoc comments to identify all the colors.
+- This is so that when the theme is built, the 'sass-export' Node package can correctly sub-divide all the colors into appropriate groups for Storybook.
+----------------------------------------------------------------------------
+*/
+/**
+ * @sass-export-section="main theme colours"
+ */
+$color-brand: #{'rgb(var(--themeColorBrand))'} !default;
+$color-brand-alt: #{'rgb(var(--themeColorBrandAlt))'} !default;
+$color-brand-alt-2: #{'rgb(var(--themeColorBrandAlt2))'} !default;
+$color-background: #{'rgb(var(--themeColorBackground))'} !default;
+$color-background-alt: #{'rgb(var(--themeColorBackgroundAlt))'} !default;
+$color-text: #{'rgb(var(--themeColorText))'} !default;
+$color-text-alt: #{'rgb(var(--themeColorTextAlt))'} !default;
+$color-link: #{'rgb(var(--themeColorLink))'} !default;
+
+/**
+ * @sass-export-section="secondary colours"
+ */
+$color-secondary-1: #{'rgb(var(--themeColorSecondary1))'} !default;
+$color-secondary-2: #{'rgb(var(--themeColorSecondary2))'} !default;
+$color-secondary-3: #{'rgb(var(--themeColorSecondary3))'} !default;
+
+/**
+ * @sass-export-section="neutral colours"
+ */
+$color-black: #{'rgb(var(--themeBlack))'} !default;
+$color-white: #{'rgb(var(--themeWhite))'} !default;
+
+$color-grey-1: #{'rgb(var(--themeGrey1))'} !default;
+$color-grey-2: #{'rgb(var(--themeGrey2))'} !default;
+$color-grey-3: #{'rgb(var(--themeGrey3))'} !default;
+$color-grey-4: #{'rgb(var(--themeGrey4))'} !default;
+
+/**
+ * @sass-export-section="other accent colours"
+ */
+$color-positive: #{'rgb(var(--themeAccentPositive))'} !default;
+$color-positive-alt: #{'rgb(var(--themeAccentPositiveAlt))'} !default;
+$color-negative: #{'rgb(var(--themeAccentNegative))'} !default;
+$color-negative-alt: #{'rgb(var(--themeAccentNegativeAlt))'} !default;
+$color-neutral: #{'rgb(var(--themeAccentNeutral))'} !default;
+$color-neutral-alt: #{'rgb(var(--themeAccentNeutralAlt))'} !default;

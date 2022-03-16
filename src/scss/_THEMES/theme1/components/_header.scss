@@ -1,0 +1,59 @@
+@mixin kb-header {
+    .kb-header {
+        @at-root {
+            .is-js-sticky & {
+                .kb-header__search,
+                .kb-header__contact,
+                .kb-header__offers .kb-button.kb-button--text {
+                    box-shadow: none;
+                }
+            }
+        }
+        background-color: $color-white;
+        border-block-end: $border-width $border-style #{rgba(
+                var(--themeBlack),
+                0.2
+            )};
+
+        &__search,
+        &__contact {
+            @include bp-medium {
+                box-shadow: 0 -#{$border-width} 0 0 #{rgba(
+                        var(--themeBlack),
+                        0.2
+                    )};
+            }
+        }
+
+        &__offers {
+            border-radius: 0;
+
+            // Bully CSS specificity.
+            &.kb-button.kb-button--primary {
+                &[class*='--text'] {
+                    /* stylelint-disable max-nesting-depth */
+                    @include bp-medium {
+                        box-shadow: 0 -#{$border-width} 0 0 #{rgba(
+                                var(--themeBlack),
+                                0.2
+                            )};
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                    padding-inline-end: $gutter-s;
+                    padding-inline-start: $gutter-s;
+                    text-transform: uppercase;
+
+                    /* stylelint-disable max-nesting-depth */
+                    &:hover {
+                        transform: none;
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+            }
+        }
+
+        &__logo {
+            color: $color-brand;
+        }
+    }
+}

@@ -1,0 +1,138 @@
+html {
+    @include bp-2k {
+        font-size: $font-size-root-2k;
+    }
+    @include bp-4k {
+        font-size: $font-size-root-4k;
+    }
+
+    font-size: $font-size-root;
+}
+
+[dir='rtl'] {
+    font-size: $font-size-rtl-multiplier * 100%;
+}
+
+[lang='ar'] {
+    // Use :root element so it works in legacy browsers!
+    &:root {
+        --themeFontFamily: var(--themeFontFamilyArabic);
+        --themeFontFamilyTitle: var(--themeFontFamilyArabicTitle);
+    }
+}
+
+[lang='vi'] {
+    // Use :root element so it works in legacy browsers!
+    &:root {
+        --themeFontFamily: var(--themeFontFamilyVietnamese);
+        --themeFontFamilyTitle: var(--themeFontFamilyVietnameseTitle);
+    }
+}
+
+body {
+    @include fluid-type-default;
+    font-family: $font-family;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-title;
+}
+
+h1,
+.kb-h1 {
+    @at-root {
+        .kb-layout__inner > & {
+            margin-block-start: $gutter;
+        }
+    }
+    @include fluid-type-xxxl;
+    margin-block-end: $gutter-xs;
+}
+
+h2,
+.kb-h2 {
+    @include fluid-type-xxl;
+    margin-block-end: $gutter-xs;
+}
+
+h3,
+.kb-h3 {
+    @include fluid-type-xl;
+    margin-block-end: $gutter-xs;
+}
+
+h4,
+.kb-h4 {
+    @include fluid-type-l;
+    margin-block-end: $gutter-xs;
+}
+
+h5,
+h6,
+.kb-h5,
+.kb-h6 {
+    font-size: $font-size-m;
+}
+
+p {
+    margin-block-end: $gutter-s;
+}
+
+small {
+    font-size: $font-size-xs;
+}
+
+code {
+    font-family: $font-family-monospace;
+    font-size: $font-size;
+}
+
+p:not([class]),
+li:not([class]),
+dd,
+small {
+    max-width: $max-line-length;
+}
+
+address {
+    font-style: normal;
+
+    > span {
+        display: block;
+    }
+}
+
+// Makes sense to put this here in a globals Sass partial
+a {
+    @include focus-default;
+    color: $color-link;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &[href^='mailto'] {
+        overflow-wrap: anywhere;
+    }
+}
+
+hr {
+    border: none;
+    border-block-start: $border-width solid $color-brand;
+    margin: $gutter 0;
+}
+
+[aria-current] {
+    color: $color-text;
+    font-weight: bold;
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-typography) {
+    @include kb-typography;
+}

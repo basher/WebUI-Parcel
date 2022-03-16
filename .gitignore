@@ -1,0 +1,5 @@
+# UI / Parcel
+node_modules
+.cache
+.parcel-cache
+dist

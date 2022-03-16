@@ -1,0 +1,26 @@
+@mixin gw-toolbar {
+    .gw-toolbar {
+        font-family: $font-family;
+
+        .gw-icon {
+            color: $color-neutral-alt;
+            stroke: $color-neutral-alt;
+        }
+
+        .gw-button--text-icon {
+            color: $color-text;
+        }
+
+        &--stock {
+            &__compare {
+                &.is-selected {
+                    /* stylelint-disable max-nesting-depth */
+                    .gw-icon {
+                        fill: $color-neutral-alt;
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+            }
+        }
+    }
+}

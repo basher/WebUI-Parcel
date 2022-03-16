@@ -1,0 +1,117 @@
+.kb-quick-view {
+    &-grid {
+        // Ensure grid can adopt a basic "masonry" layout.
+        grid-auto-flow: dense;
+
+        // Highlight selected (product) card.
+        .kb-product-card {
+            &.is-selected {
+                border: $border-width $border-style $color-brand;
+            }
+        }
+
+        .kb-button--toggle {
+            .kb-icon {
+                /* stylelint-disable max-nesting-depth */
+                &:first-of-type {
+                    display: block;
+                }
+
+                // Production code uses a toggle button helper which renders 2 icons.
+                & + .kb-icon {
+                    display: none;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+        }
+    }
+
+    &__item {
+        @at-root {
+            [data-whatintent='keyboard'] &:focus {
+                box-shadow: 0 0 0 0.25rem $color-neutral;
+                outline: 0;
+            }
+        }
+        @include bp-large {
+            padding-block-start: 0;
+            padding-inline-end: $gutter-l;
+        }
+        border: $border-width $border-style $color-brand;
+        grid-column: 1 / -1; // Make quick view item span all grid columns.
+        padding-block-start: $gutter-l;
+        position: relative;
+    }
+
+    &__close {
+        color: $color-brand;
+        font-size: $font-size-m;
+        inset-block-start: 0;
+        inset-inline-end: 0;
+        position: absolute;
+    }
+
+    &__media {
+        @include responsive-media($aspect-ratio: 3/2, $padding: 66.667%);
+    }
+
+    &__content {
+        @include bp-large {
+            padding-inline-end: 0;
+            padding-inline-start: 0;
+        }
+        padding: 0 $gutter-s $gutter-s;
+    }
+
+    .kb-grid--asymmetric {
+        @include responsive-grid-asymmetric($col1: 45%, $col2: 55%);
+
+        // Bully specificity.
+        &.kb-grid--asymmetric {
+            margin-block-end: 0;
+        }
+    }
+
+    .kb-product-summary__name {
+        color: $color-brand;
+        font-family: $font-family-title;
+        font-size: $font-size-m;
+    }
+
+    .kb-toolbar {
+        @include bp-large {
+            margin-inline-end: 0;
+        }
+        margin-inline-end: -$gutter-s;
+        margin-inline-start: -$gutter-s;
+    }
+
+    .kb-product-specs {
+        background-color: $color-grey-1;
+        font-size: $font-size-s;
+
+        &__item {
+            background: none;
+            color: $color-text;
+            flex-grow: 0;
+            padding: $gutter-xs;
+
+            span:first-of-type {
+                @include visually-hide;
+            }
+        }
+    }
+
+    .kb-button-group {
+        margin-block-end: 0;
+
+        .kb-button {
+            margin-block-end: 0;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-quick-view) {
+    @include kb-quick-view;
+}

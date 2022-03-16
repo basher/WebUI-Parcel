@@ -1,0 +1,23 @@
+.kb-social {
+    padding: $gutter-s;
+
+    &__title {
+        @include fluid-type-xl;
+    }
+
+    &__icons {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__icon {
+        margin: $gutter-xs;
+        padding: 0;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-social) {
+    @include kb-social;
+}

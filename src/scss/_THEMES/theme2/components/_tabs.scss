@@ -1,0 +1,14 @@
+@mixin gw-tabs {
+    .gw-tabs {
+        &--vertical {
+            [aria-selected='true'] {
+                border-block-end-color: $color-brand-alt;
+                border-inline-end-color: $color-grey-1;
+            }
+        }
+    }
+
+    [role='tab'] {
+        border-radius: 0;
+    }
+}

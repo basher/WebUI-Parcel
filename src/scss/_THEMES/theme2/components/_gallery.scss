@@ -1,0 +1,24 @@
+@mixin gw-gallery {
+    .gw-gallery {
+        // Gallery (full-size images) in a modal lightbox.
+        &__modal.gw-modal__overlay {
+            .gw-modal__inner {
+                background-color: $color-white;
+                max-width: 64rem; // This is the width of a full size image
+                padding-block-start: $gutter-xl;
+            }
+
+            [data-modal-close] {
+                background-color: unset;
+                color: inherit;
+            }
+
+            .gw-image {
+                // Prevent vertical scrollbar on screens less than 960px tall.
+                @media (max-height: 60em) {
+                    max-height: 70vh;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,193 @@
+.kb-card {
+    // Default 'quiet' card (no visual treatment - e.g. background/border).
+    @include card;
+    margin-block-end: $gutter-xl;
+    padding: $gutter-xs;
+
+    &__content {
+        p:not([class]) {
+            font-size: $font-size;
+        }
+    }
+
+    &__title {
+        @at-root {
+            // Inside card grid.
+            [class*='card-grid'] & {
+                font-size: $font-size-m;
+            }
+
+            // Inside slider.
+            .kb-slider & {
+                font-size: $font-size-m;
+            }
+        }
+        @include fluid-type-l;
+
+        > a {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    // DIV wrapper for CMS content inside card (e.g. news/promotion), so make sure we have some margin.
+    &__text {
+        margin-block-end: $gutter-s;
+    }
+
+    &__actions {
+        margin-block-end: 0;
+        margin-block-start: $gutter-s;
+    }
+
+    &-slider__wrap {
+        @include bp-medium {
+            margin-inline-end: -$layout-main-bleed;
+            margin-inline-start: -$layout-main-bleed;
+        }
+
+        background-color: $color-white;
+        margin-inline-end: -$layout-main-bleed-mobile;
+        margin-inline-start: -$layout-main-bleed-mobile;
+        padding-block-end: $gutter-xl;
+        padding-block-start: $gutter-xl;
+        text-align: center;
+
+        .kb-slider--card {
+            @include bp-medium {
+                margin-inline-end: $layout-main-bleed;
+                margin-inline-start: $layout-main-bleed;
+            }
+            margin-inline-end: $layout-main-bleed-mobile;
+            margin-inline-start: $layout-main-bleed-mobile;
+        }
+
+        & + .kb-card-slider__wrap {
+            @include bp-medium {
+                margin-inline-end: 0;
+                margin-inline-start: 0;
+            }
+
+            background-color: transparent;
+            margin-inline-end: 0;
+            margin-inline-start: 0;
+
+            .kb-slider--card {
+                /* stylelint-disable max-nesting-depth */
+                @include bp-medium {
+                    margin-inline-end: 0;
+                    margin-inline-start: 0;
+                }
+                /* stylelint-enable max-nesting-depth */
+                margin-inline-end: 0;
+                margin-inline-start: 0;
+            }
+        }
+
+        .kb-card {
+            text-align: left;
+        }
+
+        [class$='--block-link'] {
+            background-color: $color-grey-1;
+            text-align: center;
+        }
+
+        .kb-slider__slides {
+            // This allows sliders with very few cards to be centered, because the parent 'kb-card-slider__wrap' has centered text.
+            display: inline-flex;
+        }
+    }
+
+    // Cards in a grid or slider.
+    /* stylelint-disable order/order */
+    @at-root {
+        .kb-slider &:not(.kb-card--fullwidth) {
+            height: 100%; // Allows 'flex-grow: 1' on '__content' to work.
+            margin-block-end: 0;
+            width: $grid-item-max-width; // Set width to be the same as cards in a grid.
+        }
+
+        [class*='card-grid'].kb-grid {
+            @include responsive-grid-columns($max-width: $grid-item-max-width);
+            justify-content: center; // So card grids have equal gutters.
+        }
+
+        [class*='card-grid'].kb-grid & {
+            height: 100%; // Allows 'flex-grow: 1' on '__content' to work.
+            margin-block-end: 0;
+            width: 100%; // Remove clamped width when card is in a grid.
+        }
+    }
+    /* stylelint-enable order/order */
+
+    // When cards are in a grid, and there's additional content (e.g. headings, CTAs).
+    &-grid__wrap {
+        .kb-grid {
+            margin-block-end: $gutter-xl;
+        }
+
+        > h2 {
+            text-align: center;
+        }
+    }
+
+    // Quiet card.
+    &--quiet {
+        @at-root {
+            [data-whatintent='mouse'] &:hover,
+            [data-whatintent='keyboard'] &:focus-within,
+            [data-whatintent='touch'] &:focus-within {
+                box-shadow: none;
+                transform: none;
+                transition: none;
+            }
+        }
+        // Explicitly (reset) background & border.
+        background-color: transparent;
+        border: 0;
+    }
+
+    // Fullwidth card.
+    &--fullwidth {
+        @at-root {
+            [data-whatintent='mouse'] &:hover,
+            [data-whatintent='keyboard'] &:focus-within,
+            [data-whatintent='touch'] &:focus-within {
+                box-shadow: none;
+                transform: none;
+                transition: none;
+            }
+        }
+        @include bp-medium {
+            margin-block-end: $gutter-xl;
+            max-width: $layout-max-width;
+        }
+        height: auto;
+        margin-inline-end: auto;
+        margin-inline-start: auto;
+
+        // Extra specificity to override style in Sass mixin.
+        &[class*='--media-inline'] {
+            @include bp-medium {
+                column-gap: $gutter-xl;
+            }
+        }
+
+        .kb-card__content {
+            @include bp-medium {
+                padding: 0;
+            }
+            padding: 0 $gutter-s;
+            width: auto;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-card) {
+    @include kb-card;
+}

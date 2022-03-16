@@ -1,0 +1,94 @@
+@mixin kb-quick-view {
+    .kb-quick-view {
+        background-color: $color-white;
+
+        &__item {
+            background-color: $color-white;
+            border-radius: $border-radius-small;
+            box-shadow: 0 0.625rem 0.625rem #{rgba(var(--themeBlack), 0.1)};
+        }
+
+        .kb-product-specs {
+            @at-root {
+                .kb-quick-view__item & {
+                    /* stylelint-disable max-nesting-depth */
+                    @include bp-large {
+                        margin-inline-end: -$gutter-l;
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                    margin-inline-end: -$gutter-s;
+                }
+            }
+            @include bp-large {
+                margin-inline-start: -$gutter;
+                padding-inline-start: $gutter-l - $gutter-s;
+            }
+            margin-inline-start: -$gutter-s;
+            padding-inline-end: $gutter - $gutter-s;
+            padding-inline-start: $gutter - $gutter-s;
+        }
+
+        .kb-product-summary__name {
+            span {
+                font-family: $font-family;
+                font-size: $font-size;
+                text-transform: none;
+            }
+        }
+
+        .kb-product-summary__price {
+            font-size: $font-size-m;
+            font-weight: 700;
+        }
+
+        .kb-product-summary__finance {
+            font-size: $font-size;
+        }
+
+        .kb-product-summary__price--extra,
+        .kb-product-summary__smallprint {
+            font-size: $font-size-xs;
+        }
+
+        .kb-button-group {
+            justify-content: flex-end;
+        }
+
+        &-grid {
+            // Bully specificity.
+            .kb-button.kb-button--toggle {
+                &.is-selected {
+                    box-shadow: none;
+                }
+            }
+
+            .kb-product-card {
+                &.is-selected {
+                    position: relative;
+
+                    /* stylelint-disable max-nesting-depth */
+                    &:before,
+                    &:after {
+                        border: $border-style transparent;
+                        border-block-start-color: $color-brand;
+                        border-width: 1rem 1rem 0 1rem;
+                        content: '';
+                        height: 0;
+                        inset-block-end: -1rem;
+                        position: absolute;
+                        transform: translateX(calc(-50% + 0.0625rem));
+                        width: 0;
+                    }
+
+                    &:after {
+                        border-block-start-color: $color-grey-1;
+                        border-width: 0.9375rem 0.9375rem 0 0.9375rem;
+                        bottom: -0.9375rem;
+                        transform: translateX(-50%);
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+            }
+        }
+    }
+}

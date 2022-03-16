@@ -1,0 +1,166 @@
+@mixin gw-slider {
+    .gw-slider {
+        padding-block-end: $gutter-l + $gutter-xs;
+
+        [data-button-type] {
+            border-radius: $border-radius-small;
+            inset-block-end: 0;
+            inset-block-start: auto;
+        }
+
+        [data-button-type='next'] {
+            @at-root {
+                /* stylelint-disable max-nesting-depth */
+                [dir='rtl'] & {
+                    transform: translateX(-100%);
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+            background-color: $color-brand;
+            inset-inline-end: 48%;
+            transform: translateX(100%);
+        }
+
+        [data-button-type='previous'] {
+            @at-root {
+                /* stylelint-disable max-nesting-depth */
+                [dir='rtl'] & {
+                    transform: translateX(100%);
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+            background-color: #{rgba(var(--themeColorBrand), 0.6)};
+            // background-color: #{rgba(var(--themeColorBackgroundAlt), 0.8)};
+            inset-inline-end: auto;
+            inset-inline-start: 48%;
+            transform: translateX(-100%);
+        }
+
+        [role='tab'] {
+            background-color: $color-grey-1;
+        }
+
+        [role='tab'][aria-selected='true'] {
+            border-color: $color-white;
+        }
+
+        &--no-buttons {
+            margin-block-end: $gutter-l;
+            padding-block-end: 0;
+        }
+
+        [role='tablist'] {
+            display: none;
+        }
+
+        &.gw-gallery--gallery2,
+        &--banner {
+            padding-block-end: 0;
+
+            /* stylelint-disable no-descending-specificity */
+            [data-button-type] {
+                background-color: $color-brand;
+                bottom: $gutter-s;
+                inset-block-end: $gutter-xs;
+                inset-block-start: auto;
+            }
+
+            [data-button-type='next'] {
+                @at-root {
+                    /* stylelint-disable max-nesting-depth */
+                    [dir='rtl'] & {
+                        border-radius: $border-radius 0 0 $border-radius;
+                        transform: translateX(-100%);
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+                // background-color: #{rgba(var(--themeColorBackgroundAlt), 0.8)};
+                border-radius: 0 $border-radius $border-radius 0;
+                inset-inline-end: 50%;
+                transform: translateX(100%);
+            }
+
+            [data-button-type='previous'] {
+                @at-root {
+                    /* stylelint-disable max-nesting-depth */
+                    [dir='rtl'] & {
+                        border-radius: 0 $border-radius $border-radius 0;
+                        transform: translateX(100%);
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+                background-color: $color-brand;
+                border-radius: $border-radius 0 0 $border-radius;
+                inset-inline-end: auto;
+                inset-inline-start: 50%;
+                transform: translateX(-100%);
+            }
+
+            &-thumbs {
+                padding-block-end: $gutter-l + $gutter-xs;
+
+                [data-button-type] {
+                    border-radius: $border-radius-small;
+                    inset-block-end: 0;
+                }
+
+                [data-button-type='next'] {
+                    background-color: $color-brand;
+                    inset-inline-end: calc(50% - #{$gutter-s});
+                }
+
+                [data-button-type='previous'] {
+                    inset-inline-end: auto;
+                    inset-inline-start: calc(50% - #{$gutter-s});
+                }
+            }
+            /* stylelint-enable no-descending-specificity */
+        }
+
+        &--banner {
+            // TODO: Hard-coded overlay gradient. CMS will have new option added to supply gradient based on banner image darkness.
+            @include bp-medium {
+                .gw-slider__slides {
+                    z-index: z('reset');
+                }
+
+                .gw-banner--hero:before {
+                    background: linear-gradient(
+                        to bottom,
+                        #{rgba(var(--themeBlack), 0.4)},
+                        #{rgba(var(--themeBlack), 0)}
+                    );
+                    content: '';
+                    height: 100%;
+                    inset-block-start: 0;
+                    inset-inline-start: 0;
+                    position: absolute;
+                    width: 100%;
+                    z-index: z('default');
+                }
+
+                .gw-banner__overlay {
+                    background-color: transparent;
+                    z-index: z('default');
+                }
+            }
+
+            .gw-slider__slide {
+                @at-root {
+                    /* stylelint-disable max-nesting-depth */
+                    [data-whatintent='touch'] &:focus {
+                        background-color: $color-brand;
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+
+                @include bp-medium {
+                    background-color: transparent;
+                    padding-block-end: 0;
+                }
+                background-color: $color-brand;
+                padding-block-end: $gutter-l;
+            }
+        }
+    }
+}

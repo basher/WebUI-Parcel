@@ -1,0 +1,31 @@
+@mixin kb-product-search-results {
+    .kb-product-search-results {
+        [data-id='stock-compare'] {
+            font-family: $font-family;
+
+            .kb-icon {
+                stroke: $color-neutral-alt;
+            }
+
+            &.is-selected {
+                .kb-icon {
+                    fill: $color-neutral-alt;
+                }
+            }
+        }
+
+        [data-id='products-filter-button'] {
+            color: $color-brand;
+            font-family: $font-family;
+
+            &.is-selected {
+                background-color: transparent;
+                color: inherit;
+            }
+        }
+
+        .kb-form__select {
+            background-color: $color-white;
+        }
+    }
+}

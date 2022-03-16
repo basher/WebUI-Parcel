@@ -1,0 +1,8 @@
+@mixin page-16-stock-detail {
+    .page-16,
+    .page-8 {
+        .kb-product-specs__item {
+            font-family: $font-family-title;
+        }
+    }
+}

@@ -1,0 +1,88 @@
+// Apply responsive behaviour as per 'kb-responsive-media' component.
+.kb-map {
+    /* stylelint-disable order/order, property-no-unknown */
+    @include bp-xsmall {
+        height: 35%;
+    }
+    @include bp-medium {
+        height: 50%;
+    }
+    @include bp-large {
+        height: 100%;
+    }
+    height: 50%;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    position: absolute;
+    width: 100%;
+
+    @supports (aspect-ratio: auto) {
+        @include bp-large {
+            aspect-ratio: $map-aspect-ratio;
+        }
+        aspect-ratio: var(--themeMediaAspectRatio);
+        height: unset;
+        position: unset;
+    }
+
+    // Parent wrapper (e.g. a fullbleed DIV).
+    &__wrap {
+        @include bp-xsmall {
+            padding-block-start: 50%;
+        }
+        @include bp-medium {
+            padding-block-start: 45%;
+        }
+        @include bp-large {
+            padding-block-start: 40%;
+        }
+        background-color: $color-grey-1;
+        margin-block-end: $gutter;
+        overflow: hidden;
+        padding-block-start: 60%; // Old browsers.
+        position: relative;
+
+        @supports (aspect-ratio: auto) {
+            padding-block-start: unset;
+        }
+    }
+
+    &__overlay {
+        @include bp-large {
+            background-color: #{rgba(var(--themeColorBackground), 0.9)};
+            inset-block-start: $gutter;
+            inset-inline-start: $layout-main-bleed;
+            max-width: 33%;
+            position: absolute;
+        }
+        max-width: none;
+        position: relative;
+
+        .kb-contact-card {
+            @include bp-medium {
+                padding: $gutter-s $layout-main-bleed;
+            }
+            @include bp-large {
+                padding: $gutter-s;
+            }
+            background-color: transparent;
+            border: 0;
+            margin-block-end: 0;
+            max-width: none;
+            padding: $gutter-s $layout-main-bleed-mobile;
+            width: 100%;
+        }
+
+        address {
+            br:last-child {
+                display: none;
+            }
+        }
+    }
+    /* stylelint-enable order/order, property-no-unknown */
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-map) {
+    @include kb-map;
+}

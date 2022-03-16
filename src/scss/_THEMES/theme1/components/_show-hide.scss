@@ -1,0 +1,7 @@
+@mixin kb-show-hide {
+    .kb-show-hide {
+        .kb-button {
+            @include button-secondary;
+        }
+    }
+}

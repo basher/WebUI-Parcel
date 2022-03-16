@@ -1,0 +1,10 @@
+@mixin gw-social {
+    .gw-social {
+        background-color: $color-white;
+        text-align: center;
+
+        &__icons {
+            justify-content: center;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+@mixin kb-product-specs {
+    .kb-product-specs {
+        .kb-button {
+            border-radius: 0;
+
+            // Bully CSS specificity.
+            &.kb-button--primary {
+                &[class*='--text'] {
+                    box-shadow: none;
+                    padding: $gutter-s;
+
+                    /* stylelint-disable max-nesting-depth */
+                    &:hover {
+                        transform: none;
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+            }
+        }
+    }
+}

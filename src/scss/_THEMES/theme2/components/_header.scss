@@ -1,0 +1,76 @@
+@mixin gw-header {
+    .gw-header {
+        @at-root {
+            .is-js-sticky & {
+                .gw-header__search,
+                .gw-header__contact,
+                .gw-header__offers .gw-button.gw-button--text {
+                    box-shadow: none;
+                }
+            }
+        }
+
+        @include bp-small {
+            grid-template-areas:
+                'home nav . logo'
+                'offers offers contact contact'
+                'search search search search';
+            grid-template-columns: auto auto auto minmax(50vw, 1fr);
+        }
+
+        background-color: $color-white;
+        border-block-end: $border-width $border-style #{rgba(
+                var(--themeBlack),
+                0.2
+            )};
+
+        &__search,
+        &__contact {
+            @include bp-medium {
+                box-shadow: 0 -#{$border-width} 0 0 #{rgba(
+                        var(--themeBlack),
+                        0.2
+                    )};
+            }
+        }
+
+        &__offers {
+            border-radius: 0;
+
+            // Bully CSS specificity.
+            &.gw-button.gw-button--primary {
+                &[class*='--text'] {
+                    /* stylelint-disable max-nesting-depth */
+                    @include bp-medium {
+                        box-shadow: 0 -#{$border-width} 0 0 #{rgba(
+                                var(--themeBlack),
+                                0.2
+                            )};
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                    padding-inline-end: $gutter-s;
+                    padding-inline-start: $gutter-s;
+                    text-transform: uppercase;
+
+                    /* stylelint-disable max-nesting-depth */
+                    &:hover {
+                        transform: none;
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+            }
+        }
+
+        &__logo {
+            color: $color-brand;
+        }
+
+        &__home {
+            .gw-image {
+                @include bp-xsmall {
+                    height: $icon-size-home-mobile;
+                }
+            }
+        }
+    }
+}

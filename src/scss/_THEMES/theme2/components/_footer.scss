@@ -1,0 +1,21 @@
+@mixin gw-footer {
+    .gw-footer {
+        &--supplementary {
+            .gw-social {
+                background-color: transparent;
+
+                &__title {
+                    text-transform: none;
+                }
+
+                &__icons {
+                    justify-content: flex-start;
+                }
+            }
+        }
+
+        &__group-title {
+            color: inherit;
+        }
+    }
+}

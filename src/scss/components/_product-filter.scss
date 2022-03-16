@@ -1,0 +1,139 @@
+.kb-product-filter {
+    // Override default 'kb-tabs' behaviour.
+    &.kb-tabs {
+        .kb-tabs__tablist {
+            @include bp-medium {
+                padding-inline-end: $nav-dropdown-gutter;
+                padding-inline-start: $nav-dropdown-gutter;
+            }
+            background-color: $color-brand;
+            margin-block-end: $gutter;
+        }
+
+        .kb-tabs__button {
+            border: 0;
+            border-block-end: transparent $border-width-l $border-style;
+            color: $color-text-alt;
+            padding: $gutter-xs 0;
+
+            &[aria-selected='true'] {
+                background-color: $color-brand;
+                border-color: inherit;
+            }
+        }
+
+        &.is-js-enabled {
+            .kb-tabs__content {
+                border: 0;
+                padding: 0;
+            }
+        }
+    }
+
+    // This is when filter tabs become accordion on smaller screens.
+    &.kb-accordion {
+        .kb-accordion__button {
+            color: $color-brand;
+
+            &:hover {
+                background-color: transparent;
+            }
+        }
+
+        .kb-accordion__content {
+            margin-block-end: $gutter;
+        }
+    }
+
+    .kb-grid {
+        @include responsive-grid-columns(
+            $auto-layout: auto-fill,
+            $max-width: 12.5rem
+        );
+        margin-block-end: $gutter-s;
+    }
+
+    // Alternate filter, where tabs look like toggle buttons on larger screens.
+    &--alt {
+        @include bp-medium {
+            &.kb-tabs {
+                /* stylelint-disable max-nesting-depth */
+                .kb-tabs__tablist {
+                    background-color: transparent;
+                }
+
+                .kb-tabs__button {
+                    border: $border-width $border-style $color-brand;
+                    color: $color-brand;
+                    padding: $gutter-xs;
+                    width: auto;
+
+                    &[aria-selected='true'] {
+                        background-color: $color-brand;
+                        border-color: $color-brand;
+                        color: $color-text-alt;
+                    }
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+        }
+    }
+
+    // Vertical filter.
+    &.kb-tabs--vertical {
+        margin-block-end: $gutter-s;
+
+        &.is-js-enabled {
+            @include bp-medium {
+                max-height: 75vh;
+            }
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-inline-end: $gutter-s; // So scrollbar doesn't overlay accordion buttons.
+        }
+
+        .kb-tabs__tablist {
+            @include bp-medium {
+                padding-inline-end: 0;
+                padding-inline-start: 0;
+            }
+            background-color: $color-white;
+            justify-content: flex-start;
+            margin-block-end: 0;
+            margin-inline-end: $gutter;
+            padding-block-start: $gutter-xs;
+        }
+
+        .kb-tabs__button {
+            border: 0;
+            color: $color-brand;
+            font-size: $font-size-s;
+            margin-inline-start: $gutter-xs;
+            padding-block-end: $gutter-xs / 2;
+            padding-block-start: $gutter-xs / 2;
+            padding-inline-end: $gutter-s;
+            padding-inline-start: $gutter-s - $gutter-xs;
+            text-align: inherit;
+            width: calc(100% - #{$gutter-xs});
+
+            &[aria-selected='true'] {
+                background-color: $color-grey-1;
+            }
+        }
+
+        /* stylelint-disable no-descending-specificity */
+        .kb-tabs__content {
+            margin-block-start: $gutter-xs;
+        }
+        /* stylelint-enable no-descending-specificity */
+        .kb-grid {
+            align-items: center;
+            gap: $gutter-xs;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-product-filter) {
+    @include kb-product-filter;
+}

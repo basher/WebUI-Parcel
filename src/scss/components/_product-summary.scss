@@ -1,0 +1,54 @@
+.kb-product-summary {
+    > * {
+        margin-block-end: $gutter-xs;
+    }
+
+    &__name {
+        span {
+            display: block;
+            word-wrap: break-word;
+        }
+    }
+
+    &__name:not(h1) {
+        @include fluid-type-default;
+        font-family: $font-family;
+        font-size: $font-size-m;
+    }
+
+    &__price {
+        font-size: $font-size-l;
+        margin-block-end: 0;
+
+        &--extra {
+            font-size: $font-size-s;
+
+            span:not(:empty) {
+                position: relative;
+
+                /* stylelint-disable max-nesting-depth */
+                &:after {
+                    content: '.';
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+        }
+    }
+
+    &__finance {
+        font-size: $font-size-m;
+    }
+
+    &__smallprint {
+        font-size: $font-size-s;
+
+        .kb-table {
+            font-size: $font-size;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-product-summary) {
+    @include kb-product-summary;
+}

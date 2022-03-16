@@ -1,0 +1,29 @@
+@mixin kb-toolbar {
+    .kb-toolbar {
+        .kb-icon {
+            color: $color-neutral-alt;
+            stroke: $color-neutral-alt;
+        }
+
+        &--stock {
+            &__location {
+                font-family: $font-family-title;
+            }
+
+            &__compare {
+                &.is-selected {
+                    /* stylelint-disable max-nesting-depth */
+                    .kb-icon {
+                        fill: $color-neutral-alt;
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+            }
+        }
+
+        &__item {
+            font-family: $font-family-title;
+            text-transform: uppercase;
+        }
+    }
+}

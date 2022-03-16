@@ -1,0 +1,77 @@
+@mixin kb-button {
+    .kb-button {
+        &:disabled {
+            color: $color-grey-2;
+
+            &.kb-button--primary,
+            &.kb-button--secondary,
+            &.kb-button--positive,
+            &.kb-button--negative {
+                &[class*='--text'] {
+                    background-color: $color-grey-2;
+                    border-color: $color-grey-2;
+                    box-shadow: none;
+                    color: $color-text-alt;
+                }
+            }
+        }
+
+        &[class*='--text'] {
+            @at-root {
+                [data-whatintent='keyboard'] &:focus {
+                    box-shadow: inset 0 0 0 0.25rem $color-neutral;
+                }
+            }
+            background-color: transparent;
+            border-color: transparent;
+            font-family: $font-family-title;
+            font-weight: normal;
+            padding-inline-end: $gutter;
+            padding-inline-start: $gutter;
+
+            &.kb-button--primary,
+            &.kb-button--positive {
+                @include button-primary;
+            }
+
+            &.kb-button--secondary,
+            &.kb-button--negative {
+                @include button-secondary;
+            }
+
+            &.kb-button--toggle {
+                @include button-secondary;
+
+                &.is-selected {
+                    @include button-primary;
+                    /* stylelint-disable max-nesting-depth */
+                    @at-root {
+                        [data-whatintent='keyboard'] &:focus {
+                            box-shadow: inset 0 0 0 0.25rem $color-neutral;
+                        }
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+            }
+
+            &:hover {
+                text-decoration: underline;
+
+                &:disabled {
+                    text-decoration: none;
+                }
+
+                &:not(:disabled) {
+                    /* stylelint-disable max-nesting-depth */
+                    &.kb-button--positive,
+                    &.kb-button--negative {
+                        opacity: 1;
+                        text-decoration: none;
+                        transform: scale(1.025);
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+            }
+        }
+    }
+}

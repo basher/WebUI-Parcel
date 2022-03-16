@@ -1,0 +1,80 @@
+{
+  "name": "web-ui-parcel",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "@swc/helpers": "^0.2.12",
+    "abortcontroller-polyfill": "^1.5.0",
+    "core-js": "^3.21.0",
+    "domready": "^1.0.8",
+    "hoverintent": "^2.2.1",
+    "intersection-observer": "^0.10.0",
+    "what-input": "^5.2.7",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.21.0",
+    "@typescript-eslint/parser": "^2.21.0",
+    "autoprefixer": "^9.8.6",
+    "cheerio": "^1.0.0-rc.10",
+    "colors": "^1.4.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "fs-extra": "^9.1.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "parcel": "^2.0.0",
+    "postcss": "^8.3.6",
+    "postcss-dir-pseudo-class": "^5.0.0",
+    "postcss-logical": "^4.0.2",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.1",
+    "sass-export": "^2.1.0",
+    "stylelint": "^14.0.1",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended-scss": "^5.0.1",
+    "stylelint-order": "^4.1.0",
+    "stylelint-prettier": "^1.2.0",
+    "typescript": "^4.4.2"
+  },
+  "scripts": {
+    "ui-theme": "node ./src/scripts/ui-theme",
+    "rename-static-assets": "node ./src/scripts/rename-static-assets",
+    "copy-static-assets": "node ./src/scripts/copy-static-assets",
+    "sass-export-colors": "sass-export src/scss/base/_colors.scss -o dist/exported-colors.json",
+    "sass-export-typography": "sass-export src/scss/base/_type.scss -o dist/exported-typography.json",
+    "start:theme": "set NODE_ENV=DEV && npm run sass-export-colors && npm run sass-export-typography && npm run ui-theme $npm_package_config_theme && npm start",
+    "start": "parcel src/ts/index.ts --port 1234 --no-hmr --target app",
+    "build:theme": "set NODE_ENV=PROD && npm run ui-theme $npm_package_config_theme && npm run copy-static-assets $npm_package_config_theme && npm run build",
+    "build": "parcel build index.html --dist-dir dist/theme-build",
+    "postbuild": "npm run rename-static-assets",
+    "build:theme-storybook": "set NODE_ENV=PROD && npm run sass-export-colors && npm run sass-export-typography && npm run ui-theme $npm_package_config_theme && npm run copy-static-assets $npm_package_config_theme && npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/**/*.scss": [
+      "stylelint --custom-syntax postcss-scss",
+      "prettier --write"
+    ]
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "targets": {
+    "app": {}
+  }
+}

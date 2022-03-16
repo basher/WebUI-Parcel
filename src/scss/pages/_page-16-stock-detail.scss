@@ -1,0 +1,77 @@
+// Stock detail. The 2 page-specific class names refer to new stock & pre-owned stock.
+.page-16,
+.page-8 {
+    .kb-layout__fullbleed {
+        .kb-responsive-media {
+            margin-inline-end: auto;
+            margin-inline-start: auto;
+            max-width: $layout-max-width;
+        }
+    }
+
+    .kb-cms,
+    .kb-cms__content-text {
+        @include layout-centered-content;
+    }
+
+    h1[id] {
+        @include bp-large {
+            display: block;
+        }
+        display: none;
+    }
+
+    .kb-product-summary {
+        &__name.is-hidden-on-large {
+            margin-block-end: -$gutter-s;
+        }
+
+        &__price--extra {
+            margin-block-start: $gutter-xs;
+        }
+    }
+
+    .kb-grid--asymmetric {
+        margin-block-start: $layout-content-gutter-top;
+        margin-inline-end: auto;
+        margin-inline-start: auto;
+        max-width: 106rem;
+    }
+
+    .kb-toolbar--stock {
+        margin-inline-end: -$gutter-s;
+        margin-inline-start: -$gutter-s;
+    }
+
+    .kb-product-specs {
+        margin-block-end: $gutter-l;
+        margin-block-start: $gutter-l;
+
+        &__item {
+            background-color: transparent;
+            color: inherit;
+            flex-grow: 0;
+            margin-inline-end: $gutter-s;
+            padding: 0;
+
+            span:first-of-type {
+                @include visually-hide;
+            }
+        }
+    }
+
+    .kb-accordion {
+        margin-inline-end: auto;
+        margin-inline-start: auto;
+        max-width: $layout-max-width;
+    }
+
+    .kb-card-slider__wrap[aria-labelledby='similar-vehicles'] {
+        background-color: $color-grey-1;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(page-16-stock-detail) {
+    @include page-16-stock-detail;
+}

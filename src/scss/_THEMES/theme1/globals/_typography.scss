@@ -1,0 +1,57 @@
+@mixin kb-typography {
+    body {
+        @include fluid-type-default(
+            $min: $font-size-s,
+            $ideal: calc(0.85rem + #{$fluid-type-target}),
+            $max: $font-size
+        );
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 200;
+        letter-spacing: 0.01875rem;
+        text-transform: uppercase;
+    }
+
+    h5 {
+        font-size: $font-size-m;
+    }
+
+    h6 {
+        font-size: inherit;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        color: $color-brand;
+
+        > a {
+            color: $color-brand-alt;
+        }
+    }
+
+    /* stylelint-disable no-descending-specificity */
+    a {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:not([class]) {
+            color: $color-brand-alt;
+        }
+    }
+    /* stylelint-enable no-descending-specificity */
+    [aria-current] {
+        color: $color-brand-alt;
+        font-weight: normal;
+    }
+}

@@ -1,0 +1,45 @@
+/*
+----------------------------------------------------------------------------
+Grid - for internal gallery or grid layouts.
+----------------------------------------------------------------------------
+*/
+
+.kb-grid {
+    @include responsive-grid-columns;
+    @include responsive-grid;
+    // Hmmm. Need to be specific for UL to override 'reset.scss'.
+    @at-root {
+        ul.kb-grid {
+            margin-block-end: $gutter-xl;
+        }
+    }
+    margin-block-end: $gutter-xl;
+
+    > li {
+        max-width: none; // Override LI max-width in CSS reset.
+    }
+
+    // 0 gap between grid items.
+    &--no-gap {
+        @include responsive-grid($gap: 0);
+    }
+
+    // Center align grid columns (uses Flexbox instead of Grid).
+    &--centered {
+        @include responsive-grid($centered: true);
+    }
+
+    // Asymmetric 2-col grid.
+    &--asymmetric {
+        @include responsive-grid-asymmetric;
+    }
+
+    &--asymmetric-alt {
+        @include responsive-grid-asymmetric($alt-layout: true);
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-grid) {
+    @include kb-grid;
+}

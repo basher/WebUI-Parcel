@@ -1,0 +1,18 @@
+// News list.
+.page-19 {
+    .kb-cms {
+        @include layout-centered-content;
+    }
+
+    .kb-layout__inner {
+        > .kb-layout__has-max-width:first-of-type,
+        > .kb-cms:first-of-type {
+            margin-block-start: $gutter-xl;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(page-19-news-list) {
+    @include page-19-news-list;
+}

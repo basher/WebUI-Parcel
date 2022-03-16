@@ -1,0 +1,16 @@
+.kb-responsive-media {
+    @at-root {
+        .kb-banner &,
+        .kb-card &,
+        [class*='kb-grid'] & {
+            margin-block-end: 0;
+        }
+    }
+    @include responsive-media;
+    margin-block-end: $gutter-xl;
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-responsive-media) {
+    @include kb-image;
+}

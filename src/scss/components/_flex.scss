@@ -1,0 +1,133 @@
+.kb-flex {
+    display: flex;
+    flex-wrap: wrap;
+
+    > * {
+        margin-block-end: $gutter-xs;
+        margin-inline-end: $gutter-xs;
+    }
+
+    > :last-child {
+        margin-block-end: 0;
+        margin-inline-end: 0;
+    }
+
+    // Direction.
+    &--column {
+        flex-direction: column;
+
+        > * {
+            margin-inline-end: 0;
+        }
+    }
+
+    &--row-reverse {
+        flex-direction: row-reverse;
+
+        > * {
+            margin-inline-end: 0;
+            margin-inline-start: $gutter-xs;
+        }
+
+        > :last-child {
+            margin-inline-start: 0;
+        }
+    }
+
+    &--column-reverse {
+        flex-direction: column-reverse;
+
+        > * {
+            margin-inline-end: 0;
+        }
+
+        > :first-child {
+            margin-block-end: 0;
+        }
+
+        > :last-child {
+            margin-block-end: $gutter-xs;
+        }
+    }
+
+    // Justification.
+    &--justify-end {
+        justify-content: flex-end;
+
+        > * {
+            margin-inline-end: 0;
+            margin-inline-start: $gutter-xs;
+        }
+
+        > :first-child {
+            margin-inline-start: 0;
+        }
+
+        // Just in case someone combines these 2!
+        &.kb-flex--row-reverse {
+            > * {
+                margin-inline-end: $gutter-xs;
+                margin-inline-start: 0;
+            }
+
+            > :first-child {
+                margin-inline-end: 0;
+            }
+        }
+    }
+
+    &--justify-space-between {
+        justify-content: space-between;
+    }
+
+    &--justify-center {
+        justify-content: center;
+    }
+
+    &--justify-space-between,
+    &--justify-center {
+        margin-inline-end: -$gutter-xs / 2;
+        margin-inline-start: -$gutter-xs / 2;
+
+        /* stylelint-disable no-descending-specificity */
+        > *,
+        > :first-child,
+        > :last-child {
+            margin-inline-end: $gutter-xs / 2;
+            margin-inline-start: $gutter-xs / 2;
+        }
+        /* stylelint-enable no-descending-specificity */
+    }
+
+    // Alignment.
+    &--align-flex-start {
+        align-items: flex-start;
+    }
+
+    &--align-flex-end {
+        align-items: flex-end;
+
+        /* stylelint-disable no-descending-specificity */
+        > * {
+            margin-block-end: 0;
+            margin-block-start: $gutter-xs;
+        }
+        /* stylelint-enable no-descending-specificity */
+    }
+
+    &--align-center {
+        align-items: center;
+
+        /* stylelint-disable no-descending-specificity */
+        > * {
+            margin-block-end: $gutter-xs / 2;
+            margin-block-start: $gutter-xs / 2;
+        }
+        /* stylelint-enable no-descending-specificity */
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-flex) {
+    @include kb-flex;
+}

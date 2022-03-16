@@ -1,0 +1,9 @@
+// Multi-franchise pages
+[class^='franchise'] {
+    //
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(franchise) {
+    @include franchise;
+}

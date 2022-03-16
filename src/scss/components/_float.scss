@@ -1,0 +1,26 @@
+.kb-float {
+    &::before,
+    &::after {
+        @include clearfix;
+    }
+
+    &__content {
+        @at-root {
+            .kb-float--reverse & {
+                float: inline-end;
+                margin-inline-end: 0;
+                margin-inline-start: $gutter-s;
+            }
+        }
+        float: inline-start;
+        margin-inline-end: $gutter-s;
+        margin-block-end: $gutter-s;
+        max-width: 64rem; // 1024px is a sensible max value.
+        width: 50%;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-float) {
+    @include kb-float;
+}

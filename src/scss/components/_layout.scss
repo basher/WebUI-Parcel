@@ -1,0 +1,255 @@
+/*
+----------------------------------------------------------------------------
+Layout - at template/page level.
+
+Try *NOT* to add visual styles for components inside the layout structural elements (e.g. nav, search). Instead, use separate Sass partials for doing that. This file should be for layout/structure only.
+----------------------------------------------------------------------------
+*/
+@mixin overlay {
+    background-color: #{rgba(var(--themeColorBackgroundAlt), 0.6)};
+    display: none;
+    height: 100vh;
+    inset-block-end: 0;
+    inset-block-start: -100vh;
+    inset-inline-end: 0;
+    inset-inline-start: 0;
+    position: absolute;
+    z-index: z('modal');
+}
+
+.kb-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 auto;
+    min-height: 100vh;
+
+    &__header__overlay {
+        @include overlay;
+
+        // For branch rotator (in 2nd row of header).
+        /* stylelint-disable max-nesting-depth */
+        @at-root {
+            .has-open-overlay--alt & {
+                @include bp-medium {
+                    inset-block-start: $layout-overlay-offset * 2;
+                }
+                height: 100vh;
+                inset-block-start: $layout-overlay-offset-mobile * 2;
+            }
+
+            // Sticky header. Adjust branch rotator position as it's now in 1st row of header.
+            .is-js-sticky.has-open-overlay--alt & {
+                @include bp-medium {
+                    inset-block-start: $layout-overlay-offset - $gutter-xs;
+                }
+            }
+        }
+        /* stylelint-enable max-nesting-depth */
+
+        // For site navigation (in 1st row of header).
+        @include bp-medium {
+            inset-block-start: $layout-overlay-offset;
+        }
+        height: 100vh;
+        inset-block-start: $layout-overlay-offset-mobile;
+    }
+
+    // For sticky footer.
+    &__footer__overlay {
+        @include overlay;
+    }
+
+    // Internal wrapper - acts as an additional styling hook (e.g. if <header> or <footer> are 100% wide, but internal content needs constraining).
+    &__inner {
+        height: 100%; // TODO. Height might be redundant now that we don't have specific 'multicols' layouts in page templates?
+    }
+
+    &__header {
+        &.has-open-overlay {
+            .kb-layout__header__overlay {
+                display: block;
+            }
+
+            ~ .kb-layout__sticky--footer {
+                z-index: z('default') - 1;
+            }
+        }
+    }
+
+    &__footer {
+        // Sticky footer in old browsers has 'position: fixed' instead, so it overlays the footer. Need to push footer away by the height of the stick footer.
+        margin-block-end: $layout-sticky-footer-height;
+
+        /* stylelint-disable order/order */
+        @supports (position: sticky) {
+            margin-block-end: 0; // Reset margin for truly 'sticky' footer.
+        }
+        /* stylelint-enable order/order */
+    }
+
+    &__main {
+        @include bp-large {
+            // So content not hidden below sticky header when skiplink is clicked.
+            scroll-margin: 1px 0 0;
+        }
+        flex-grow: 1;
+        position: relative;
+        width: 100%;
+        z-index: z('reset'); // So overlays (e.g. nav menu) can sit above.
+
+        > .kb-layout__inner {
+            @include bp-medium {
+                padding: 0 $layout-main-bleed;
+                padding-block-end: $gutter-xl;
+            }
+            padding: 0 $layout-main-bleed-mobile;
+            padding-block-end: $gutter-s;
+
+            > :last-child {
+                // We don't want to compound the padding-block-end on parent container with extra margin.
+                margin-block-end: 0;
+            }
+        }
+    }
+
+    &__sticky {
+        z-index: z('default');
+
+        // Manage sticky positioning via JS intersection observer.
+        &.is-js-sticky {
+            width: 100%; // Old browsers.
+
+            // Sticky header only when media queries are matched.
+            &[class*='--header'] {
+                /* stylelint-disable max-nesting-depth */
+                @media (min-width: $bp-small) and (orientation: portrait),
+                    (min-width: $bp-large) and (orientation: landscape) {
+                    position: static; // Old browsers. No sticky, so we don't have to fight nav styling to work as per mobile on larger screens!
+                    position: sticky;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+
+            &[class*='--footer'] {
+                position: fixed; // Old browsers. No sticky, but footer form overlay still has to be able to open over fixed footer.
+                position: sticky;
+            }
+        }
+
+        &--header {
+            inset-block-start: 0;
+        }
+
+        /* stylelint-disable no-descending-specificity */
+        &--footer {
+            inset-block-end: 0;
+
+            &.has-open-overlay {
+                /* stylelint-disable max-nesting-depth */
+                .kb-layout__footer__overlay {
+                    display: block;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+        }
+        /* stylelint-enable no-descending-specificity */
+    }
+
+    // Full-bleed container that extends 100% of browser viewport, irrespective of any "bleed" areas.
+    &__fullbleed {
+        @include bp-medium {
+            margin-inline-end: -$layout-main-bleed;
+            margin-inline-start: -$layout-main-bleed;
+        }
+        margin-inline-end: -$layout-main-bleed-mobile;
+        margin-inline-start: -$layout-main-bleed-mobile;
+    }
+
+    // Container whose width is not constrained.
+    &__has-no-max-width {
+        /* stylelint-disable-next-line scss/comment-no-empty */
+        //
+    }
+
+    // Container whose width is constrained.
+    &__has-max-width {
+        @include layout-constraint;
+    }
+
+    // TODO: We need to add a shared 'page-custom' CSS classname to ALL custom pages in order to add top margin to the layout containers. For now, we'll use these specific selectors because the constrained container always comes immediately after one of them.
+    /* stylelint-disable order/order */
+    @at-root {
+        .kb-breadcrumb,
+        .kb-cms__content-image {
+            + .kb-layout__has-max-width,
+            + .kb-layout__has-no-max-width {
+                margin-block-start: $gutter-xl;
+            }
+        }
+
+        .kb-layout__inner {
+            > .kb-layout__has-max-width:first-of-type,
+            > .kb-layout__has-no-max-width:first-of-type {
+                margin-block-start: $gutter-xl;
+            }
+        }
+    }
+    /* stylelint-enable order/order */
+
+    // Container whose content is centered.
+    &__has-centered-content {
+        @include layout-centered-content;
+    }
+
+    /* stylelint-disable order/order */
+    // Put media queries last so they can override mobile-first styles without needing to increase specificity.
+    @include bp-medium {
+        &__sticky--header {
+            .kb-layout__inner {
+                gap: $gutter-xs;
+            }
+        }
+    }
+
+    // Vertical navigation and header
+    &--has-vertical-header {
+        @include bp-medium {
+            display: grid;
+            grid-template-areas: 'sidebar main' 'sidebar footer' 'sidebar sticky-footer';
+            // https://css-tricks.com/preventing-a-grid-blowout/
+            grid-template-columns: $layout-vertical-header-width minmax(0, 1fr);
+            grid-template-rows: 1fr auto auto;
+
+            .kb-layout__header {
+                grid-area: sidebar;
+                height: 100%;
+                position: fixed;
+                width: $layout-vertical-header-width;
+                z-index: z('default');
+            }
+
+            .kb-layout__main {
+                grid-area: main;
+            }
+
+            .kb-layout__footer {
+                grid-area: footer;
+            }
+
+            .kb-layout__sticky {
+                grid-area: sticky-footer;
+            }
+
+            .kb-layout__header__overlay {
+                inset-block-start: 0;
+                inset-inline-start: $layout-vertical-header-width;
+            }
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-layout) {
+    @include kb-layout;
+}

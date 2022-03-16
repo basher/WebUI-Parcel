@@ -1,0 +1,161 @@
+.kb-slider {
+    // Turn off opacity & transform as they create a new stacking context, which breaks header navigation slider.
+    @include focus-default($opacity: false, $transform: false);
+    @at-root {
+        // Use outline instead of box-shadow for focus.
+        [data-whatintent='keyboard'] &:focus {
+            outline: 0.25rem solid $color-neutral;
+        }
+
+        [data-whatintent='touch'] &:focus {
+            background-color: transparent;
+        }
+    }
+
+    margin-block-end: $gutter-xl;
+    overflow-x: auto;
+    position: relative;
+
+    &__slides {
+        display: flex;
+        inset-inline-end: 0;
+        inset-inline-start: 0;
+        min-height: $slider-button-size + ($gutter-xs * 2);
+        position: relative;
+        transition: left 0.5s ease-in-out, right 0.5s ease-in-out;
+    }
+
+    &[data-slide-no-animations='true'] {
+        .kb-slider__slides {
+            transition: none;
+        }
+    }
+
+    &__slide {
+        @include focus-default($opacity: false, $transform: false);
+        @at-root {
+            // Use outline instead of box-shadow for focus.
+            [data-whatintent='keyboard'] &:focus {
+                outline: 0.25rem solid $color-neutral;
+                outline-offset: -0.25rem;
+            }
+
+            [data-whatintent='touch'] &:focus {
+                background-color: transparent;
+            }
+        }
+        flex-basis: 100%;
+        flex-shrink: 0;
+    }
+
+    .kb-button-group {
+        margin: 0;
+    }
+
+    [data-button-type] {
+        @if $allow-dark-mode {
+            @media (prefers-color-scheme: dark) {
+                color: $color-text;
+            }
+        }
+
+        background-color: #{rgba(var(--themeColorBrand), 0.6)};
+        color: $color-text-alt;
+        height: calc(1em + (#{$gutter-xs} * 2));
+        inset-inline-end: 0;
+        inset-inline-start: auto;
+        margin: 0;
+        position: absolute;
+        z-index: z('default');
+    }
+
+    [data-button-type='next'] {
+        inset-block-start: 50%;
+        transform: translateY(-100%);
+    }
+
+    [data-button-type='previous'] {
+        @if $allow-dark-mode {
+            @media (prefers-color-scheme: dark) {
+                background-color: #{rgba(var(--themeColorBackground), 0.6)};
+            }
+        }
+        background-color: #{rgba(var(--themeColorBackgroundAlt), 0.6)};
+        inset-block-end: 50%;
+        transform: translateY(100%);
+    }
+
+    [role='tablist'] {
+        @include bp-medium {
+            display: flex;
+        }
+        display: none;
+        inset-block-end: 0;
+        justify-content: center;
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        z-index: z('default');
+    }
+
+    [role='tab'] {
+        background-color: $color-background;
+        border: $border-width-m $border-style $color-brand;
+        border-radius: $border-radius-round;
+        height: 1em;
+        margin: $gutter-xs $gutter-xs / 2;
+        padding: $gutter-xs;
+        pointer-events: all;
+
+        &[aria-selected='true'] {
+            background-color: $color-brand;
+        }
+    }
+
+    &[data-slide-custom-tabs='true'] {
+        [role='tablist'] {
+            display: flex;
+        }
+    }
+
+    // Banner slider.
+    &--banner {
+        @include bp-small {
+            // In case lots of banners are added, we don't want loads of tab buttons on mobile.
+            [role='tablist'] {
+                display: none;
+            }
+        }
+
+        .kb-slider__slide {
+            background-color: #{rgba(var(--themeColorBrand), 0.6)};
+        }
+
+        .kb-banner__inner + .kb-banner__overlay {
+            background-color: transparent;
+        }
+    }
+
+    // Card slider (e.g. news/promotions).
+    &--card {
+        .kb-slider__slide {
+            // Slide widths/padding match card grid layouts, with sufficient vertical padding to support :hover effects.
+            flex-basis: $grid-item-max-width;
+            padding: $gutter / 2;
+        }
+    }
+
+    // No prev/next buttons are shown.
+    &--no-buttons {
+        // No styles needed in whitelabel.
+    }
+
+    &.is-js-enabled {
+        overflow: hidden;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-slider) {
+    @include kb-slider;
+}

@@ -1,0 +1,53 @@
+.kb-modal {
+    @at-root {
+        // Modal content (in-page) is hidden until Ajax-fetched by opening the modal.
+        [data-modal-ajax-content] {
+            display: none;
+
+            .kb-modal__ajax & {
+                display: block;
+            }
+        }
+    }
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    inset-block-end: 0;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    inset-inline-start: 0;
+    justify-content: center;
+    pointer-events: none;
+    position: fixed;
+
+    &__overlay {
+        background-color: #{rgba(var(--themeColorBackgroundAlt), 0.8)};
+        inset-block-end: 0;
+        inset-block-start: 0;
+        inset-inline-end: 0;
+        inset-inline-start: 0;
+        position: fixed;
+        z-index: z('modal');
+    }
+
+    &__inner {
+        background-color: $color-background;
+        max-height: 80%;
+        overflow-y: auto;
+        padding: $gutter-xl $gutter $gutter;
+        pointer-events: all;
+        position: relative;
+        width: 80%;
+
+        > [data-modal-close] {
+            inset-block-start: $gutter-xs / 2;
+            inset-inline-end: $gutter-xs / 2;
+            position: absolute;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-modal) {
+    @include kb-modal;
+}

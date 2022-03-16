@@ -1,0 +1,27 @@
+@mixin kb-product-filter {
+    .kb-product-filter {
+        background-color: $color-white;
+
+        &.kb-tabs:not(.kb-tabs--vertical) {
+            .kb-tabs__tablist {
+                background-color: $color-grey-1;
+                flex-wrap: wrap;
+                padding-block-start: $gutter-xs;
+            }
+
+            .kb-tabs__button {
+                @include button-secondary;
+                margin-block-end: $gutter-xs;
+
+                &[aria-selected='true'] {
+                    @include button-primary;
+                    box-shadow: none;
+                }
+            }
+        }
+
+        .kb-tabs__content {
+            background-color: transparent;
+        }
+    }
+}

@@ -1,0 +1,54 @@
+.kb-table {
+    margin-block-end: $gutter;
+
+    th,
+    td {
+        border: $border-width $border-style $color-grey-2;
+        padding: $gutter-xs;
+    }
+
+    th {
+        background-color: $color-grey-1;
+        font-weight: bold;
+    }
+
+    caption {
+        margin-block-end: $gutter-xs;
+    }
+
+    &--striped {
+        th {
+            background-color: transparent;
+        }
+
+        tr:nth-child(odd) {
+            @if $allow-dark-mode {
+                /* stylelint-disable max-nesting-depth */
+                @media (prefers-color-scheme: dark) {
+                    color: $color-text-alt;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+            background-color: $color-grey-1;
+        }
+
+        tr:nth-child(even) {
+            background-color: $color-background;
+        }
+    }
+
+    // Responsive wrapper.
+    &-responsive-wrap[role='region'][aria-labelledby][tabindex] {
+        @at-root {
+            [data-whatintent='keyboard'] &:focus {
+                @include focus-default($opacity: false, $transform: false);
+            }
+        }
+        overflow: auto;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-table) {
+    @include kb-table;
+}

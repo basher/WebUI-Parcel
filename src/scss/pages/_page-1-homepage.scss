@@ -1,0 +1,11 @@
+// Homepage.
+.page-1 {
+    .kb-cms {
+        @include layout-centered-content;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(page-1-homepage) {
+    @include page-1-homepage;
+}

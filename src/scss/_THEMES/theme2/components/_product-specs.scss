@@ -1,0 +1,21 @@
+@mixin gw-product-specs {
+    .gw-product-specs {
+        .gw-button {
+            border-radius: 0;
+
+            // Bully CSS specificity.
+            &.gw-button--primary {
+                &[class*='--text'] {
+                    box-shadow: none;
+                    padding: $gutter-s;
+
+                    /* stylelint-disable max-nesting-depth */
+                    &:hover {
+                        transform: none;
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+            }
+        }
+    }
+}

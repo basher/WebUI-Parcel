@@ -1,0 +1,19 @@
+// Branch details.
+.page-22 {
+    [class*='kb-cms'],
+    [aria-labelledby='department-contact-details'] {
+        @include layout-constraint;
+        @include layout-centered-content;
+
+        .kb-accordion__content {
+            > div:not([class]) {
+                @include layout-centered-content;
+            }
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(page-22-branch-details) {
+    @include page-22-branch-details;
+}

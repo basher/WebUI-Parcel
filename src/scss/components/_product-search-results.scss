@@ -1,0 +1,185 @@
+.kb-product-search-results {
+    @include bp-medium {
+        margin-inline-end: -$layout-main-bleed;
+        margin-inline-start: -$layout-main-bleed;
+        padding-inline-end: $layout-main-bleed;
+        padding-inline-start: $layout-main-bleed;
+    }
+    background-color: $color-white; // Force it to be white so we don't have to keep overriding in themes.
+    margin-block-end: $gutter-s;
+    margin-inline-end: -$layout-main-bleed-mobile;
+    margin-inline-start: -$layout-main-bleed-mobile;
+    padding: $gutter-s $layout-main-bleed-mobile 0;
+
+    h1,
+    [id='products-search-filters'] {
+        @include visually-hide;
+    }
+
+    &__form {
+        // Make flex items stak vertically on small screens.
+        @include bp-xsmall {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        margin-block-end: 0;
+        max-width: 100%;
+        position: relative;
+
+        > * {
+            margin-block-end: $gutter-s;
+            margin-inline-end: $gutter-s;
+
+            /* stylelint-disable max-nesting-depth */
+            &:last-child {
+                margin-inline-end: 0;
+            }
+            /* stylelint-enable max-nesting-depth */
+        }
+
+        > .kb-button {
+            display: inline-flex;
+        }
+
+        // Hide both icons on "All stock" button.
+        .has-no-condition {
+            .kb-icon {
+                display: none;
+            }
+        }
+
+        > .kb-form__field {
+            @include bp-large {
+                margin-inline-start: auto;
+
+                /* stylelint-disable max-nesting-depth */
+                &:not(.is-hidden-on-medium) + .kb-form__field {
+                    margin-inline-start: 0;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+
+            .kb-form__label {
+                /* stylelint-disable max-nesting-depth */
+                > span:not([class]):first-child {
+                    @include visually-hide;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+
+            .kb-form__select {
+                font-size: $font-size-s;
+                height: auto;
+                padding-block-end: $gutter-xs / 2;
+                padding-block-start: $gutter-xs / 2;
+            }
+        }
+    }
+
+    .kb-form__buttons {
+        flex-basis: 100%;
+    }
+
+    .kb-grid {
+        // i.e. 2 normal Grid column widths.
+        @include responsive-grid-columns(
+            $auto-layout: auto-fill,
+            $max-width: $grid-item-min-width * 2
+        );
+
+        .kb-form__field {
+            justify-content: flex-start;
+        }
+    }
+
+    // When grid is inside tabs (or accordion on small screens).
+    .kb-tabs,
+    .kb-accordion {
+        .kb-grid {
+            @include responsive-grid-columns($max-width: 12.5rem);
+        }
+    }
+
+    [data-id='products-filter-button'] {
+        border: 0;
+        color: $color-brand;
+        padding-inline-end: 0;
+        padding-inline-start: 0;
+
+        .kb-icon {
+            height: $icon-size-l;
+            width: $icon-size-l;
+        }
+    }
+
+    [data-id='products-filter-content'] {
+        display: block;
+        flex-basis: 100%;
+        margin-block-end: 0;
+    }
+
+    [role='region'][aria-live] {
+        margin-inline-end: 0;
+    }
+
+    [data-id='stock-compare'] {
+        border: 0;
+        color: $color-brand;
+
+        .kb-icon {
+            fill: transparent;
+            height: $icon-size-l;
+            stroke: $color-brand;
+            stroke-width: $icon-stroke-width;
+            width: $icon-size-l;
+        }
+
+        &.is-selected {
+            .kb-icon {
+                fill: $color-brand;
+            }
+        }
+    }
+
+    [id='products-search-filters'] {
+        flex-basis: 100%;
+        margin-inline-end: 0;
+    }
+
+    & + [aria-labelledby='products-search-results'] {
+        [id='products-search-results'] {
+            font-size: $font-size-m;
+        }
+    }
+
+    // JS enabled.
+    &.is-js-enabled {
+        [data-id='products-filter-content'] {
+            display: none;
+        }
+    }
+
+    // Modal (for filters).
+    &__modal {
+        .kb-modal__inner {
+            max-height: 98%;
+            padding-inline-end: $gutter - $gutter-s; // Subtract product filter padding.
+            width: 98%;
+        }
+
+        .kb-button[class*='--text'] {
+            @include bp-small {
+                font-size: $font-size-s;
+                padding: $gutter-xs;
+            }
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-product-search-results) {
+    @include kb-product-search-results;
+}

@@ -1,0 +1,27 @@
+.kb-icon {
+    fill: currentColor;
+    flex-shrink: 0; // Stop icon shrinking when inside a flex container
+    height: 1em; // Scale icon to match font-size of parent element
+    width: 1em;
+
+    // Specific sizes defined. However, if icons are used inside other elements such as buttons, their sizes are specified in 'EM' so they scale with the font size.
+    &--small {
+        height: $icon-size-s;
+        width: $icon-size-s;
+    }
+
+    &--medium {
+        height: $icon-size-m;
+        width: $icon-size-m;
+    }
+
+    &--large {
+        height: $icon-size-l;
+        width: $icon-size-l;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-icon) {
+    @include kb-icon;
+}

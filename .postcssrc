@@ -1,0 +1,12 @@
+{
+  "plugins": {
+    "autoprefixer": true,
+    "postcss-sorting": {
+      "properties-order": "alphabetical",
+    },
+    "postcss-logical": {
+      "preserve": "true",
+    },
+    "postcss-dir-pseudo-class": {}
+  }
+}

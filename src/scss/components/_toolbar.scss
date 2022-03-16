@@ -1,0 +1,84 @@
+.kb-toolbar {
+    align-items: center;
+    display: flex;
+    font-size: $font-size; // Allows any text & icons to inherit this size.
+    gap: $gutter-xs;
+    margin-block-end: $gutter-xs;
+
+    .kb-button {
+        &--text-icon,
+        &--icon {
+            background-color: transparent;
+            border: 0;
+            font-size: 1em; // Scale in proportion to toolbar font-size.
+            padding-inline-end: $gutter-s;
+            padding-inline-start: $gutter-s;
+        }
+    }
+
+    .kb-button-group {
+        align-items: center;
+        flex-wrap: unset;
+        justify-content: space-between;
+        margin-block-end: 0;
+
+        > * {
+            margin-block-end: 0;
+            margin-inline-end: 0;
+        }
+    }
+
+    .kb-icon {
+        height: 1.5em; // Scale in proportion to toolbar font-size.
+        width: 1.5em;
+    }
+
+    // Stock.
+    &--stock {
+        width: 100%;
+
+        .kb-button-group {
+            width: 100%;
+
+            > :first-child {
+                margin-inline-end: auto;
+            }
+        }
+
+        &__location {
+            align-items: center;
+            display: flex;
+            line-height: 1;
+            padding: $gutter-xs $gutter-s;
+
+            .kb-icon {
+                margin-inline-end: $gutter-xs;
+            }
+        }
+
+        &__compare {
+            .kb-icon {
+                fill: transparent;
+                stroke: $color-text;
+                stroke-width: $icon-stroke-width;
+            }
+
+            &.is-selected {
+                /* stylelint-disable max-nesting-depth */
+                .kb-icon {
+                    fill: inherit;
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+        }
+
+        .kb-share__fallback {
+            right: 0;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-toolbar) {
+    @include kb-toolbar;
+}

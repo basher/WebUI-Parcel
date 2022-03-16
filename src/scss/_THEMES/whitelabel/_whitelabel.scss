@@ -1,0 +1,14 @@
+/*
+----------------------------------------------------------------------------
+NOTE:
+1. Do NOT add any override styles here, as 'whitelabel' theme is actually just the default theme defined in 'base' folder.
+2. This file is here purely so that we can build and deploy to a 'dist/whitelabel' folder.
+----------------------------------------------------------------------------
+*/
+/*
+----------------------------------------------------------------------------
+1. Override multi-franchise
+----------------------------------------------------------------------------
+*/
+@import 'multi-franchise/whitelabel';
+@import 'multi-franchise/fonts/fonts';

@@ -1,0 +1,17 @@
+// Promo list.
+.page-21 {
+    .kb-cms {
+        @include layout-centered-content;
+    }
+
+    .kb-layout__inner {
+        > .kb-cms:first-of-type {
+            margin-block-start: $gutter-xl;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(page-21-promo-list) {
+    @include page-21-promo-list;
+}

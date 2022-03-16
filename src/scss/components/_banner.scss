@@ -1,0 +1,247 @@
+@mixin cta {
+    @include bp-medium {
+        font-size: $font-size-m;
+    }
+    font-size: $font-size;
+    padding: $gutter-xs;
+}
+
+.kb-banner {
+    margin-block-end: $gutter-xl;
+    position: relative;
+
+    // Ensure banner image takes up all available space on widescreen / hi-res.
+    .kb-image {
+        width: 100%;
+    }
+
+    &__overlay {
+        @include bp-medium {
+            inset-block-start: $gutter-xl;
+            inset-inline-start: $gutter-xl;
+        }
+        align-items: flex-start;
+        background-color: #{rgba(var(--themeColorBrand), 0.6)};
+        color: $color-text-alt;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        inset-block-start: $gutter-xs;
+        inset-inline-start: $gutter-xs;
+        max-width: 33%;
+        padding: $gutter;
+        position: absolute;
+        width: auto;
+
+        // Add some separation between all sibling elements inside overlay.
+        > * + * {
+            @include bp-medium {
+                margin-block-start: $gutter-s;
+            }
+            margin-block-start: $gutter-xs;
+        }
+
+        // Overlay position is based on '3x3' grid - e.g. 'top-middle' = top row, middle slot. Default = 'top-left'.
+        &--top-middle {
+            inset-inline-start: 50%;
+            transform: translateX(-50%);
+        }
+
+        &--top-right {
+            @include bp-medium {
+                inset-inline-end: $gutter-xl;
+            }
+            inset-inline-end: $gutter-xs;
+            inset-inline-start: auto;
+        }
+
+        &--middle-left {
+            inset-block-start: 50%;
+            transform: translateY(-50%);
+        }
+
+        &--middle-middle {
+            inset-block-start: 50%;
+            inset-inline-start: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &--middle-right {
+            @include bp-medium {
+                inset-inline-end: $gutter-xl;
+            }
+            inset-block-start: 50%;
+            inset-inline-end: $gutter-xs;
+            inset-inline-start: auto;
+            transform: translateY(-50%);
+        }
+
+        &--bottom-left {
+            @include bp-medium {
+                inset-block-end: $gutter-xl;
+                inset-inline-start: $gutter-xl;
+            }
+            inset-block-end: $gutter-xs;
+            inset-block-start: auto;
+            inset-inline-start: $gutter-xs;
+        }
+
+        &--bottom-middle {
+            @include bp-medium {
+                inset-block-end: $gutter-xl;
+            }
+            inset-block-end: $gutter-xs;
+            inset-block-start: auto;
+            inset-inline-start: 50%;
+            transform: translateX(-50%);
+        }
+
+        &--bottom-right {
+            @include bp-medium {
+                inset-block-end: $gutter-xl;
+                inset-inline-end: $gutter-xl;
+            }
+            inset-block-end: $gutter-xs;
+            inset-block-start: auto;
+            inset-inline-end: $gutter-xs;
+            inset-inline-start: auto;
+        }
+
+        // Text alignment.
+        &--top-middle,
+        &--middle-middle,
+        &--bottom-middle {
+            align-items: center;
+            text-align: center;
+        }
+
+        // CTA in overlay.
+        .kb-button {
+            @include cta;
+        }
+
+        // Overlay is a sibling of '.kb-banner__inner', to be shown on mobile (e.g. in hero banner).
+        .kb-banner__inner + & {
+            @include bp-medium {
+                padding: $gutter-s $gutter-xl;
+            }
+            background-color: #{rgba(var(--themeColorBrand), 0.6)};
+            inset-block-start: 0;
+            inset-inline-start: 0;
+            max-width: 100%;
+            padding: $gutter-s $gutter-xs;
+            position: relative;
+            width: 100%;
+        }
+
+        // Whole overlay is clickable. Position NOT based on '3x3' grid.
+        &.kb-banner__overlay--block-link {
+            height: 100%;
+            inset-block-start: 0;
+            inset-inline-end: 0;
+            inset-inline-start: 0;
+            max-width: 50%;
+            text-decoration: none;
+            transform: none;
+
+            &:hover {
+                background-color: $color-brand;
+                opacity: 1;
+            }
+
+            &:active {
+                transform: none;
+            }
+        }
+    }
+
+    &__text {
+        @include bp-medium {
+            @include fluid-type-default;
+        }
+        font-size: $font-size-s;
+        width: 100%; // So text wraps in legacy browsers.
+
+        &--large {
+            @include bp-medium {
+                @include fluid-type-l;
+            }
+            font-size: $font-size-m;
+        }
+
+        // TODO: Confirm if 'kb-banner__text' are markdown wrapper DIVs.
+        > * {
+            margin: 0;
+        }
+    }
+
+    small {
+        width: 100%; // So text wraps in legacy browsers.
+    }
+
+    // Hero banner.
+    &--hero {
+        // In case we need hero overrides.
+    }
+
+    // Page title banner.
+    &--page-title {
+        margin-block-end: 0;
+
+        .kb-banner__title {
+            background-color: #{rgba(var(--themeBlack), 0.6)};
+            color: $color-text-alt;
+            padding: $gutter-xs;
+        }
+
+        h1 {
+            @include bp-medium {
+                @include fluid-type-l;
+            }
+            color: inherit;
+            font-size: $font-size-m;
+            margin: 0;
+        }
+    }
+
+    // Specific banner variants - e.g. promotions, news, etc.
+    &-wrap {
+        background: $color-grey-1;
+        padding: $gutter;
+
+        &__title {
+            margin-block-end: $gutter;
+        }
+
+        .kb-slider {
+            margin-block-end: $gutter;
+            margin-inline-end: -$gutter;
+            margin-inline-start: -$gutter;
+        }
+
+        .kb-banner__overlay {
+            max-width: 50%;
+        }
+    }
+
+    // Video banners.
+    &--video {
+        video {
+            width: 100%;
+        }
+    }
+
+    // Banners in a slider.
+    /* stylelint-disable order/order */
+    @at-root {
+        .kb-slider & {
+            margin-block-end: 0;
+        }
+    }
+    /* stylelint-enable order/order */
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-banner) {
+    @include kb-banner;
+}

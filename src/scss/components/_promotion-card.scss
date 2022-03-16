@@ -1,0 +1,111 @@
+.kb-promotion-card {
+    @if $allow-dark-mode {
+        @media (prefers-color-scheme: dark) {
+            background-color: $color-grey-3;
+        }
+    }
+    @include card-media-top;
+    align-items: center;
+    background-color: $color-grey-1;
+    border: 0;
+    padding: 0;
+
+    // TODO: Width is needed by Safari so that aspect-ratio padding-top hack works inside <figure> which is a flex item. Ideally, we should fix the HTML so that the <a> is attached to the card title, not the image, as per product/stock cards.
+    .kb-card__media {
+        width: 100%;
+    }
+
+    .kb-card__content {
+        margin-block-start: 0;
+        padding: 0 $gutter-s;
+        width: 100%;
+    }
+
+    .kb-toolbar {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        margin-inline-end: -$gutter-s;
+        margin-inline-start: -$gutter-s;
+
+        &__item {
+            padding-inline-start: $gutter-s;
+        }
+    }
+
+    .kb-share__fallback {
+        right: 0;
+    }
+
+    .kb-card__text {
+        margin-block-end: 0;
+    }
+
+    &__tags {
+        color: $color-brand;
+        font-size: $font-size-s;
+        text-transform: uppercase;
+    }
+
+    .kb-card__actions {
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-block-end: $gutter-xs;
+        margin-block-start: $gutter-s;
+        padding: 0 $gutter-s;
+        width: 100%;
+
+        .kb-button {
+            &--text {
+                margin-inline-end: 0;
+                text-align: center;
+                width: 100%;
+            }
+        }
+
+        .is-selected {
+            background-color: $color-brand;
+            border-color: $color-brand;
+            color: $color-text-alt;
+        }
+    }
+
+    // Promotion secondary card variant.
+    &--secondary {
+        background: transparent;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        .kb-card__title {
+            color: $color-brand;
+            margin: $gutter-s 0;
+            text-align: center;
+        }
+
+        .kb-card__media {
+            padding: $gutter-s $gutter-s 0;
+        }
+    }
+
+    // In a grid.
+    &-grid.kb-grid {
+        @include responsive-grid-columns($max-width: 18.75rem);
+    }
+
+    &-grid--secondary.kb-grid {
+        @include responsive-grid-columns($max-width: 12.5rem);
+    }
+
+    // Block link (as used in slider).
+    &--block-link {
+        justify-content: center;
+        padding: 0 $gutter-s;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-promotion-card) {
+    @include kb-promotion-card;
+}

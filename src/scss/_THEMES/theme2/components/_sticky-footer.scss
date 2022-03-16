@@ -1,0 +1,52 @@
+@mixin gw-sticky-footer {
+    .gw-sticky-footer {
+        background-color: $color-brand;
+
+        &__button {
+            background-color: $color-brand;
+            border: 0;
+            border-inline-end: $border-width $border-style $color-grey-3;
+            border-radius: 0;
+            font-weight: 200;
+            letter-spacing: 0.0625rem;
+            text-transform: uppercase;
+
+            // Bully CSS specificity.
+            &[class*='--text'] {
+                color: $color-text-alt;
+                padding-inline-end: 0;
+                padding-inline-start: 0;
+            }
+
+            .gw-button__inner {
+                justify-content: center;
+            }
+
+            &:hover {
+                background-color: $color-brand-alt;
+
+                // Need some extra specificity to override 'button--text' styles.
+                &[class*='--text'] {
+                    text-decoration: none;
+                }
+            }
+
+            [data-whatintent='mouse'] &:hover {
+                opacity: 1;
+            }
+
+            .gw-icon {
+                @include bp-medium {
+                    height: $icon-size-l;
+                    width: $icon-size-l;
+                }
+            }
+        }
+
+        &__item:last-child {
+            .gw-sticky-footer__button {
+                border-inline-end: 0;
+            }
+        }
+    }
+}

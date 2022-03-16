@@ -1,0 +1,33 @@
+/*
+----------------------------------------------------------------------------
+@font-face rules.
+
+- 'font-display: swap;' ensures that all text will be rendered with a fallback system font until custom font is ready.
+----------------------------------------------------------------------------
+*/
+
+@font-face {
+    font-display: swap;
+    font-family: 'LincolnMillerB';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./_THEMES/theme2/fonts/miller/LincolnMillerB-Roman.woff2')
+            format('woff2'),
+        url('./_THEMES/theme2/fonts/miller/LincolnMillerB-Roman.woff')
+            format('woff'),
+        url('./_THEMES/theme2/fonts/miller/LincolnMillerB-Roman.ttf')
+            format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'LincolnProximaNova';
+    font-style: normal;
+    font-weight: light;
+    src: url('./_THEMES/theme2/fonts/proximanova/Lincoln-ProximaNova-Reg.woff2')
+            format('woff2'),
+        url('./_THEMES/theme2/fonts/proximanova/Lincoln-ProximaNova-Reg.woff')
+            format('woff'),
+        url('./_THEMES/theme2/fonts/proximanova/Lincoln-ProximaNova-Reg.ttf')
+            format('truetype');
+}

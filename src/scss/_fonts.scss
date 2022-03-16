@@ -1,0 +1,26 @@
+/*
+----------------------------------------------------------------------------
+@font-face rules.
+
+- 'font-display: swap;' ensures that all text will be rendered with a fallback system font until custom font is ready.
+----------------------------------------------------------------------------
+*/
+@font-face {
+    font-display: swap;
+    font-family: 'roboto_slabregular';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./fonts/robotoslab-regular/RobotoSlab-Regular-webfont.woff')
+            format('woff'),
+        url('./fonts/robotoslab-regular/RobotoSlab-Regular-webfont.ttf')
+            format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'robotolight';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./fonts/roboto-light/Roboto-Light-webfont.woff') format('woff'),
+        url('./fonts/roboto-light/Roboto-Light-webfont.ttf') format('truetype');
+}

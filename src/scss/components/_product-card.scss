@@ -1,0 +1,186 @@
+.kb-product-card {
+    @if $allow-dark-mode {
+        @media (prefers-color-scheme: dark) {
+            background-color: $color-grey-3;
+        }
+    }
+    align-items: center;
+    background-color: $color-grey-1;
+    border: 0;
+    padding: 0;
+
+    .kb-card__content {
+        margin-block-start: 0;
+        padding: 0 $gutter-s;
+        width: 100%;
+    }
+
+    .kb-card__title {
+        > a {
+            // Line-clamp needs '-webkit-' prefixes. See https://css-tricks.com/line-clampin/.
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            overflow: hidden;
+            padding-block-end: 1px; // To show underline on last clamped line.
+        }
+
+        .kb-product-card__block-link & {
+            margin-block-end: $gutter-xs;
+        }
+
+        span {
+            display: block;
+        }
+    }
+
+    &__specs {
+        display: flex;
+        flex-wrap: wrap;
+        margin-block-end: $gutter-xs;
+
+        /* stylelint-disable no-descending-specificity */
+        span {
+            margin-inline-end: $gutter-s;
+        }
+        /* stylelint-enable no-descending-specificity */
+        :last-child {
+            margin-inline-end: 0;
+        }
+    }
+
+    &__block-link {
+        text-align: center;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        > * {
+            margin-block-end: $gutter-xs;
+        }
+    }
+
+    [class*='__price'] {
+        font-size: $font-size-l;
+        margin-block-end: 0;
+    }
+
+    [class*='__price--text'] {
+        font-size: $font-size;
+        margin-block-end: $gutter-xs;
+    }
+
+    [class$='__price--discount'] {
+        color: #{rgba(var(--themeColorBrand), 0.8)};
+    }
+
+    &__legal {
+        margin-block-end: $gutter-xs;
+
+        &--extra {
+            span:not(:empty) {
+                position: relative;
+
+                /* stylelint-disable max-nesting-depth */
+                &:after {
+                    content: '.';
+                }
+                /* stylelint-enable max-nesting-depth */
+            }
+        }
+    }
+
+    .kb-card__actions {
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 0 $gutter-s;
+        width: 100%;
+
+        .kb-button {
+            &--text {
+                color: $color-text-alt;
+                margin-inline-end: 0;
+                text-align: center;
+                width: 100%;
+            }
+        }
+    }
+
+    // Spec table.
+    &__table {
+        font-size: $font-size-xs;
+        width: 100%;
+
+        // Need '.kb-table' to boost specificity!
+        &.kb-table {
+            th,
+            td {
+                border-inline-end: 0;
+                border-inline-start: 0;
+                padding: $gutter-xs / 2;
+            }
+        }
+    }
+
+    // Container for errors (e.g. saved products).
+    &__error {
+        color: $color-negative;
+        flex-basis: 100%;
+        font-size: $font-size-s;
+    }
+
+    // Product card overview variant.
+    &--overview {
+        background: transparent;
+    }
+
+    // Product card filter variant.
+    /* stylelint-disable no-descending-specificity */
+    &--filter {
+        background: none;
+        margin-block-end: 0;
+        max-width: 100%;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        .kb-card__media {
+            margin-block-end: $gutter-xs;
+        }
+
+        .kb-card__title {
+            font-size: $font-size;
+            margin: 0;
+        }
+
+        .kb-product-card__price {
+            background: none;
+            color: $color-text;
+            font-size: $font-size-s;
+            margin: 0 0 $gutter-xs;
+            padding: 0;
+        }
+    }
+    /* stylelint-enable no-descending-specificity */
+
+    // In a grid.
+    &-grid.kb-grid {
+        @include responsive-grid-columns($max-width: 18.75rem);
+    }
+
+    // Button group (e.g. for quick view component).
+    > .kb-button-group {
+        margin: 0;
+        padding: 0 $gutter-s;
+        width: 100%;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-product-card) {
+    @include kb-product-card;
+}

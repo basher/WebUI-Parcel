@@ -1,0 +1,42 @@
+.kb-gallery-slider {
+    overflow-y: hidden;
+
+    .kb-button-group:not([role='tablist']) {
+        display: none;
+    }
+
+    &.kb-slider {
+        .kb-slider__slide {
+            display: flex;
+            justify-content: center;
+        }
+
+        [role='tab'] {
+            border-color: transparent;
+            border-radius: 0;
+            border-width: $border-width-l;
+            height: auto;
+            margin: 0;
+            max-height: 7.03125rem; // Maintain 4:3 aspect ratio.
+            max-width: 9.375rem; // 150px.
+            padding: 0;
+            width: auto;
+
+            &[aria-selected='true'] {
+                background-color: transparent;
+                border-color: $color-brand;
+            }
+        }
+    }
+
+    // TODO: Temp styles until we can update .NET image helper to accept 'data-' attributes so we can remove wrapper <span>.
+    [data-slide-tab] {
+        display: block;
+        line-height: 0;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-gallery-slider) {
+    @include kb-gallery-slider;
+}

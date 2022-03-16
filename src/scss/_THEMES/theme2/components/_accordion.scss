@@ -1,0 +1,58 @@
+@mixin gw-accordion {
+    .gw-accordion {
+        &__button {
+            @at-root {
+                [data-whatintent='mouse'] &:hover,
+                [data-whatintent='keyboard'] &:focus {
+                    background-color: $color-brand-alt;
+                }
+                // Reset styles for specific accordions.
+                [data-whatintent='mouse'] .gw-branch-rotator &:hover,
+                [data-whatintent='keyboard'] .gw-branch-rotator &:focus {
+                    background-color: inherit;
+                }
+            }
+            @at-root {
+                // Reset styles for specific accordions.
+                .gw-product-filter & {
+                    background-color: inherit;
+                    color: inherit;
+                    margin-block-end: $gutter-xs;
+                    padding: 0 0 $gutter-xs;
+                }
+            }
+            background-color: $color-brand;
+            color: $color-text-alt;
+            margin-block-end: 0;
+            padding: $gutter-xs;
+
+            &[aria-expanded='true'] {
+                @at-root {
+                    // Reset styles for specific accordions.
+                    /* stylelint-disable max-nesting-depth */
+                    .gw-product-filter & {
+                        background-color: inherit;
+                    }
+                    /* stylelint-enable max-nesting-depth */
+                }
+                background-color: $color-brand-alt;
+            }
+
+            &--toggle {
+                color: $color-text-alt;
+            }
+        }
+
+        &__content {
+            @at-root {
+                // Reset styles for specific accordions.
+                .gw-product-filter & {
+                    background-color: inherit;
+                    padding: 0;
+                }
+            }
+            background-color: $color-white;
+            padding: $gutter-xs;
+        }
+    }
+}

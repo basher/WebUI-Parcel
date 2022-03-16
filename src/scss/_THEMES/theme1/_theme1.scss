@@ -1,0 +1,144 @@
+/*
+----------------------------------------------------------------------------
+THEME overrides...
+
+NOTES:
+1. If you need to reference a base variable from "/base/" folder, WITHOUT CHANGING ITS VALUE, you will need to DECLARE IT AGAIN in this file, otherwise it will be undefined.
+
+2. Theme background image paths are relative to "./src/styles/index.scss".
+	e.g. url(themes/theme-name/images/name-of-file.jpg)
+
+3. Theme font import path is relative to "./src/styles/index.scss".
+	e.g. @import 'themes/theme-name/fonts/fonts';
+----------------------------------------------------------------------------
+*/
+
+/*
+----------------------------------------------------------------------------
+1. Override base styles from "./src/styles/base/" folder directly below.
+----------------------------------------------------------------------------
+*/
+@mixin button-primary {
+    background-color: $color-brand;
+    border-color: $color-brand;
+    box-shadow: 0 1.25rem 1rem #{rgba(var(--themeBlack), 0.2)};
+    color: $color-text-alt;
+
+    &:hover:not(:disabled) {
+        background-color: $color-brand-alt;
+        border-color: $color-brand-alt;
+        color: $color-text-alt;
+        opacity: 1;
+        text-decoration: none;
+        transform: scale(1.025);
+    }
+}
+
+@mixin button-secondary {
+    background-color: transparent;
+    border: $border-width $border-style;
+    border-color: $color-brand;
+    border-radius: $border-radius;
+    color: $color-brand;
+    font-family: $font-family-title;
+    font-weight: normal;
+    line-height: 1;
+    padding: $gutter-xs $gutter;
+
+    &:hover:not(:disabled) {
+        background-color: $color-link-alt;
+        border-color: $color-brand-alt;
+        color: $color-brand-alt;
+        text-decoration: none;
+        transform: scale(1.025);
+    }
+}
+
+$allow-dark-mode: false;
+
+$color-link-alt: #{'rgb(var(--themeColorLinkAlt))'};
+
+$fluid-type-target-l: 1.5vw;
+$fluid-type-target-xl: 2vw;
+$fluid-type-target-xxl: 2.5vw;
+$fluid-type-target-xxxl: 3.5vw;
+
+$font-size-xs: 0.6875rem; // 11px
+$font-size-m: 1.5rem; // 24px
+$font-size-l: 2rem; // 32px
+$font-size-xl: 2.375rem; // 38px
+$font-size-xxl: 2.75rem; // 44px
+$font-size-xxxl: 3.375rem; // 54px
+
+$line-height-xs: 1.9;
+$line-height: 1.6;
+
+$prefers-rounded-corners: true;
+$border-radius: 2rem;
+$border-radius-small: 0.1875rem;
+
+$icon-size-home: 2.125rem; // = 34px to match brand guidelines.
+$icon-size-home-mobile: 1.625rem;
+
+$nav-dropdown-gutter: 8.75rem;
+
+/*
+----------------------------------------------------------------------------
+2. Override global styles from "./src/styles/globals/" folder, by importing the appropriate Sass partial(s).
+----------------------------------------------------------------------------
+*/
+@import 'globals/typography';
+@import 'globals/utilities';
+
+/*
+----------------------------------------------------------------------------
+3. Override component styles from "./src/styles/components/" folder, by importing the appropriate Sass partial(s).
+----------------------------------------------------------------------------
+*/
+@import 'components/accordion';
+@import 'components/banner';
+@import 'components/breadcrumb';
+@import 'components/button';
+@import 'components/card';
+@import 'components/contact-card';
+@import 'components/cookie-consent';
+@import 'components/footer';
+@import 'components/forms';
+@import 'components/gallery';
+@import 'components/header';
+@import 'components/map';
+@import 'components/modal';
+@import 'components/navigation';
+@import 'components/news-card';
+@import 'components/product-card';
+@import 'components/product-filter';
+@import 'components/product-search';
+@import 'components/product-search-results';
+@import 'components/product-specs';
+@import 'components/product-summary';
+@import 'components/promotion-card';
+@import 'components/promotion-filter';
+@import 'components/quick-view';
+@import 'components/ratings';
+@import 'components/show-hide';
+@import 'components/slider';
+@import 'components/social';
+@import 'components/sticky-footer';
+@import 'components/swatch';
+@import 'components/tables';
+@import 'components/tabs';
+@import 'components/toolbar';
+
+/*
+----------------------------------------------------------------------------
+4. Override page styles from "./src/styles/pages/" folder, by importing the appropriate Sass partial(s).
+----------------------------------------------------------------------------
+*/
+@import 'pages/page-1-homepage';
+@import 'pages/page-16-stock-detail';
+/*
+----------------------------------------------------------------------------
+5. Override default fonts.
+----------------------------------------------------------------------------
+*/
+@import 'fonts/fonts';

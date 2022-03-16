@@ -1,0 +1,35 @@
+// Branch locator.
+.page-24 {
+    [aria-labelledby='branch-contact-details'] {
+        @include layout-constraint;
+        @include layout-centered-content;
+
+        .kb-contact-card {
+            text-align: start;
+        }
+    }
+
+    .kb-cms {
+        @include layout-centered-content;
+    }
+
+    /* stylelint-disable order/order */
+    .kb-map {
+        // Branch locator does not have an overlay, so make map take up full height.
+        height: 100%;
+
+        @supports (aspect-ratio: auto) {
+            height: unset;
+        }
+
+        &__wrap {
+            background: none;
+        }
+    }
+    /* stylelint-enable order/order */
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(page-24-branch-locator) {
+    @include page-24-branch-locator;
+}

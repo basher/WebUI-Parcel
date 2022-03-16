@@ -1,0 +1,24 @@
+.kb-nav-in-page {
+    &__list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__item {
+        margin-block-end: $gutter-xs;
+    }
+
+    &__link {
+        text-decoration: none;
+
+        &:hover {
+            color: $color-brand-alt;
+            text-decoration: underline;
+        }
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-nav-in-page) {
+    @include kb-nav-in-page;
+}

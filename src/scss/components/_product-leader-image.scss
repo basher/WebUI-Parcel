@@ -1,0 +1,28 @@
+.kb-product-leader-image {
+    display: grid;
+    gap: 0;
+    grid-template-areas: 'a b';
+    grid-template-columns: repeat(2, 50%);
+    margin-block-end: $gutter-xl;
+
+    &--single-image {
+        display: block;
+    }
+
+    .kb-image {
+        width: 100%;
+    }
+
+    :first-child {
+        grid-area: a;
+    }
+
+    :last-child {
+        grid-area: b;
+    }
+}
+
+// This mixin function calls in any THEME specific overrides from the './scss/_THEMES' folder, but only if it exists.
+@if mixin-exists(kb-product-leader-image) {
+    @include kb-product-leader-image;
+}

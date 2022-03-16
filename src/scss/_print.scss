@@ -1,0 +1,190 @@
+/*
+----------------------------------------------------------------------------
+Print stylesheet
+----------------------------------------------------------------------------
+*/
+
+/*
+----------------------------------------------------------------------------
+Basic reset.
+----------------------------------------------------------------------------
+*/
+
+/* stylelint-disable declaration-no-important */
+@page {
+    margin: 10pt;
+}
+
+body {
+    font-size: 10pt;
+}
+
+body:not(.page-printstock) {
+    color: #000; // Black prints faster.
+    font-family: sans-serif;
+}
+
+figure {
+    margin: 0;
+}
+
+h1 {
+    font-size: 20pt;
+}
+
+h2 {
+    font-size: 16pt;
+}
+
+h3 {
+    font-size: 12pt;
+}
+
+h4,
+h5,
+h6 {
+    font-size: 10pt;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-block-end: 5pt;
+}
+
+th,
+td {
+    border: 1pt solid grey;
+    font-size: 8pt;
+    padding: 3pt;
+    text-align: initial;
+}
+
+a {
+    text-decoration: underline;
+
+    + a {
+        margin: 0 10pt;
+    }
+}
+
+[href]:after {
+    content: '(' attr(href) ')';
+}
+
+[href^='mailto']:after,
+[href^='tel']:after,
+[href^='fax']:after,
+[href='/']:after,
+[href='#']:after {
+    content: '';
+}
+
+table,
+figure,
+pre {
+    margin-block-end: 10pt;
+    page-break-inside: avoid;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    page-break-after: avoid;
+}
+
+p {
+    orphans: 3;
+    widows: 3;
+}
+
+thead {
+    display: table-header-group;
+}
+
+/*
+----------------------------------------------------------------------------
+Specific component styles.
+----------------------------------------------------------------------------
+*/
+
+[class*='kb-grid'] {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+
+    > * {
+        margin: 5pt;
+    }
+}
+
+.kb-form {
+    &__field,
+    &__fieldset {
+        margin-block-end: 10pt;
+    }
+
+    &__label {
+        span {
+            display: block;
+        }
+    }
+}
+
+.kb-button-group {
+    margin-block-end: 10pt;
+
+    .kb-button {
+        display: block;
+        margin: 0;
+    }
+}
+
+.kb-header__logo {
+    font-size: 16pt;
+
+    .kb-image {
+        display: block;
+        max-height: 30pt;
+    }
+}
+
+.kb-banner__inner {
+    margin-block-end: 10pt;
+
+    &.kb-responsive-media {
+        padding: 0 !important;
+    }
+}
+
+/*
+----------------------------------------------------------------------------
+Hide stuff.
+
+Notes:
+- We might want to still show specific images?
+----------------------------------------------------------------------------
+*/
+
+img,
+button,
+.kb-icon,
+.kb-skiplinks,
+.kb-navigation,
+.kb-header__search,
+.kb-header__offers,
+.kb-branch-rotator,
+.kb-product-search,
+.kb-footer__group-title,
+.kb-footer__group-content,
+.kb-footer__item:not(.kb-footer__item--copyright),
+.kb-layout__sticky--footer {
+    display: none;
+}
+/* stylelint-enable declaration-no-important */
