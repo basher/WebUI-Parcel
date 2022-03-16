@@ -1,0 +1,39 @@
+@mixin brand {
+    [class*='multibrand-theme1'] {
+        --themeColorBrand: 16, 43, 78;
+        --themeColorBrandAlt: 40, 97, 164;
+        --themeColorBrandAlt2: 0, 20, 46;
+        --themeColorBackground: 244, 244, 244; // Only use on <body>.
+        --themeColorBackgroundAlt: 51, 51, 51;
+        --themeColorText: 77, 77, 77;
+        --themeColorTextAlt: 255, 255, 255;
+        --themeColorLink: 16, 43, 78;
+        --themeColorLinkAlt: 232, 236, 239;
+
+        --themeBlack: 0, 0, 0;
+        --themeWhite: 255, 255, 255;
+        --themeGrey1: 242, 242, 242; // Use on components instead of themeColorBackground.
+        --themeGrey2: 110, 110, 110;
+        --themeGrey3: 77, 77, 77;
+
+        --themeAccentPositive: 0, 130, 0;
+        --themeAccentPositiveAlt: 41, 164, 41;
+        --themeAccentNegative: 214, 45, 10;
+        --themeAccentNegativeAlt: 255, 48, 48;
+        --themeAccentNeutral: 218, 112, 41;
+        --themeAccentNeutralAlt: 186, 78, 0;
+
+        --themeFontFamily: FordAntennaRegular;
+        --themeFontFamilyTitle: FordAntennaCondensedExtraLight;
+        --themeFontFamilyArabic: FrutigerLight;
+        --themeFontFamilyArabicTitle: FrutigerLight;
+        --themeFontFamilyVietnamese: Arial;
+        --themeFontFamilyVietnameseTitle: Arial;
+    }
+
+    [class*='multibrand'] {
+        .kb-footer--supplementary {
+            background: $color-black;
+        }
+    }
+}

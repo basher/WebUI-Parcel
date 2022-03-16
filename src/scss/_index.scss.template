@@ -42,7 +42,7 @@ Fonts & globals.
     */
     @import 'components';
     @import 'pages';
-    @import 'multi-franchise';
+    @import 'multi-brand';
 
     /*
     ----------------------------------------------------------------------------
