@@ -1,4 +1,5 @@
 # Web UI architecture with Parcel bundler
+This repo contains all CSS/JS (and other static UI code) required by [this Storybook HTML repo](https://github.com/basher/WebUI-Storybook).
 
 ## QUICK START - How to use the UI assets in this repo for local development
 
@@ -8,7 +9,7 @@
 > nvm install 14
 > nvm use 14.19.0
 >```
-> 2. Clone the [WebUI repo](TBC/_git/WebUI).
+> 2. Clone the [WebUI repo](https://github.com/basher/WebUI-Parcel).
 > 3. From the repo's root directory, install all the project dependencies:
 > ```
 > npm install
@@ -92,7 +93,7 @@ parameter, and there needs to be a `"targets": { "app": {} }` property in the `p
 
 ## HTML authoring guidelines
 
-> These have been moved to [Web UI Storybook repo README](TBC/_git/WebUIStorybook).
+> These have been moved to [Web UI Storybook repo README](https://github.com/basher/WebUI-Storybook).
 
 ### Progressive enhancement, and "no JavaScript" behaviour
 
@@ -355,7 +356,7 @@ npm run start:theme --web-ui-parcel:theme=[theme-name]
 
 - Ensure the Parcel server is started with the correct theme, as mentioned earlier.
 - Then:
-    - Start Storybook if you want to develop/test UI components in isolation - follow the instructions in [Web UI Storybook repo README](TBC/_git/WebUIStorybook).
+    - Start Storybook if you want to develop/test UI components in isolation - follow the instructions in [Web UI Storybook repo README](https://github.com/basher/WebUI-Storybook).
     - Or refresh your local dev environment browser.
 
 > - Hot Module Reloading (HMR) is disabled in Parcel because it doesn't work when accessed from another repo, and causes browser console errors.
@@ -364,7 +365,7 @@ npm run start:theme --web-ui-parcel:theme=[theme-name]
 ## Storybook - UI component library
 
 - We're using [Storybook](https://storybook.js.org/) to build a library of re-usable UI components, which will act as templates for the HTML in the .NET MVC dealer websites.
-- All Storybook code has now been moved into the [Web UI Storybook repo](TBC/_git/WebUIStorybook).
+- All Storybook code has now been moved into the [Web UI Storybook repo](https://github.com/basher/WebUI-Storybook).
 
 ## Bundling other static assets without Parcel
 - As part of the build command, the `copy-static-assets` script is run to copy static assets (e.g. SVG sprites, favicons) to the build folder.
