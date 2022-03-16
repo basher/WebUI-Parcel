@@ -14,14 +14,14 @@ export const svgPath = (): string => {
         // Storybook or local .Net DEV?
         if (window.location.port === '9009') {
             // See Storybook docs for explanation about how we make external sprite available = http://localhost:9009/?path=/docs/ui-components-icons--icons.
-            path = `${KBconfig.theme}.sprite.svg`;
+            path = `${UIconfig.theme}.sprite.svg`;
         } else {
             // TODO: Local .Net DEV path is currently the same as PROD, but this might change in the future, so leave this 'else' statement for now.
-            path = KBconfig.svgPath;
+            path = UIconfig.svgPath;
         }
     } else {
         // PROD.
-        path = KBconfig.svgPath;
+        path = UIconfig.svgPath;
     }
 
     return path;
