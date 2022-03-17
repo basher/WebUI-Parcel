@@ -8,26 +8,25 @@
 
 @font-face {
     font-display: swap;
-    font-family: 'LincolnMillerB';
+    font-family: 'LnMillerB';
     font-style: normal;
     font-weight: normal;
-    src: url('./_THEMES/theme2/fonts/miller/LincolnMillerB-Roman.woff2')
+    src: url('./_THEMES/theme2/fonts/miller/LnMillerB-Roman.woff2')
             format('woff2'),
-        url('./_THEMES/theme2/fonts/miller/LincolnMillerB-Roman.woff')
-            format('woff'),
-        url('./_THEMES/theme2/fonts/miller/LincolnMillerB-Roman.ttf')
+        url('./_THEMES/theme2/fonts/miller/LnMillerB-Roman.woff') format('woff'),
+        url('./_THEMES/theme2/fonts/miller/LnMillerB-Roman.ttf')
             format('truetype');
 }
 
 @font-face {
     font-display: swap;
-    font-family: 'LincolnProximaNova';
+    font-family: 'LnProximaNova';
     font-style: normal;
     font-weight: light;
-    src: url('./_THEMES/theme2/fonts/proximanova/Lincoln-ProximaNova-Reg.woff2')
+    src: url('./_THEMES/theme2/fonts/proximanova/Ln-ProximaNova-Reg.woff2')
             format('woff2'),
-        url('./_THEMES/theme2/fonts/proximanova/Lincoln-ProximaNova-Reg.woff')
+        url('./_THEMES/theme2/fonts/proximanova/Ln-ProximaNova-Reg.woff')
             format('woff'),
-        url('./_THEMES/theme2/fonts/proximanova/Lincoln-ProximaNova-Reg.ttf')
+        url('./_THEMES/theme2/fonts/proximanova/Ln-ProximaNova-Reg.ttf')
             format('truetype');
 }

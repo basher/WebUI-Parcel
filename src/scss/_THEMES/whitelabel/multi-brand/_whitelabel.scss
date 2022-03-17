@@ -1,5 +1,5 @@
 @mixin brand {
-    [class*='multibrand-theme1'] {
+    [class*='ui-multibrand-theme1'] {
         --themeColorBrand: 16, 43, 78;
         --themeColorBrandAlt: 40, 97, 164;
         --themeColorBrandAlt2: 0, 20, 46;
@@ -23,15 +23,15 @@
         --themeAccentNeutral: 218, 112, 41;
         --themeAccentNeutralAlt: 186, 78, 0;
 
-        --themeFontFamily: FordAntennaRegular;
-        --themeFontFamilyTitle: FordAntennaCondensedExtraLight;
+        --themeFontFamily: FdAntennaRegular;
+        --themeFontFamilyTitle: FdAntennaCondensedExtraLight;
         --themeFontFamilyArabic: FrutigerLight;
         --themeFontFamilyArabicTitle: FrutigerLight;
         --themeFontFamilyVietnamese: Arial;
         --themeFontFamilyVietnameseTitle: Arial;
     }
 
-    [class*='multibrand'] {
+    [class*='ui-multibrand'] {
         .ui-footer--supplementary {
             background: $color-black;
         }
