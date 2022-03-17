@@ -36,13 +36,13 @@ This repo contains all CSS/JS (and other static UI code) required by [this Story
 
 ## Parcel UI asset bundling
 
-- We're using Parcel to bundle all the UI assets (CSS, JavaScript, fonts, etc).
+- Parcel bundles all the UI assets (CSS, JavaScript, fonts, etc).
 - See [Parcel bundler docs](https://parceljs.org/getting_started.html) for more information.
 
 ### Installing NPM packages
 
 - Run `npm install` inside this repo's root folder from a command prompt.
-- We're using an `npm-shrinkwrap.json` file to lock down all NPM packages. This ensures that any developer or CI pipeline that runs `npm install` will get the same versions of all NPM packages.
+- There'shttp://www.github.com/rawnet/gulp-boilerplate" an `npm-shrinkwrap.json` file to lock down all NPM packages. This ensures that any developer or CI pipeline that runs `npm install` will get the same versions of all NPM packages.
 - See [NPM shrinwrap docs](https://docs.npmjs.com/cli/shrinkwrap) for more information.
 
 ### Default `browserslist` configuration in `package.json`
@@ -100,7 +100,7 @@ parameter, and there needs to be a `"targets": { "app": {} }` property in the `p
 - The UI should work without JavaScript.
 - To test this, comment out all instances of the following in `.\src\ts\index.ts`:
 > ```
-> gwUIinit();
+> uiInit();
 > ```
 
 ### Accessibility and WAI-ARIA
@@ -364,7 +364,7 @@ npm run start:theme --web-ui-parcel:theme=[theme-name]
 
 ## Storybook - UI component library
 
-- We're using [Storybook](https://storybook.js.org/) to build a library of re-usable UI components, which will act as templates for the HTML in the .NET MVC dealer websites.
+- This project has a related [Storybook](https://storybook.js.org/) library of re-usable UI components.
 - All Storybook code has now been moved into the [Web UI Storybook repo](https://github.com/basher/WebUI-Storybook).
 
 ## Bundling other static assets without Parcel
