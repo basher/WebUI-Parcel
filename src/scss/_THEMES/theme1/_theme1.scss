@@ -95,16 +95,9 @@ $nav-dropdown-gutter: 8.75rem;
 3. Override component styles from "./src/styles/components/" folder, by importing the appropriate Sass partial(s).
 ----------------------------------------------------------------------------
 */
-@import 'components/accordion';
-@import 'components/banner';
-@import 'components/breadcrumb';
 @import 'components/button';
-@import 'components/card';
-@import 'components/contact-card';
-@import 'components/cookie-consent';
 @import 'components/footer';
 @import 'components/forms';
-@import 'components/gallery';
 @import 'components/header';
 @import 'components/map';
 @import 'components/modal';
