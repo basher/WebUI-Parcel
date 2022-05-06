@@ -174,7 +174,7 @@
 
     // Button group (e.g. for quick view component).
     > .ui-button-group {
-        margin: 0;
+        margin-block-end: 0;
         padding: 0 $gutter-s;
         width: 100%;
     }

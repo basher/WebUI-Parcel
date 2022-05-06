@@ -11,7 +11,7 @@
             // Only show sticky header on large screens.
             @include bp-large {
                 align-items: center;
-                grid-template-areas: 'home nav search offers contact';
+                grid-template-areas: 'home nav search other2 other2';
                 grid-template-columns: auto auto minmax(30vw, 1fr) auto minmax(
                         30vw,
                         1fr
@@ -20,10 +20,6 @@
                     $layout-header-grid-row-height,
                     auto
                 );
-
-                .ui-header__contact {
-                    display: block;
-                }
             }
 
             @include bp-medium {
@@ -47,22 +43,14 @@
                 }
             }
         }
-
-        .is-js-sticky &__offers {
-            height: 100%;
-        }
-
-        .is-js-sticky &__logo {
-            display: none;
-        }
     }
     /* stylelint-enable max-nesting-depth */
 
     @include mobile-grid-cols;
     @include bp-medium {
         grid-template-areas:
-            'home nav nav nav nav logo'
-            'search search search offers contact contact';
+            'home nav nav nav nav other1'
+            'search search search other2 other2 other2';
         grid-template-columns: auto 1fr 1fr auto 1fr auto;
         grid-template-rows: repeat(
             2,
@@ -74,8 +62,8 @@
     background-color: $color-background;
     display: grid;
     grid-template-areas:
-        'home nav logo'
-        'offers contact contact'
+        'home nav other1'
+        'other2 other2 other2'
         'search search search';
     // Set last row to 'auto' so this allows the row to collapse to 0 if there's no search form HTML rendered.
     /* stylelint-disable-next-line prettier/prettier */
@@ -120,45 +108,20 @@
         grid-area: nav;
     }
 
-    &__logo {
+    &__other1 {
         @include bp-medium {
             margin-inline-end: $gutter-s;
             margin-inline-start: $gutter;
         }
-        align-items: center;
-        color: $color-brand-alt;
-        display: flex;
-        grid-area: logo;
-        justify-content: flex-end;
-        margin: 0 $gutter-s;
-
-        /* stylelint-disable-next-line no-descending-specificity */
-        .ui-image {
-            max-height: 3.125rem; // 50px.
-            max-width: 15.625rem; // 250px.
-        }
-
-        * {
-            // Ensure we clamp font-size to be the same as <body>.
-            @include fluid-type-default;
-            margin: 0;
-        }
+        grid-area: other1;
     }
 
     &__search {
         grid-area: search;
     }
 
-    &__offers {
-        align-items: center;
-        display: flex;
-        grid-area: offers;
-        justify-content: center;
-        max-height: $layout-header-grid-row-height;
-    }
-
-    &__contact {
-        grid-area: contact;
+    &__other2 {
+        grid-area: other2;
     }
 
     // Vertical header
