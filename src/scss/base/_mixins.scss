@@ -509,24 +509,4 @@ Micro clearfix hack - see http://nicolasgallagher.com/micro-clearfix-hack/
     display: table;
 }
 
-/*
-----------------------------------------------------------------------------
-Detect Safari.
-
-Usage:
-.my-selector {
-    @include safari {
-        // Safari code...
-    }
-}
-----------------------------------------------------------------------------
-*/
-@mixin safari {
-    @media not all and (min-resolution: 0.001dpcm) {
-        @supports (-webkit-appearance: none) and (stroke-color: transparent) {
-            @content;
-        }
-    }
-}
-
 /* stylelint-enable order/order */
