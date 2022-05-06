@@ -115,7 +115,7 @@
         }
 
         &--banner {
-            // TODO: Hard-coded overlay gradient. CMS will have new option added to supply gradient based on banner image darkness.
+            // Hard-coded overlay gradient for demo purposes.
             @include bp-medium {
                 .ui-slider__slides {
                     z-index: z('reset');

@@ -41,7 +41,7 @@ $video-button-size: 4rem;
             z-index: z('default');
         }
 
-        // <br> selector required because CMS editor can add random line breaks into HTML!
+        // <br> selector required because CMS editors can add random line breaks into HTML!
         .ui-responsive-media {
             br {
                 display: none;

@@ -3,7 +3,7 @@
 CSS variables for dynamic theming.
 
 - Color values are specified as a comma-separated list of RGB values. This allows us to leverage the Sass 'rgba()' function.
-- Theme overrides can be applied via the CMS, rendered in HTML <style> blocks.
+- Theme overrides can be applied via HTML <style> blocks.
 - Legacy browsers can only leverage CSS variables if they are defined inside ':root' element.
 ----------------------------------------------------------------------------
 */

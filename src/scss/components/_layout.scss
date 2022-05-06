@@ -177,11 +177,9 @@ Try *NOT* to add visual styles for components inside the layout structural eleme
         @include layout-constraint;
     }
 
-    // TODO: We need to add a shared 'page-custom' CSS classname to ALL custom pages in order to add top margin to the layout containers. For now, we'll use these specific selectors because the constrained container always comes immediately after one of them.
     /* stylelint-disable order/order */
     @at-root {
-        .ui-breadcrumb,
-        .ui-cms__content-image {
+        .ui-breadcrumb {
             + .ui-layout__has-max-width,
             + .ui-layout__has-no-max-width {
                 margin-block-start: $gutter-xl;

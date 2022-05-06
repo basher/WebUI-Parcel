@@ -450,7 +450,7 @@ See https://css-tricks.com/aspect-ratio-boxes/
         width: unset;
     }
 
-    // <br> selector required because CMS editor can add random line breaks into HTML!
+    // <br> selector required because CMS editors can add random line breaks into HTML!
     > :first-child,
     > br + * {
         height: 100%;
