@@ -9,7 +9,7 @@ Instead, make changes to '_index.scss.template', which will then be copied to 'i
 Default CSS variables.
 ----------------------------------------------------------------------------
 */
-@import '_THEMES/whitelabel/root-css-vars';
+@import '_THEMES/theme1/root-css-vars';
 
 /*
 ----------------------------------------------------------------------------
@@ -17,7 +17,7 @@ THEME import goes before Sass variable declarations.
 See https://robots.thoughtbot.com/sass-default
 ----------------------------------------------------------------------------
 */
-@import '_THEMES/whitelabel/whitelabel';
+@import '_THEMES/theme1/theme1';
 
 /*
 ----------------------------------------------------------------------------
