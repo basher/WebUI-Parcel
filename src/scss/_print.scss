@@ -146,44 +146,4 @@ Specific component styles.
     }
 }
 
-.ui-header__logo {
-    font-size: 16pt;
-
-    .ui-image {
-        display: block;
-        max-height: 30pt;
-    }
-}
-
-.ui-banner__inner {
-    margin-block-end: 10pt;
-
-    &.ui-responsive-media {
-        padding: 0 !important;
-    }
-}
-
-/*
-----------------------------------------------------------------------------
-Hide stuff.
-
-Notes:
-- We might want to still show specific images?
-----------------------------------------------------------------------------
-*/
-
-img,
-button,
-.ui-icon,
-.ui-skiplinks,
-.ui-navigation,
-.ui-header__search,
-.ui-header__offers,
-.ui-product-search,
-.ui-footer__group-title,
-.ui-footer__group-content,
-.ui-footer__item:not(.ui-footer__item--copyright),
-.ui-layout__sticky--footer {
-    display: none;
-}
 /* stylelint-enable declaration-no-important */

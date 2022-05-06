@@ -9,7 +9,7 @@ Instead, make changes to '_index.scss.template', which will then be copied to 'i
 Default CSS variables.
 ----------------------------------------------------------------------------
 */
-@import '_THEMES/theme1/root-css-vars';
+@import '_THEMES/whitelabel/root-css-vars';
 
 /*
 ----------------------------------------------------------------------------
@@ -17,7 +17,7 @@ THEME import goes before Sass variable declarations.
 See https://robots.thoughtbot.com/sass-default
 ----------------------------------------------------------------------------
 */
-@import '_THEMES/theme1/theme1';
+@import '_THEMES/whitelabel/whitelabel';
 
 /*
 ----------------------------------------------------------------------------
@@ -55,10 +55,3 @@ Fonts & globals.
 @media print {
     @import 'print';
 }
-
-/*
-----------------------------------------------------------------------------
-Finally, pages that need specific treatment for print, but still need to inherit current theme styling in the browser (e.g. stock details).
-----------------------------------------------------------------------------
-*/
-@import 'print-pages';

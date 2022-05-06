@@ -55,10 +55,3 @@ Fonts & globals.
 @media print {
     @import 'print';
 }
-
-/*
-----------------------------------------------------------------------------
-Finally, pages that need specific treatment for print, but still need to inherit current theme styling in the browser (e.g. stock details).
-----------------------------------------------------------------------------
-*/
-@import 'print-pages';
