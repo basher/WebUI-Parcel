@@ -88,7 +88,6 @@ $nav-dropdown-gutter: 8.75rem;
 ----------------------------------------------------------------------------
 */
 @import 'globals/typography';
-@import 'globals/utilities';
 
 /*
 ----------------------------------------------------------------------------
@@ -110,7 +109,7 @@ $nav-dropdown-gutter: 8.75rem;
 4. Override page styles from "./src/styles/pages/" folder, by importing the appropriate Sass partial(s).
 ----------------------------------------------------------------------------
 */
-@import 'pages/page-1-homepage';
+
 /*
 ----------------------------------------------------------------------------
 5. Override default fonts.
