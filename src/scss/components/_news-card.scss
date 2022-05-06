@@ -10,7 +10,7 @@
     border: 0;
     padding: 0;
 
-    // TODO: Width is needed by Safari so that aspect-ratio padding-top hack works inside <figure> which is a flex item. Ideally, we should fix the HTML so that the <a> is attached to the card title, not the image, as per product/stock cards.
+    // TODO: Width is needed by Safari so that aspect-ratio padding-top hack works inside <figure> which is a flex item. Ideally, fix the HTML so that the <a> is attached to the card title, not the image, as per product cards.
     .ui-card__media {
         width: 100%;
     }

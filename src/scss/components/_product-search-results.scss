@@ -44,7 +44,7 @@
             display: inline-flex;
         }
 
-        // Hide both icons on "All stock" button.
+        // Hide both icons on "All products" button.
         .has-no-condition {
             .ui-icon {
                 display: none;
@@ -125,7 +125,7 @@
         margin-inline-end: 0;
     }
 
-    [data-id='stock-compare'] {
+    [data-id='product-compare'] {
         border: 0;
         color: $color-brand;
 

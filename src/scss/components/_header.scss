@@ -77,7 +77,7 @@
         'home nav logo'
         'offers contact contact'
         'search search search';
-    // Set last row to 'auto' as not all dealers have stock vehicles, so this allows the row to collapse to 0 if there's no search form HTML rendered.
+    // Set last row to 'auto' so this allows the row to collapse to 0 if there's no search form HTML rendered.
     /* stylelint-disable-next-line prettier/prettier */
     grid-template-rows:
         repeat(2, minmax($layout-header-grid-row-height-mobile, auto))

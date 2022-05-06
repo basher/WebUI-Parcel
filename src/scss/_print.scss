@@ -16,12 +16,9 @@ Basic reset.
 }
 
 body {
-    font-size: 10pt;
-}
-
-body:not(.page-printstock) {
     color: #000; // Black prints faster.
     font-family: sans-serif;
+    font-size: 10pt;
 }
 
 figure {

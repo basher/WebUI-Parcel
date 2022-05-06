@@ -49,38 +49,4 @@ export class ProductCard {
             });
         }
     }
-
-    // TODO: Not sure if this method is still needed? Product cards do NOT appear to be loaded asynchronously anymore.
-    private handleProductCardGrid(): void {
-        // On stock list page, product cards are added asynchronously, so we use MutationObserver API to detect DOM changes, and fire the 'handleProductCardEvents()' method.
-        const domNode = document.querySelector('.ui-product-card-grid');
-        const config = { childList: true, subtree: true };
-
-        // Callback function to execute when mutations are observed.
-        const callback = (mutations: any): void => {
-            for (let i = 0; i < mutations.length; i += 1) {
-                if (
-                    mutations[i].type === 'childList' ||
-                    mutations[i].type === 'subtree'
-                ) {
-                    [...(mutations[i].addedNodes as any)].map((node) => {
-                        if (
-                            node.nodeName !== '#text' &&
-                            !node.classList.contains('ui-quick-view__item') &&
-                            !node.classList.contains('ui-quick-view')
-                        ) {
-                            this.handleProductCardEvents();
-                        }
-
-                        return true;
-                    });
-                }
-            }
-        };
-
-        const observer = new MutationObserver(callback);
-        if (domNode) {
-            observer.observe(domNode, config);
-        }
-    }
 }
