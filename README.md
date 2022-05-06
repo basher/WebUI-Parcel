@@ -4,7 +4,7 @@ This repo contains all CSS/JS (and other static UI code) required by [this Story
 ## QUICK START - How to use the UI assets in this repo for local development
 
 >> NOTE: Node environment variables are used for theming in the Parcel `start/build` commands, but there seems to be an issue in Node 16. Therefore, use an earlier version (e.g. Node 14) for Parcel, hence the need to install `Node Version Manager` in step 1 to allow multiple versions of Node to be installed concurrently on the same machine.
-> 1. Install `nvm-windows` via the [nvm-setup.zip download](https://github.com/coreybutler/nvm-windows/releases). Once installed, run the following commands from a terminal with **administrator privileges**.
+> 1. Install NVM (for Windows or Mac/Linux as appropriate). Once installed, run the following commands from a terminal with **administrator privileges**.
 >```
 > nvm install 14
 > nvm use 14.19.0
