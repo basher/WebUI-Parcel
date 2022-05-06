@@ -42,7 +42,7 @@ This repo contains all CSS/JS (and other static UI code) required by [this Story
 ### Installing NPM packages
 
 - Run `npm install` inside this repo's root folder from a command prompt.
-- There'shttp://www.github.com/rawnet/gulp-boilerplate" an `npm-shrinkwrap.json` file to lock down all NPM packages. This ensures that any developer or CI pipeline that runs `npm install` will get the same versions of all NPM packages.
+- There's an `npm-shrinkwrap.json` file to lock down all NPM packages. This ensures that any developer or CI pipeline that runs `npm install` will get the same versions of all NPM packages.
 - See [NPM shrinwrap docs](https://docs.npmjs.com/cli/shrinkwrap) for more information.
 
 ### Default `browserslist` configuration in `package.json`
@@ -176,21 +176,21 @@ parameter, and there needs to be a `"targets": { "app": {} }` property in the `p
 }
 ```
 
-### CSS namespacing with BEM and `gw-` prefix
+### CSS namespacing with BEM and `ui-` prefix
 
 - CSS scope and encapsulation is facilitated by a strict adherence to BEM naming convention for class names in the HTML - i.e. `block__element--modifier`.
-- Additionally, all classnames will be prefixed with `gw-`.
-- For example, a `gw-widget` component might have a `gw-widget__title` element, and a `gw-widget--small` modifier
+- Additionally, all classnames will be prefixed with `ui-`.
+- For example, a `ui-widget` component might have a `ui-widget__title` element, and a `ui-widget--small` modifier
 
 ```html
-<article class="gw-widget gw-widget--small">
-    <h2 class="gw-widget__title">Title...</h2>
+<article class="ui-widget ui-widget--small">
+    <h2 class="ui-widget__title">Title...</h2>
     ...
 </article>
 ```
 
 ```scss
-.gw-widget {
+.ui-widget {
     &__title {
         // styles...
     }
@@ -210,7 +210,7 @@ parameter, and there needs to be a `"targets": { "app": {} }` property in the `p
 │   │   └───components [FOLDER]
 │   │   └───fonts [FOLDER]
 │   │   └───globals [FOLDER]
-│   │   └───multi-franchise [FOLDER]
+│   │   └───multi-brand [FOLDER]
 │   │   └───_theme1.scss
 │   │   └───_root-css-vars.scss
 ├───base [FOLDER]
@@ -221,7 +221,7 @@ parameter, and there needs to be a `"targets": { "app": {} }` property in the `p
 │   ├─── ...
 ├───globals [FOLDER]
 │   ├─── ...
-├───multi-franchise [FOLDER]
+├───multi-brand [FOLDER]
 │   ├─── ...
 ├───pages [FOLDER]
 │   ├─── ...
@@ -230,7 +230,7 @@ parameter, and there needs to be a `"targets": { "app": {} }` property in the `p
 ├───_fonts.scss
 ├───_globals.scss
 ├───_index.scss.template
-├───_multi-franchise.scss
+├───_multi-brand.scss
 ├───_pages.scss
 ├───_print-pages.scss
 ├───_print.scss
@@ -246,7 +246,7 @@ parameter, and there needs to be a `"targets": { "app": {} }` property in the `p
 ```scss
 :root {
   --themeColorBrand: 43, 150, 205;
-  --themeFontFamily: FordAntennaRegular;
+  --themeFontFamily: AntennaRegular;
 }
 ```
 
@@ -256,7 +256,7 @@ parameter, and there needs to be a `"targets": { "app": {} }` property in the `p
 $color-brand: #{'rgb(var(--themeColorBrand))'} !default;
 ```
 
-- This methodology allows us to customise certain aspects of the themes at `runtime`, either via JavaScript, or adding a `<style>` block to the HTML (via the CMS) - e.g.
+- This methodology allows us to customise certain aspects of the themes at `runtime`, either via JavaScript, or adding a `<style>` block to the HTML - e.g.
 
 ```html
 <style id="theme">
@@ -288,15 +288,15 @@ $color-brand: #{'rgb(var(--themeColorBrand))'} !default;
 - `.\src\scss\globals\` folder contains global styles that apply across the entire UI.
 - e.g. CSS reset, some useful utility classes, and basic typographical styles.
 
-### Multi-franchise styles
+### Multi-brand styles
 
-- `.\src\scss\multi-franchise\` folder contains styles specific to each franchise.
-- Each multi-franchise page in the CMS has a classname on the `<body>` - e.g. `class="multif-ford"`.
+- `.\src\scss\multi-brand\` folder contains styles specific to each brand.
+- Each multi-brand page needs a classname on the `<body>` - e.g. `class="ui-brand-theme1"`.
 
 ### Page styles
 
 - `.\src\scss\pages\` folder contains styles specific to each page.
-- Each page in the CMS has a unique `pageId` which is reflected in the classname on the `<body>` - e.g. homepage has `class="page-1"`.
+- Each page needs a classname on the `<body>` - e.g. `class="page-1"` for homepage.
 
 ### CSS theming - Sass override styles
 
@@ -309,7 +309,6 @@ $color-brand: #{'rgb(var(--themeColorBrand))'} !default;
 ### Print styles
 
 - `.\src\scss\_print.scss\` contains all the `@media print` rules.
-- `.\src\scss\_print-pages.scss\` contains all the `@media print` rules for specific pages.
 
 ## Changing UI theme
 
@@ -333,16 +332,16 @@ npm run start:theme --web-ui-parcel:theme=[theme-name]
 - Replace `widget` with the actual component name:
 
 ```scss
-@if mixin-exists(gw-widget) {
-    @include gw-widget;
+@if mixin-exists(ui-widget) {
+    @include ui-widget;
 }
 ```
 - And the component's Sass partial theme override needs to have a `@mixin` directive, replacing `widget` with the actual component name.
 - For example, `.\src\scss\_THEMES\theme1\components\_widget.scss`:
 
 ```scss
-@mixin gw-widget {
-    .gw-widget {
+@mixin ui-widget {
+    .ui-widget {
         // override styles go here...
     }
 }
