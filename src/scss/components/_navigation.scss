@@ -184,11 +184,6 @@ By default, with JS disabled, header navigation does work, even on mobile.
         &--buttons {
             display: none;
         }
-
-        // "Hoisted" grandchild link that is rendered 1 level up in mobile & sticky menu.
-        &.is-hoisted {
-            display: none;
-        }
     }
 
     &__link {
@@ -400,26 +395,6 @@ By default, with JS disabled, header navigation does work, even on mobile.
         }
     }
 
-    .ui-product-filter--no-tabs {
-        @include bp-medium {
-            padding: 0 $nav-dropdown-gutter $nav-dropdown-gutter;
-        }
-        padding: $gutter-xs;
-
-        /* stylelint-disable-next-line no-descending-specificity */
-        .ui-grid {
-            // Center the product grid on mobile, and set max-width on image to be the same as CSS grid columns in desktop view.
-            @include bp-small {
-                @include responsive-grid($centered: true);
-
-                /* stylelint-disable-next-line max-nesting-depth */
-                .ui-image {
-                    max-width: $nav-grid-col-width;
-                }
-            }
-        }
-    }
-
     // 4th level navigation overlay.
     &__dropdown--overlay {
         &__header {
@@ -565,14 +540,6 @@ By default, with JS disabled, header navigation does work, even on mobile.
                 inset-inline-end: auto;
                 inset-inline-start: 0;
             }
-        }
-
-        .is-hoisted {
-            display: list-item;
-        }
-
-        .ui-product-filter--no-tabs {
-            padding: $gutter-xs;
         }
 
         // Sticky nav.
