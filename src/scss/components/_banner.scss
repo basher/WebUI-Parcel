@@ -184,27 +184,7 @@
         // In case we need hero overrides.
     }
 
-    // Page title banner.
-    &--page-title {
-        margin-block-end: 0;
-
-        .ui-banner__title {
-            background-color: #{rgba(var(--themeBlack), 0.6)};
-            color: $color-text-alt;
-            padding: $gutter-xs;
-        }
-
-        h1 {
-            @include bp-medium {
-                @include fluid-type-l;
-            }
-            color: inherit;
-            font-size: $font-size-m;
-            margin: 0;
-        }
-    }
-
-    // Specific banner variants - e.g. promotions, news, etc.
+    // Specific banner variants - e.g. news, etc.
     &-wrap {
         background: $color-grey-1;
         padding: $gutter;
