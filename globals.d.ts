@@ -1,3 +1,2 @@
 /// Declare globals.
-declare let GWconfig: any;
-declare let analyticsDatalayer: any;
+declare let UIconfig: any;
