@@ -25,8 +25,7 @@ domready(function () {
     if (browserSupportsAllFeatures()) {
         uiInit();
     } else {
-        // Require 'promise' for Parcel, then dynamic import polyfills, then instantiate UI modules.
-        require('core-js/es/promise');
+        // Dynamic import polyfills, then instantiate UI modules.
         import('./polyfills')
             .then(() => uiInit())
             // eslint-disable-next-line no-console
