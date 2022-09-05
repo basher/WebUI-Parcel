@@ -67,7 +67,7 @@ export const bindTabsKeyboardEvent = (
     // Stop page jumping with certain key events with 'e.preventDefault()'.
     switch (e.code) {
         case 'ArrowRight':
-        case 'ArrowDown':
+            // case 'ArrowDown':
             e.preventDefault();
             if (tabButtons.length - index > 1) {
                 nextTab[index + 1].focus();
@@ -75,7 +75,7 @@ export const bindTabsKeyboardEvent = (
             }
             break;
         case 'ArrowLeft':
-        case 'ArrowUp':
+            // case 'ArrowUp':
             e.preventDefault();
             if (index > 0) {
                 nextTab[index - 1].focus();
